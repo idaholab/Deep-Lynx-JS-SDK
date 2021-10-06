@@ -1,0 +1,33 @@
+{
+  "name": "deep-lynx-sdk",
+  "version": "1.0",
+  "description": "OpenAPI client for the Deep Lynx data warehouse",
+  "author": "OpenAPI-Generator Contributors; Jeren Browning <jeren.browning@inl.gov>",
+  "keywords": [
+    "axios",
+    "typescript",
+    "openapi-client",
+    "openapi-generator",
+    "deep lynx"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "axios": "^0.22.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^12.11.5",
+    "chai": "^4.3.4",
+    "dotenv": "^10.0.0",
+    "mocha": "^9.1.2",
+    "typescript": "^3.6.4",
+    "ts-node": "^10.2.1"
+  }
+}
