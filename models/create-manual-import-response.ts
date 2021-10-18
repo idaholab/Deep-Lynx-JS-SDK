@@ -19,56 +19,14 @@
 export interface CreateManualImportResponse {
     /**
      * 
-     * @type {string}
+     * @type {CreateManualImport}
      * @memberof CreateManualImportResponse
      */
-    status: any;
+    value?: any;
     /**
      * 
-     * @type {string}
+     * @type {boolean}
      * @memberof CreateManualImportResponse
      */
-    id: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    dataSourceId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    createdAt: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    modifiedAt: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    createdBy: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    modifiedBy: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    reference?: any | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateManualImportResponse
-     */
-    statusMessage?: any | null;
+    isError?: any;
 }

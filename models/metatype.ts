@@ -34,5 +34,47 @@ export interface Metatype {
      * @type {string}
      * @memberof Metatype
      */
+    containerId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Metatype
+     */
     id: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Metatype
+     */
+    archived: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Metatype
+     */
+    createdAt: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Metatype
+     */
+    modifiedAt: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Metatype
+     */
+    createdBy: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Metatype
+     */
+    modifiedBy: any;
+    /**
+     * 
+     * @type {Array&lt;MetatypeKey&gt;}
+     * @memberof Metatype
+     */
+    keys?: any;
 }

@@ -16,15 +16,17 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersFilesResponse } from '../models';
-import { ContainersImportDatasourcesImportsResponse } from '../models';
-import { ContainersImportDatasourcesImportsResponse1 } from '../models';
-import { ContainersImportDatasourcesResponse } from '../models';
-import { ContainersImportDatasourcesResponse1 } from '../models';
+import { CreateDataSourceConfig } from '../models';
 import { CreateDataSourceRequest } from '../models';
-import { Generic200 } from '../models';
+import { CreateDataSourcesResponse } from '../models';
+import { CreateManualImportResponse } from '../models';
+import { Generic200Response } from '../models';
+import { GetDataSourceResponse } from '../models';
+import { GetFileInfoResponse } from '../models';
 import { InlineResponse200 } from '../models';
-import { SetConfigurationRequest } from '../models';
+import { ListDataSourceImportsResponse } from '../models';
+import { ListDataSourcesResponse } from '../models';
+import { UpdateDataSourceResponse } from '../models';
 /**
  * DataSourcesApi - axios parameter creator
  * @export
@@ -487,13 +489,13 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         /**
          * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
          * @summary SetDataSourceConfiguration
-         * @param {SetConfigurationRequest} body 
+         * @param {CreateDataSourceConfig} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setDataSourceConfiguration: async (body: SetConfigurationRequest, containerId: string, dataSourceId: string, options: any = {}): Promise<RequestArgs> => {
+        setDataSourceConfiguration: async (body: CreateDataSourceConfig, containerId: string, dataSourceId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling setDataSourceConfiguration.');
@@ -665,7 +667,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveDataSource(containerId: string, dataSourceId: string, archive?: string, forceDelete?: string, removeData?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveDataSource(containerId: string, dataSourceId: string, archive?: string, forceDelete?: string, removeData?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).archiveDataSource(containerId, dataSourceId, archive, forceDelete, removeData, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -680,7 +682,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createDataSource(body: CreateDataSourceRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesResponse1>> {
+        async createDataSource(body: CreateDataSourceRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateDataSourcesResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).createDataSource(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -696,7 +698,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createManualImport(body: any, containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesImportsResponse1>> {
+        async createManualImport(body: any, containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateManualImportResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).createManualImport(body, containerId, dataSourceId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -725,7 +727,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listDataSources(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesResponse>> {
+        async listDataSources(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListDataSourcesResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).listDataSources(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -740,7 +742,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listImportsForDataSource(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesImportsResponse>> {
+        async listImportsForDataSource(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListDataSourceImportsResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).listImportsForDataSource(containerId, dataSourceId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -755,7 +757,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveDataSource(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesResponse1>> {
+        async retrieveDataSource(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDataSourceResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).retrieveDataSource(containerId, dataSourceId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -770,7 +772,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveFile(containerId: string, fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersFilesResponse>> {
+        async retrieveFile(containerId: string, fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFileInfoResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).retrieveFile(containerId, fileId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -785,7 +787,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setDataSourceActive(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async setDataSourceActive(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).setDataSourceActive(containerId, dataSourceId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -795,13 +797,13 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         /**
          * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
          * @summary SetDataSourceConfiguration
-         * @param {SetConfigurationRequest} body 
+         * @param {CreateDataSourceConfig} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setDataSourceConfiguration(body: SetConfigurationRequest, containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesResponse1>> {
+        async setDataSourceConfiguration(body: CreateDataSourceConfig, containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateDataSourceResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).setDataSourceConfiguration(body, containerId, dataSourceId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -816,7 +818,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setDataSourceInactive(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async setDataSourceInactive(containerId: string, dataSourceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).setDataSourceInactive(containerId, dataSourceId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -859,7 +861,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveDataSource(containerId: string, dataSourceId: string, archive?: string, forceDelete?: string, removeData?: string, options?: any): AxiosPromise<Generic200> {
+        archiveDataSource(containerId: string, dataSourceId: string, archive?: string, forceDelete?: string, removeData?: string, options?: any): AxiosPromise<Generic200Response> {
             return DataSourcesApiFp(configuration).archiveDataSource(containerId, dataSourceId, archive, forceDelete, removeData, options).then((request) => request(axios, basePath));
         },
         /**
@@ -870,7 +872,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDataSource(body: CreateDataSourceRequest, containerId: string, options?: any): AxiosPromise<ContainersImportDatasourcesResponse1> {
+        createDataSource(body: CreateDataSourceRequest, containerId: string, options?: any): AxiosPromise<CreateDataSourcesResponse> {
             return DataSourcesApiFp(configuration).createDataSource(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -882,7 +884,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createManualImport(body: any, containerId: string, dataSourceId: string, options?: any): AxiosPromise<ContainersImportDatasourcesImportsResponse1> {
+        createManualImport(body: any, containerId: string, dataSourceId: string, options?: any): AxiosPromise<CreateManualImportResponse> {
             return DataSourcesApiFp(configuration).createManualImport(body, containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -903,7 +905,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listDataSources(containerId: string, options?: any): AxiosPromise<ContainersImportDatasourcesResponse> {
+        listDataSources(containerId: string, options?: any): AxiosPromise<ListDataSourcesResponse> {
             return DataSourcesApiFp(configuration).listDataSources(containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -914,7 +916,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listImportsForDataSource(containerId: string, dataSourceId: string, options?: any): AxiosPromise<ContainersImportDatasourcesImportsResponse> {
+        listImportsForDataSource(containerId: string, dataSourceId: string, options?: any): AxiosPromise<ListDataSourceImportsResponse> {
             return DataSourcesApiFp(configuration).listImportsForDataSource(containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -925,7 +927,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveDataSource(containerId: string, dataSourceId: string, options?: any): AxiosPromise<ContainersImportDatasourcesResponse1> {
+        retrieveDataSource(containerId: string, dataSourceId: string, options?: any): AxiosPromise<GetDataSourceResponse> {
             return DataSourcesApiFp(configuration).retrieveDataSource(containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -936,7 +938,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveFile(containerId: string, fileId: string, options?: any): AxiosPromise<ContainersFilesResponse> {
+        retrieveFile(containerId: string, fileId: string, options?: any): AxiosPromise<GetFileInfoResponse> {
             return DataSourcesApiFp(configuration).retrieveFile(containerId, fileId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -947,19 +949,19 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setDataSourceActive(containerId: string, dataSourceId: string, options?: any): AxiosPromise<Generic200> {
+        setDataSourceActive(containerId: string, dataSourceId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataSourcesApiFp(configuration).setDataSourceActive(containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
          * @summary SetDataSourceConfiguration
-         * @param {SetConfigurationRequest} body 
+         * @param {CreateDataSourceConfig} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setDataSourceConfiguration(body: SetConfigurationRequest, containerId: string, dataSourceId: string, options?: any): AxiosPromise<ContainersImportDatasourcesResponse1> {
+        setDataSourceConfiguration(body: CreateDataSourceConfig, containerId: string, dataSourceId: string, options?: any): AxiosPromise<UpdateDataSourceResponse> {
             return DataSourcesApiFp(configuration).setDataSourceConfiguration(body, containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -970,7 +972,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setDataSourceInactive(containerId: string, dataSourceId: string, options?: any): AxiosPromise<Generic200> {
+        setDataSourceInactive(containerId: string, dataSourceId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataSourcesApiFp(configuration).setDataSourceInactive(containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1109,14 +1111,14 @@ export class DataSourcesApi extends BaseAPI {
     /**
      * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
      * @summary SetDataSourceConfiguration
-     * @param {SetConfigurationRequest} body 
+     * @param {CreateDataSourceConfig} body 
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataSourcesApi
      */
-    public setDataSourceConfiguration(body: SetConfigurationRequest, containerId: string, dataSourceId: string, options?: any) {
+    public setDataSourceConfiguration(body: CreateDataSourceConfig, containerId: string, dataSourceId: string, options?: any) {
         return DataSourcesApiFp(this.configuration).setDataSourceConfiguration(body, containerId, dataSourceId, options).then((request) => request(this.axios, this.basePath));
     }
     /**

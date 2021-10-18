@@ -19,10 +19,10 @@
 export interface Validation {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Validation
      */
-    regex: any;
+    max: any;
     /**
      * 
      * @type {number}
@@ -31,8 +31,8 @@ export interface Validation {
     min: any;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Validation
      */
-    max: any;
+    regex: any;
 }

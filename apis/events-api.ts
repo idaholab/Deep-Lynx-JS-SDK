@@ -16,10 +16,11 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { CreateEventResponse } from '../models';
 import { CreateRegisteredEventRequest } from '../models';
-import { EventsResponse } from '../models';
-import { EventsResponse1 } from '../models';
-import { Generic200 } from '../models';
+import { Generic200Response } from '../models';
+import { GetEventResponse } from '../models';
+import { ListEventsResponse } from '../models';
 import { UpdateRegisteredEventRequest } from '../models';
 /**
  * EventsApi - axios parameter creator
@@ -260,7 +261,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventsResponse1>> {
+        async createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEventResponse>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).createRegisteredEvent(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -274,7 +275,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRegisteredEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async deleteRegisteredEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).deleteRegisteredEvent(eventId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -287,7 +288,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listRegisteredEvents(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventsResponse>> {
+        async listRegisteredEvents(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventsResponse>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listRegisteredEvents(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -301,7 +302,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRegisteredEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventsResponse1>> {
+        async retrieveRegisteredEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventResponse>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).retrieveRegisteredEvent(eventId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -317,7 +318,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).updateRegisteredEvent(eventId, body, active, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -340,7 +341,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any): AxiosPromise<EventsResponse1> {
+        createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any): AxiosPromise<CreateEventResponse> {
             return EventsApiFp(configuration).createRegisteredEvent(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -350,7 +351,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRegisteredEvent(eventId: string, options?: any): AxiosPromise<Generic200> {
+        deleteRegisteredEvent(eventId: string, options?: any): AxiosPromise<Generic200Response> {
             return EventsApiFp(configuration).deleteRegisteredEvent(eventId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -359,7 +360,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listRegisteredEvents(options?: any): AxiosPromise<EventsResponse> {
+        listRegisteredEvents(options?: any): AxiosPromise<ListEventsResponse> {
             return EventsApiFp(configuration).listRegisteredEvents(options).then((request) => request(axios, basePath));
         },
         /**
@@ -369,7 +370,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRegisteredEvent(eventId: string, options?: any): AxiosPromise<EventsResponse1> {
+        retrieveRegisteredEvent(eventId: string, options?: any): AxiosPromise<GetEventResponse> {
             return EventsApiFp(configuration).retrieveRegisteredEvent(eventId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -381,7 +382,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any): AxiosPromise<Generic200> {
+        updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any): AxiosPromise<Generic200Response> {
             return EventsApiFp(configuration).updateRegisteredEvent(eventId, body, active, options).then((request) => request(axios, basePath));
         },
     };

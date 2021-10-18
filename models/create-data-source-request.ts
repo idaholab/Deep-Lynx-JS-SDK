@@ -34,11 +34,11 @@ export interface CreateDataSourceRequest {
      * @type {boolean}
      * @memberof CreateDataSourceRequest
      */
-    active: any;
+    active?: any;
     /**
      * 
-     * @type {DataSourceConfig}
+     * @type {CreateDataSourceConfig}
      * @memberof CreateDataSourceRequest
      */
-    config: any;
+    config?: any;
 }

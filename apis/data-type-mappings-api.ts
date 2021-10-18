@@ -16,16 +16,16 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersImportDatasourcesMappingsImportResponse } from '../models';
-import { ContainersImportDatasourcesMappingsMappingIdResponse } from '../models';
-import { ContainersImportDatasourcesMappingsMappingIdTransformationsResponse } from '../models';
-import { ContainersImportDatasourcesMappingsMappingIdTransformationsResponse1 } from '../models';
-import { ContainersImportDatasourcesMappingsMappingIdTransformationsTransformationIdResponse } from '../models';
-import { ContainersImportDatasourcesMappingsResponse } from '../models';
+import { CreateTransformationResponse } from '../models';
 import { CreateTypeMappingTransformationsRequest } from '../models';
-import { Generic200 } from '../models';
+import { Generic200Response } from '../models';
+import { GetDataTypeMappingResponse } from '../models';
+import { ListDataTypeMappingResponse } from '../models';
+import { ListTransformationResponse } from '../models';
+import { TypeMapping } from '../models';
 import { TypeMappingExportPayload } from '../models';
-import { TypeMappingResponse } from '../models';
+import { UpdateDataTypeMappingResponse } from '../models';
+import { UpdateTransformationResponse } from '../models';
 /**
  * DataTypeMappingsApi - axios parameter creator
  * @export
@@ -96,7 +96,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
-         * Permanently removes type mapping from storage.
+         * Permanently remove data type mapping.
          * @summary DeleteDataTypeMapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -213,23 +213,23 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
          * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
          * @summary ExportTypeMappings
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {TypeMappingExportPayload} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportTypeMappings: async (containerId: string, sourceId: string, body?: TypeMappingExportPayload, options: any = {}): Promise<RequestArgs> => {
+        exportTypeMappings: async (containerId: string, dataSourceId: string, body?: TypeMappingExportPayload, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling exportTypeMappings.');
             }
-            // verify required parameter 'sourceId' is not null or undefined
-            if (sourceId === null || sourceId === undefined) {
-                throw new RequiredError('sourceId','Required parameter sourceId was null or undefined when calling exportTypeMappings.');
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling exportTypeMappings.');
             }
-            const localVarPath = `/containers/{container_id}/import/datasources/{source_id}/mappings/export`
+            const localVarPath = `/containers/{container_id}/import/datasources/{data_source_id}/mappings/export`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"source_id"}}`, encodeURIComponent(String(sourceId)));
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -266,23 +266,23 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
          * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
          * @summary ImportDataTypeMappings
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importDataTypeMappings: async (containerId: string, sourceId: string, file?: string, options: any = {}): Promise<RequestArgs> => {
+        importDataTypeMappings: async (containerId: string, dataSourceId: string, file?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling importDataTypeMappings.');
             }
-            // verify required parameter 'sourceId' is not null or undefined
-            if (sourceId === null || sourceId === undefined) {
-                throw new RequiredError('sourceId','Required parameter sourceId was null or undefined when calling importDataTypeMappings.');
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling importDataTypeMappings.');
             }
-            const localVarPath = `/containers/{container_id}/import/datasources/{source_id}/mappings/import`
+            const localVarPath = `/containers/{container_id}/import/datasources/{data_source_id}/mappings/import`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"source_id"}}`, encodeURIComponent(String(sourceId)));
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -319,7 +319,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
-         * Lists type mappings from storage
+         * Lists data type mappings for the data source
          * @summary ListDataTypeMappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -461,7 +461,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
-         * Retrieve a type mapping from storage.
+         * Retrieve a data type mapping
          * @summary RetrieveDataTypeMapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -520,11 +520,11 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
-         * @param {TypeMappingResponse} [body] 
+         * @param {TypeMapping} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateDataTypeMapping: async (containerId: string, dataSourceId: string, mappingId: string, body?: TypeMappingResponse, options: any = {}): Promise<RequestArgs> => {
+        updateDataTypeMapping: async (containerId: string, dataSourceId: string, mappingId: string, body?: TypeMapping, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling updateDataTypeMapping.');
@@ -661,7 +661,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesMappingsMappingIdTransformationsResponse1>> {
+        async createTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTransformationResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).createTransformation(body, containerId, dataSourceId, mappingId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -669,7 +669,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Permanently removes type mapping from storage.
+         * Permanently remove data type mapping.
          * @summary DeleteDataTypeMapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -677,7 +677,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async deleteDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).deleteDataTypeMapping(containerId, dataSourceId, mappingId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -694,7 +694,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteTransformation(containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async deleteTransformation(containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).deleteTransformation(containerId, dataSourceId, mappingId, transformationId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -705,13 +705,13 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
          * @summary ExportTypeMappings
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {TypeMappingExportPayload} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async exportTypeMappings(containerId: string, sourceId: string, body?: TypeMappingExportPayload, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TypeMappingResponse>>> {
-            const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).exportTypeMappings(containerId, sourceId, body, options);
+        async exportTypeMappings(containerId: string, dataSourceId: string, body?: TypeMappingExportPayload, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TypeMapping>>> {
+            const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).exportTypeMappings(containerId, dataSourceId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -721,20 +721,20 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
          * @summary ImportDataTypeMappings
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importDataTypeMappings(containerId: string, sourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ContainersImportDatasourcesMappingsImportResponse>>> {
-            const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).importDataTypeMappings(containerId, sourceId, file, options);
+        async importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetDataTypeMappingResponse>>> {
+            const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).importDataTypeMappings(containerId, dataSourceId, file, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Lists type mappings from storage
+         * Lists data type mappings for the data source
          * @summary ListDataTypeMappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -749,7 +749,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listDataTypeMappings(containerId: string, dataSourceId: string, limit?: number, offset?: number, needsTransformations?: boolean, count?: boolean, sortBy?: string, sortDesc?: boolean, resultingMetatypeName?: string, resultingMetatypeRelationshipName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesMappingsResponse>> {
+        async listDataTypeMappings(containerId: string, dataSourceId: string, limit?: number, offset?: number, needsTransformations?: boolean, count?: boolean, sortBy?: string, sortDesc?: boolean, resultingMetatypeName?: string, resultingMetatypeRelationshipName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListDataTypeMappingResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).listDataTypeMappings(containerId, dataSourceId, limit, offset, needsTransformations, count, sortBy, sortDesc, resultingMetatypeName, resultingMetatypeRelationshipName, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -765,7 +765,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listTransformations(containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesMappingsMappingIdTransformationsResponse>> {
+        async listTransformations(containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListTransformationResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).listTransformations(containerId, dataSourceId, mappingId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -773,7 +773,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Retrieve a type mapping from storage.
+         * Retrieve a data type mapping
          * @summary RetrieveDataTypeMapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -781,7 +781,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesMappingsMappingIdResponse>> {
+        async retrieveDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDataTypeMappingResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).retrieveDataTypeMapping(containerId, dataSourceId, mappingId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -794,11 +794,11 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
-         * @param {TypeMappingResponse} [body] 
+         * @param {TypeMapping} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, body?: TypeMappingResponse, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesMappingsMappingIdResponse>> {
+        async updateDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, body?: TypeMapping, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateDataTypeMappingResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).updateDataTypeMapping(containerId, dataSourceId, mappingId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -816,7 +816,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportDatasourcesMappingsMappingIdTransformationsTransformationIdResponse>> {
+        async updateTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateTransformationResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).updateTransformation(body, containerId, dataSourceId, mappingId, transformationId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -842,11 +842,11 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<ContainersImportDatasourcesMappingsMappingIdTransformationsResponse1> {
+        createTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<CreateTransformationResponse> {
             return DataTypeMappingsApiFp(configuration).createTransformation(body, containerId, dataSourceId, mappingId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Permanently removes type mapping from storage.
+         * Permanently remove data type mapping.
          * @summary DeleteDataTypeMapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -854,7 +854,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<Generic200> {
+        deleteDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataTypeMappingsApiFp(configuration).deleteDataTypeMapping(containerId, dataSourceId, mappingId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -867,35 +867,35 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteTransformation(containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): AxiosPromise<Generic200> {
+        deleteTransformation(containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataTypeMappingsApiFp(configuration).deleteTransformation(containerId, dataSourceId, mappingId, transformationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
          * @summary ExportTypeMappings
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {TypeMappingExportPayload} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        exportTypeMappings(containerId: string, sourceId: string, body?: TypeMappingExportPayload, options?: any): AxiosPromise<Array<TypeMappingResponse>> {
-            return DataTypeMappingsApiFp(configuration).exportTypeMappings(containerId, sourceId, body, options).then((request) => request(axios, basePath));
+        exportTypeMappings(containerId: string, dataSourceId: string, body?: TypeMappingExportPayload, options?: any): AxiosPromise<Array<TypeMapping>> {
+            return DataTypeMappingsApiFp(configuration).exportTypeMappings(containerId, dataSourceId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
          * @summary ImportDataTypeMappings
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importDataTypeMappings(containerId: string, sourceId: string, file?: string, options?: any): AxiosPromise<Array<ContainersImportDatasourcesMappingsImportResponse>> {
-            return DataTypeMappingsApiFp(configuration).importDataTypeMappings(containerId, sourceId, file, options).then((request) => request(axios, basePath));
+        importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<Array<GetDataTypeMappingResponse>> {
+            return DataTypeMappingsApiFp(configuration).importDataTypeMappings(containerId, dataSourceId, file, options).then((request) => request(axios, basePath));
         },
         /**
-         * Lists type mappings from storage
+         * Lists data type mappings for the data source
          * @summary ListDataTypeMappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -910,7 +910,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listDataTypeMappings(containerId: string, dataSourceId: string, limit?: number, offset?: number, needsTransformations?: boolean, count?: boolean, sortBy?: string, sortDesc?: boolean, resultingMetatypeName?: string, resultingMetatypeRelationshipName?: string, options?: any): AxiosPromise<ContainersImportDatasourcesMappingsResponse> {
+        listDataTypeMappings(containerId: string, dataSourceId: string, limit?: number, offset?: number, needsTransformations?: boolean, count?: boolean, sortBy?: string, sortDesc?: boolean, resultingMetatypeName?: string, resultingMetatypeRelationshipName?: string, options?: any): AxiosPromise<ListDataTypeMappingResponse> {
             return DataTypeMappingsApiFp(configuration).listDataTypeMappings(containerId, dataSourceId, limit, offset, needsTransformations, count, sortBy, sortDesc, resultingMetatypeName, resultingMetatypeRelationshipName, options).then((request) => request(axios, basePath));
         },
         /**
@@ -922,11 +922,11 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listTransformations(containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<ContainersImportDatasourcesMappingsMappingIdTransformationsResponse> {
+        listTransformations(containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<ListTransformationResponse> {
             return DataTypeMappingsApiFp(configuration).listTransformations(containerId, dataSourceId, mappingId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve a type mapping from storage.
+         * Retrieve a data type mapping
          * @summary RetrieveDataTypeMapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -934,7 +934,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<ContainersImportDatasourcesMappingsMappingIdResponse> {
+        retrieveDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, options?: any): AxiosPromise<GetDataTypeMappingResponse> {
             return DataTypeMappingsApiFp(configuration).retrieveDataTypeMapping(containerId, dataSourceId, mappingId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -943,11 +943,11 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
-         * @param {TypeMappingResponse} [body] 
+         * @param {TypeMapping} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, body?: TypeMappingResponse, options?: any): AxiosPromise<ContainersImportDatasourcesMappingsMappingIdResponse> {
+        updateDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, body?: TypeMapping, options?: any): AxiosPromise<UpdateDataTypeMappingResponse> {
             return DataTypeMappingsApiFp(configuration).updateDataTypeMapping(containerId, dataSourceId, mappingId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -961,7 +961,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): AxiosPromise<ContainersImportDatasourcesMappingsMappingIdTransformationsTransformationIdResponse> {
+        updateTransformation(body: CreateTypeMappingTransformationsRequest, containerId: string, dataSourceId: string, mappingId: string, transformationId: string, options?: any): AxiosPromise<UpdateTransformationResponse> {
             return DataTypeMappingsApiFp(configuration).updateTransformation(body, containerId, dataSourceId, mappingId, transformationId, options).then((request) => request(axios, basePath));
         },
     };
@@ -989,7 +989,7 @@ export class DataTypeMappingsApi extends BaseAPI {
         return DataTypeMappingsApiFp(this.configuration).createTransformation(body, containerId, dataSourceId, mappingId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Permanently removes type mapping from storage.
+     * Permanently remove data type mapping.
      * @summary DeleteDataTypeMapping
      * @param {string} containerId 
      * @param {string} dataSourceId 
@@ -1019,30 +1019,30 @@ export class DataTypeMappingsApi extends BaseAPI {
      * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
      * @summary ExportTypeMappings
      * @param {string} containerId 
-     * @param {string} sourceId 
+     * @param {string} dataSourceId 
      * @param {TypeMappingExportPayload} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataTypeMappingsApi
      */
-    public exportTypeMappings(containerId: string, sourceId: string, body?: TypeMappingExportPayload, options?: any) {
-        return DataTypeMappingsApiFp(this.configuration).exportTypeMappings(containerId, sourceId, body, options).then((request) => request(this.axios, this.basePath));
+    public exportTypeMappings(containerId: string, dataSourceId: string, body?: TypeMappingExportPayload, options?: any) {
+        return DataTypeMappingsApiFp(this.configuration).exportTypeMappings(containerId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
      * @summary ImportDataTypeMappings
      * @param {string} containerId 
-     * @param {string} sourceId 
+     * @param {string} dataSourceId 
      * @param {string} [file] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataTypeMappingsApi
      */
-    public importDataTypeMappings(containerId: string, sourceId: string, file?: string, options?: any) {
-        return DataTypeMappingsApiFp(this.configuration).importDataTypeMappings(containerId, sourceId, file, options).then((request) => request(this.axios, this.basePath));
+    public importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any) {
+        return DataTypeMappingsApiFp(this.configuration).importDataTypeMappings(containerId, dataSourceId, file, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Lists type mappings from storage
+     * Lists data type mappings for the data source
      * @summary ListDataTypeMappings
      * @param {string} containerId 
      * @param {string} dataSourceId 
@@ -1075,7 +1075,7 @@ export class DataTypeMappingsApi extends BaseAPI {
         return DataTypeMappingsApiFp(this.configuration).listTransformations(containerId, dataSourceId, mappingId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Retrieve a type mapping from storage.
+     * Retrieve a data type mapping
      * @summary RetrieveDataTypeMapping
      * @param {string} containerId 
      * @param {string} dataSourceId 
@@ -1093,12 +1093,12 @@ export class DataTypeMappingsApi extends BaseAPI {
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} mappingId 
-     * @param {TypeMappingResponse} [body] 
+     * @param {TypeMapping} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataTypeMappingsApi
      */
-    public updateDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, body?: TypeMappingResponse, options?: any) {
+    public updateDataTypeMapping(containerId: string, dataSourceId: string, mappingId: string, body?: TypeMapping, options?: any) {
         return DataTypeMappingsApiFp(this.configuration).updateDataTypeMapping(containerId, dataSourceId, mappingId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**

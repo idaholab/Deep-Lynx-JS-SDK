@@ -16,10 +16,12 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersMetatypeRelationshipPairsResponse } from '../models';
-import { ContainersMetatypeRelationshipPairsResponse2 } from '../models';
-import { Generic200 } from '../models';
-import { NewTypeRelationshipPairRequest } from '../models';
+import { CreateMetatypeRelationshipPairsResponse } from '../models';
+import { Generic200Response } from '../models';
+import { GetMetatypeRelationshipPairResponse } from '../models';
+import { ListMetatypeRelationshipPairsResponse } from '../models';
+import { NewMetatypeRelationshipPairRequest } from '../models';
+import { UpdateMetatypeRelationshipPairResponse } from '../models';
 /**
  * MetatypeRelationshipPairsApi - axios parameter creator
  * @export
@@ -77,12 +79,12 @@ export const MetatypeRelationshipPairsApiAxiosParamCreator = function (configura
         /**
          * Create a new Metaype Relationship Pair. Describes the connection between two metatypes by connecting them using a Metatype Relationship.  Pass in an array for bulk creation.
          * @summary CreateMetatypeRelationshipPair
-         * @param {NewTypeRelationshipPairRequest} body 
+         * @param {NewMetatypeRelationshipPairRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeRelationshipPair: async (body: NewTypeRelationshipPairRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        createMetatypeRelationshipPair: async (body: NewMetatypeRelationshipPairRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createMetatypeRelationshipPair.');
@@ -265,11 +267,11 @@ export const MetatypeRelationshipPairsApiAxiosParamCreator = function (configura
          * @summary UpdateMetatypeRelationshipPair
          * @param {string} containerId 
          * @param {string} pairId 
-         * @param {NewTypeRelationshipPairRequest} [body] 
+         * @param {NewMetatypeRelationshipPairRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatypeRelationshipPair: async (containerId: string, pairId: string, body?: NewTypeRelationshipPairRequest, options: any = {}): Promise<RequestArgs> => {
+        updateMetatypeRelationshipPair: async (containerId: string, pairId: string, body?: NewMetatypeRelationshipPairRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling updateMetatypeRelationshipPair.');
@@ -330,7 +332,7 @@ export const MetatypeRelationshipPairsApiFp = function(configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await MetatypeRelationshipPairsApiAxiosParamCreator(configuration).archiveMetatypeRelationshipPair(containerId, pairId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -340,12 +342,12 @@ export const MetatypeRelationshipPairsApiFp = function(configuration?: Configura
         /**
          * Create a new Metaype Relationship Pair. Describes the connection between two metatypes by connecting them using a Metatype Relationship.  Pass in an array for bulk creation.
          * @summary CreateMetatypeRelationshipPair
-         * @param {NewTypeRelationshipPairRequest} body 
+         * @param {NewMetatypeRelationshipPairRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMetatypeRelationshipPair(body: NewTypeRelationshipPairRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipPairsResponse>> {
+        async createMetatypeRelationshipPair(body: NewMetatypeRelationshipPairRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypeRelationshipPairsResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipPairsApiAxiosParamCreator(configuration).createMetatypeRelationshipPair(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -368,7 +370,7 @@ export const MetatypeRelationshipPairsApiFp = function(configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listMetatypeRelationshipPairs(containerId: string, limit?: number, offset?: number, name?: string, archived?: string, count?: string, loadRelationships?: string, destinationID?: string, originID?: string, metatypeID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipPairsResponse>> {
+        async listMetatypeRelationshipPairs(containerId: string, limit?: number, offset?: number, name?: string, archived?: string, count?: string, loadRelationships?: string, destinationID?: string, originID?: string, metatypeID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypeRelationshipPairsResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipPairsApiAxiosParamCreator(configuration).listMetatypeRelationshipPairs(containerId, limit, offset, name, archived, count, loadRelationships, destinationID, originID, metatypeID, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -383,7 +385,7 @@ export const MetatypeRelationshipPairsApiFp = function(configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipPairsResponse2>> {
+        async retrieveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMetatypeRelationshipPairResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipPairsApiAxiosParamCreator(configuration).retrieveMetatypeRelationshipPair(containerId, pairId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -395,11 +397,11 @@ export const MetatypeRelationshipPairsApiFp = function(configuration?: Configura
          * @summary UpdateMetatypeRelationshipPair
          * @param {string} containerId 
          * @param {string} pairId 
-         * @param {NewTypeRelationshipPairRequest} [body] 
+         * @param {NewMetatypeRelationshipPairRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateMetatypeRelationshipPair(containerId: string, pairId: string, body?: NewTypeRelationshipPairRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipPairsResponse2>> {
+        async updateMetatypeRelationshipPair(containerId: string, pairId: string, body?: NewMetatypeRelationshipPairRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateMetatypeRelationshipPairResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipPairsApiAxiosParamCreator(configuration).updateMetatypeRelationshipPair(containerId, pairId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -423,18 +425,18 @@ export const MetatypeRelationshipPairsApiFactory = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): AxiosPromise<Generic200> {
+        archiveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): AxiosPromise<Generic200Response> {
             return MetatypeRelationshipPairsApiFp(configuration).archiveMetatypeRelationshipPair(containerId, pairId, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new Metaype Relationship Pair. Describes the connection between two metatypes by connecting them using a Metatype Relationship.  Pass in an array for bulk creation.
          * @summary CreateMetatypeRelationshipPair
-         * @param {NewTypeRelationshipPairRequest} body 
+         * @param {NewMetatypeRelationshipPairRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeRelationshipPair(body: NewTypeRelationshipPairRequest, containerId: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipPairsResponse> {
+        createMetatypeRelationshipPair(body: NewMetatypeRelationshipPairRequest, containerId: string, options?: any): AxiosPromise<CreateMetatypeRelationshipPairsResponse> {
             return MetatypeRelationshipPairsApiFp(configuration).createMetatypeRelationshipPair(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -453,7 +455,7 @@ export const MetatypeRelationshipPairsApiFactory = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypeRelationshipPairs(containerId: string, limit?: number, offset?: number, name?: string, archived?: string, count?: string, loadRelationships?: string, destinationID?: string, originID?: string, metatypeID?: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipPairsResponse> {
+        listMetatypeRelationshipPairs(containerId: string, limit?: number, offset?: number, name?: string, archived?: string, count?: string, loadRelationships?: string, destinationID?: string, originID?: string, metatypeID?: string, options?: any): AxiosPromise<ListMetatypeRelationshipPairsResponse> {
             return MetatypeRelationshipPairsApiFp(configuration).listMetatypeRelationshipPairs(containerId, limit, offset, name, archived, count, loadRelationships, destinationID, originID, metatypeID, options).then((request) => request(axios, basePath));
         },
         /**
@@ -464,7 +466,7 @@ export const MetatypeRelationshipPairsApiFactory = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipPairsResponse2> {
+        retrieveMetatypeRelationshipPair(containerId: string, pairId: string, options?: any): AxiosPromise<GetMetatypeRelationshipPairResponse> {
             return MetatypeRelationshipPairsApiFp(configuration).retrieveMetatypeRelationshipPair(containerId, pairId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -472,11 +474,11 @@ export const MetatypeRelationshipPairsApiFactory = function (configuration?: Con
          * @summary UpdateMetatypeRelationshipPair
          * @param {string} containerId 
          * @param {string} pairId 
-         * @param {NewTypeRelationshipPairRequest} [body] 
+         * @param {NewMetatypeRelationshipPairRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatypeRelationshipPair(containerId: string, pairId: string, body?: NewTypeRelationshipPairRequest, options?: any): AxiosPromise<ContainersMetatypeRelationshipPairsResponse2> {
+        updateMetatypeRelationshipPair(containerId: string, pairId: string, body?: NewMetatypeRelationshipPairRequest, options?: any): AxiosPromise<UpdateMetatypeRelationshipPairResponse> {
             return MetatypeRelationshipPairsApiFp(configuration).updateMetatypeRelationshipPair(containerId, pairId, body, options).then((request) => request(axios, basePath));
         },
     };
@@ -504,13 +506,13 @@ export class MetatypeRelationshipPairsApi extends BaseAPI {
     /**
      * Create a new Metaype Relationship Pair. Describes the connection between two metatypes by connecting them using a Metatype Relationship.  Pass in an array for bulk creation.
      * @summary CreateMetatypeRelationshipPair
-     * @param {NewTypeRelationshipPairRequest} body 
+     * @param {NewMetatypeRelationshipPairRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypeRelationshipPairsApi
      */
-    public createMetatypeRelationshipPair(body: NewTypeRelationshipPairRequest, containerId: string, options?: any) {
+    public createMetatypeRelationshipPair(body: NewMetatypeRelationshipPairRequest, containerId: string, options?: any) {
         return MetatypeRelationshipPairsApiFp(this.configuration).createMetatypeRelationshipPair(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -550,12 +552,12 @@ export class MetatypeRelationshipPairsApi extends BaseAPI {
      * @summary UpdateMetatypeRelationshipPair
      * @param {string} containerId 
      * @param {string} pairId 
-     * @param {NewTypeRelationshipPairRequest} [body] 
+     * @param {NewMetatypeRelationshipPairRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypeRelationshipPairsApi
      */
-    public updateMetatypeRelationshipPair(containerId: string, pairId: string, body?: NewTypeRelationshipPairRequest, options?: any) {
+    public updateMetatypeRelationshipPair(containerId: string, pairId: string, body?: NewMetatypeRelationshipPairRequest, options?: any) {
         return MetatypeRelationshipPairsApiFp(this.configuration).updateMetatypeRelationshipPair(containerId, pairId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -16,11 +16,13 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersMetatypeRelationshipsKeysKeyIdResponse } from '../models';
-import { ContainersMetatypeRelationshipsKeysResponse } from '../models';
-import { Generic200 } from '../models';
-import { NewTypeRelationshipKeyRequest } from '../models';
-import { RelationshipKeyResponse } from '../models';
+import { CreateMetatypeRelationshipKeysResponse } from '../models';
+import { Generic200Response } from '../models';
+import { GetMetatypeRelationshipKeyResponse } from '../models';
+import { ListMetatypeRelationshipKeysResponse } from '../models';
+import { NewMetatypeRelationshipKeyRequest } from '../models';
+import { RelationshipKey } from '../models';
+import { UpdateMetatypeRelationshipKeyResponse } from '../models';
 /**
  * MetatypeRelationshipKeysApi - axios parameter creator
  * @export
@@ -84,13 +86,13 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
          * @summary CreateMetatypeRelationshipKey
-         * @param {NewTypeRelationshipKeyRequest} body 
+         * @param {NewMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeRelationshipKey: async (body: NewTypeRelationshipKeyRequest, containerId: string, relationshipId: string, options: any = {}): Promise<RequestArgs> => {
+        createMetatypeRelationshipKey: async (body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createMetatypeRelationshipKey.');
@@ -243,14 +245,14 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         /**
          * Updates a Metatype Relationship key. The update must follow the same format as creation.
          * @summary UpdateMetatypeRelationshipKey
-         * @param {RelationshipKeyResponse} body 
+         * @param {RelationshipKey} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatypeRelationshipKey: async (body: RelationshipKeyResponse, containerId: string, relationshipId: string, keyId: string, options: any = {}): Promise<RequestArgs> => {
+        updateMetatypeRelationshipKey: async (body: RelationshipKey, containerId: string, relationshipId: string, keyId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling updateMetatypeRelationshipKey.');
@@ -321,7 +323,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await MetatypeRelationshipKeysApiAxiosParamCreator(configuration).archiveMetatypeRelationshipKey(containerId, relationshipId, keyId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -331,13 +333,13 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
          * @summary CreateMetatypeRelationshipKey
-         * @param {NewTypeRelationshipKeyRequest} body 
+         * @param {NewMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMetatypeRelationshipKey(body: NewTypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipsKeysResponse>> {
+        async createMetatypeRelationshipKey(body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypeRelationshipKeysResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipKeysApiAxiosParamCreator(configuration).createMetatypeRelationshipKey(body, containerId, relationshipId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -352,7 +354,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listMetatypeRelationshipKeys(containerId: string, relationshipId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipsKeysResponse>> {
+        async listMetatypeRelationshipKeys(containerId: string, relationshipId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypeRelationshipKeysResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipKeysApiAxiosParamCreator(configuration).listMetatypeRelationshipKeys(containerId, relationshipId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -368,7 +370,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipsKeysKeyIdResponse>> {
+        async retrieveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMetatypeRelationshipKeyResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipKeysApiAxiosParamCreator(configuration).retrieveMetatypeRelationshipKey(containerId, relationshipId, keyId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -378,14 +380,14 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         /**
          * Updates a Metatype Relationship key. The update must follow the same format as creation.
          * @summary UpdateMetatypeRelationshipKey
-         * @param {RelationshipKeyResponse} body 
+         * @param {RelationshipKey} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateMetatypeRelationshipKey(body: RelationshipKeyResponse, containerId: string, relationshipId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypeRelationshipsKeysKeyIdResponse>> {
+        async updateMetatypeRelationshipKey(body: RelationshipKey, containerId: string, relationshipId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateMetatypeRelationshipKeyResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipKeysApiAxiosParamCreator(configuration).updateMetatypeRelationshipKey(body, containerId, relationshipId, keyId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -410,19 +412,19 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): AxiosPromise<Generic200> {
+        archiveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): AxiosPromise<Generic200Response> {
             return MetatypeRelationshipKeysApiFp(configuration).archiveMetatypeRelationshipKey(containerId, relationshipId, keyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
          * @summary CreateMetatypeRelationshipKey
-         * @param {NewTypeRelationshipKeyRequest} body 
+         * @param {NewMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeRelationshipKey(body: NewTypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipsKeysResponse> {
+        createMetatypeRelationshipKey(body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): AxiosPromise<CreateMetatypeRelationshipKeysResponse> {
             return MetatypeRelationshipKeysApiFp(configuration).createMetatypeRelationshipKey(body, containerId, relationshipId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -433,7 +435,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypeRelationshipKeys(containerId: string, relationshipId: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipsKeysResponse> {
+        listMetatypeRelationshipKeys(containerId: string, relationshipId: string, options?: any): AxiosPromise<ListMetatypeRelationshipKeysResponse> {
             return MetatypeRelationshipKeysApiFp(configuration).listMetatypeRelationshipKeys(containerId, relationshipId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -445,20 +447,20 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipsKeysKeyIdResponse> {
+        retrieveMetatypeRelationshipKey(containerId: string, relationshipId: string, keyId: string, options?: any): AxiosPromise<GetMetatypeRelationshipKeyResponse> {
             return MetatypeRelationshipKeysApiFp(configuration).retrieveMetatypeRelationshipKey(containerId, relationshipId, keyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a Metatype Relationship key. The update must follow the same format as creation.
          * @summary UpdateMetatypeRelationshipKey
-         * @param {RelationshipKeyResponse} body 
+         * @param {RelationshipKey} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatypeRelationshipKey(body: RelationshipKeyResponse, containerId: string, relationshipId: string, keyId: string, options?: any): AxiosPromise<ContainersMetatypeRelationshipsKeysKeyIdResponse> {
+        updateMetatypeRelationshipKey(body: RelationshipKey, containerId: string, relationshipId: string, keyId: string, options?: any): AxiosPromise<UpdateMetatypeRelationshipKeyResponse> {
             return MetatypeRelationshipKeysApiFp(configuration).updateMetatypeRelationshipKey(body, containerId, relationshipId, keyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -487,14 +489,14 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     /**
      * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
      * @summary CreateMetatypeRelationshipKey
-     * @param {NewTypeRelationshipKeyRequest} body 
+     * @param {NewMetatypeRelationshipKeyRequest} body 
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypeRelationshipKeysApi
      */
-    public createMetatypeRelationshipKey(body: NewTypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any) {
+    public createMetatypeRelationshipKey(body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any) {
         return MetatypeRelationshipKeysApiFp(this.configuration).createMetatypeRelationshipKey(body, containerId, relationshipId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -525,7 +527,7 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     /**
      * Updates a Metatype Relationship key. The update must follow the same format as creation.
      * @summary UpdateMetatypeRelationshipKey
-     * @param {RelationshipKeyResponse} body 
+     * @param {RelationshipKey} body 
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {string} keyId 
@@ -533,7 +535,7 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MetatypeRelationshipKeysApi
      */
-    public updateMetatypeRelationshipKey(body: RelationshipKeyResponse, containerId: string, relationshipId: string, keyId: string, options?: any) {
+    public updateMetatypeRelationshipKey(body: RelationshipKey, containerId: string, relationshipId: string, keyId: string, options?: any) {
         return MetatypeRelationshipKeysApiFp(this.configuration).updateMetatypeRelationshipKey(body, containerId, relationshipId, keyId, options).then((request) => request(this.axios, this.basePath));
     }
 }

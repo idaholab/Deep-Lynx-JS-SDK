@@ -31,7 +31,7 @@ export interface CreateTypeMappingTransformationsRequest {
     conditions: any;
     /**
      * 
-     * @type {Array&lt;TransformationKeyResponse&gt;}
+     * @type {Array&lt;TransformationKey&gt;}
      * @memberof CreateTypeMappingTransformationsRequest
      */
     keys: any;

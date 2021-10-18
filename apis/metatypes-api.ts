@@ -16,11 +16,13 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersMetatypesResponse } from '../models';
-import { ContainersMetatypesResponse2 } from '../models';
-import { Generic200 } from '../models';
-import { NewTypeRequest } from '../models';
-import { UpdateTypeRequest } from '../models';
+import { CreateMetatypesResponse } from '../models';
+import { Generic200Response } from '../models';
+import { GetMetatypeResponse } from '../models';
+import { ListMetatypesResponse } from '../models';
+import { NewMetatypeRequest } from '../models';
+import { UpdateMetatypeRequest } from '../models';
+import { UpdateMetatypeResponse } from '../models';
 /**
  * MetatypesApi - axios parameter creator
  * @export
@@ -78,12 +80,12 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Create a new metatype. Pass in an array for bulk creation.
          * @summary CreateMetatype
-         * @param {NewTypeRequest} body 
+         * @param {NewMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatype: async (body: NewTypeRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        createMetatype: async (body: NewMetatypeRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createMetatype.');
@@ -264,13 +266,13 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Update a single Metatype in storage. Will fail if the updated name has already been taken.
          * @summary UpdateMetatype
-         * @param {UpdateTypeRequest} body 
+         * @param {UpdateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatype: async (body: UpdateTypeRequest, containerId: string, metatypeId: string, options: any = {}): Promise<RequestArgs> => {
+        updateMetatype: async (body: UpdateMetatypeRequest, containerId: string, metatypeId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling updateMetatype.');
@@ -335,7 +337,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveMetatype(containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveMetatype(containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).archiveMetatype(containerId, metatypeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -345,12 +347,12 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         /**
          * Create a new metatype. Pass in an array for bulk creation.
          * @summary CreateMetatype
-         * @param {NewTypeRequest} body 
+         * @param {NewMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMetatype(body: NewTypeRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesResponse>> {
+        async createMetatype(body: NewMetatypeRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypesResponse>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).createMetatype(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -373,7 +375,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesResponse>> {
+        async listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypesResponse>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).listMetatypes(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -388,7 +390,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveMetaype(containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesResponse2>> {
+        async retrieveMetaype(containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMetatypeResponse>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).retrieveMetaype(containerId, metatypeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -398,13 +400,13 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         /**
          * Update a single Metatype in storage. Will fail if the updated name has already been taken.
          * @summary UpdateMetatype
-         * @param {UpdateTypeRequest} body 
+         * @param {UpdateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateMetatype(body: UpdateTypeRequest, containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesResponse2>> {
+        async updateMetatype(body: UpdateMetatypeRequest, containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateMetatypeResponse>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).updateMetatype(body, containerId, metatypeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -428,18 +430,18 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveMetatype(containerId: string, metatypeId: string, options?: any): AxiosPromise<Generic200> {
+        archiveMetatype(containerId: string, metatypeId: string, options?: any): AxiosPromise<Generic200Response> {
             return MetatypesApiFp(configuration).archiveMetatype(containerId, metatypeId, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new metatype. Pass in an array for bulk creation.
          * @summary CreateMetatype
-         * @param {NewTypeRequest} body 
+         * @param {NewMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatype(body: NewTypeRequest, containerId: string, options?: any): AxiosPromise<ContainersMetatypesResponse> {
+        createMetatype(body: NewMetatypeRequest, containerId: string, options?: any): AxiosPromise<CreateMetatypesResponse> {
             return MetatypesApiFp(configuration).createMetatype(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -458,7 +460,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): AxiosPromise<ContainersMetatypesResponse> {
+        listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): AxiosPromise<ListMetatypesResponse> {
             return MetatypesApiFp(configuration).listMetatypes(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options).then((request) => request(axios, basePath));
         },
         /**
@@ -469,19 +471,19 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveMetaype(containerId: string, metatypeId: string, options?: any): AxiosPromise<ContainersMetatypesResponse2> {
+        retrieveMetaype(containerId: string, metatypeId: string, options?: any): AxiosPromise<GetMetatypeResponse> {
             return MetatypesApiFp(configuration).retrieveMetaype(containerId, metatypeId, options).then((request) => request(axios, basePath));
         },
         /**
          * Update a single Metatype in storage. Will fail if the updated name has already been taken.
          * @summary UpdateMetatype
-         * @param {UpdateTypeRequest} body 
+         * @param {UpdateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatype(body: UpdateTypeRequest, containerId: string, metatypeId: string, options?: any): AxiosPromise<ContainersMetatypesResponse2> {
+        updateMetatype(body: UpdateMetatypeRequest, containerId: string, metatypeId: string, options?: any): AxiosPromise<UpdateMetatypeResponse> {
             return MetatypesApiFp(configuration).updateMetatype(body, containerId, metatypeId, options).then((request) => request(axios, basePath));
         },
     };
@@ -509,13 +511,13 @@ export class MetatypesApi extends BaseAPI {
     /**
      * Create a new metatype. Pass in an array for bulk creation.
      * @summary CreateMetatype
-     * @param {NewTypeRequest} body 
+     * @param {NewMetatypeRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypesApi
      */
-    public createMetatype(body: NewTypeRequest, containerId: string, options?: any) {
+    public createMetatype(body: NewMetatypeRequest, containerId: string, options?: any) {
         return MetatypesApiFp(this.configuration).createMetatype(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -553,14 +555,14 @@ export class MetatypesApi extends BaseAPI {
     /**
      * Update a single Metatype in storage. Will fail if the updated name has already been taken.
      * @summary UpdateMetatype
-     * @param {UpdateTypeRequest} body 
+     * @param {UpdateMetatypeRequest} body 
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypesApi
      */
-    public updateMetatype(body: UpdateTypeRequest, containerId: string, metatypeId: string, options?: any) {
+    public updateMetatype(body: UpdateMetatypeRequest, containerId: string, metatypeId: string, options?: any) {
         return MetatypesApiFp(this.configuration).updateMetatype(body, containerId, metatypeId, options).then((request) => request(this.axios, this.basePath));
     }
 }
