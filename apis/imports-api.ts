@@ -16,13 +16,14 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersDatasourcesImportsImportIdDataResponse } from '../models';
+import { AddDataToImportResponse } from '../models';
 import { ContainersDatasourcesImportsRequest } from '../models';
-import { ContainersDatasourcesImportsResponse } from '../models';
-import { ContainersImportImportsDataDataIdResponse } from '../models';
-import { ContainersImportImportsDataResponse } from '../models';
+import { CreateImportResponse } from '../models';
 import { DataStaging } from '../models';
-import { Generic200 } from '../models';
+import { Generic200Response } from '../models';
+import { GetImportDataResponse } from '../models';
+import { ListImportDataResponse } from '../models';
+import { UpdateImportDataResponse } from '../models';
 /**
  * ImportsApi - axios parameter creator
  * @export
@@ -33,29 +34,29 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
          * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
          * @summary AddDataToImport
          * @param {string} containerId 
-         * @param {string} sourceId 
          * @param {string} importId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addDataToImport: async (containerId: string, sourceId: string, importId: string, file?: string, options: any = {}): Promise<RequestArgs> => {
+        addDataToImport: async (containerId: string, importId: string, dataSourceId: string, file?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling addDataToImport.');
-            }
-            // verify required parameter 'sourceId' is not null or undefined
-            if (sourceId === null || sourceId === undefined) {
-                throw new RequiredError('sourceId','Required parameter sourceId was null or undefined when calling addDataToImport.');
             }
             // verify required parameter 'importId' is not null or undefined
             if (importId === null || importId === undefined) {
                 throw new RequiredError('importId','Required parameter importId was null or undefined when calling addDataToImport.');
             }
-            const localVarPath = `/containers/{container_id}/datasources/{source_id}/imports/{import_id}/data`
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling addDataToImport.');
+            }
+            const localVarPath = `/containers/{container_id}/datasources/{data_source_id}/imports/{import_id}/data`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"source_id"}}`, encodeURIComponent(String(sourceId)))
-                .replace(`{${"import_id"}}`, encodeURIComponent(String(importId)));
+                .replace(`{${"import_id"}}`, encodeURIComponent(String(importId)))
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -95,23 +96,23 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
          * Creates a new import.
          * @summary CreateImport
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {ContainersDatasourcesImportsRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createImport: async (containerId: string, sourceId: string, body?: ContainersDatasourcesImportsRequest, options: any = {}): Promise<RequestArgs> => {
+        createImport: async (containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling createImport.');
             }
-            // verify required parameter 'sourceId' is not null or undefined
-            if (sourceId === null || sourceId === undefined) {
-                throw new RequiredError('sourceId','Required parameter sourceId was null or undefined when calling createImport.');
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling createImport.');
             }
-            const localVarPath = `/containers/{container_id}/datasources/{source_id}/imports`
+            const localVarPath = `/containers/{container_id}/datasources/{data_source_id}/imports`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"source_id"}}`, encodeURIComponent(String(sourceId)));
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -445,14 +446,14 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
          * @summary AddDataToImport
          * @param {string} containerId 
-         * @param {string} sourceId 
          * @param {string} importId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addDataToImport(containerId: string, sourceId: string, importId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersDatasourcesImportsImportIdDataResponse>> {
-            const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).addDataToImport(containerId, sourceId, importId, file, options);
+        async addDataToImport(containerId: string, importId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddDataToImportResponse>> {
+            const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).addDataToImport(containerId, importId, dataSourceId, file, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -462,13 +463,13 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * Creates a new import.
          * @summary CreateImport
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {ContainersDatasourcesImportsRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createImport(containerId: string, sourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersDatasourcesImportsResponse>> {
-            const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).createImport(containerId, sourceId, body, options);
+        async createImport(containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateImportResponse>> {
+            const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).createImport(containerId, dataSourceId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -498,7 +499,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteImportData(containerId: string, importId: string, dataId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async deleteImportData(containerId: string, importId: string, dataId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).deleteImportData(containerId, importId, dataId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -518,7 +519,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listImportsData(containerId: string, importId: string, count?: string, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportImportsDataResponse>> {
+        async listImportsData(containerId: string, importId: string, count?: string, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListImportDataResponse>> {
             const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).listImportsData(containerId, importId, count, limit, offset, sortBy, sortDesc, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -534,7 +535,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveImportData(containerId: string, importId: string, dataId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportImportsDataDataIdResponse>> {
+        async retrieveImportData(containerId: string, importId: string, dataId: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetImportDataResponse>> {
             const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).retrieveImportData(containerId, importId, dataId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -551,7 +552,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateImportData(containerId: string, importId: string, dataId: number, body?: DataStaging, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersImportImportsDataDataIdResponse>> {
+        async updateImportData(containerId: string, importId: string, dataId: number, body?: DataStaging, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateImportDataResponse>> {
             const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).updateImportData(containerId, importId, dataId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -571,26 +572,26 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
          * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
          * @summary AddDataToImport
          * @param {string} containerId 
-         * @param {string} sourceId 
          * @param {string} importId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addDataToImport(containerId: string, sourceId: string, importId: string, file?: string, options?: any): AxiosPromise<ContainersDatasourcesImportsImportIdDataResponse> {
-            return ImportsApiFp(configuration).addDataToImport(containerId, sourceId, importId, file, options).then((request) => request(axios, basePath));
+        addDataToImport(containerId: string, importId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<AddDataToImportResponse> {
+            return ImportsApiFp(configuration).addDataToImport(containerId, importId, dataSourceId, file, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a new import.
          * @summary CreateImport
          * @param {string} containerId 
-         * @param {string} sourceId 
+         * @param {string} dataSourceId 
          * @param {ContainersDatasourcesImportsRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createImport(containerId: string, sourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any): AxiosPromise<ContainersDatasourcesImportsResponse> {
-            return ImportsApiFp(configuration).createImport(containerId, sourceId, body, options).then((request) => request(axios, basePath));
+        createImport(containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any): AxiosPromise<CreateImportResponse> {
+            return ImportsApiFp(configuration).createImport(containerId, dataSourceId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete import will delete an import ONLY IF the import has not been processed.
@@ -612,7 +613,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteImportData(containerId: string, importId: string, dataId: number, options?: any): AxiosPromise<Generic200> {
+        deleteImportData(containerId: string, importId: string, dataId: number, options?: any): AxiosPromise<Generic200Response> {
             return ImportsApiFp(configuration).deleteImportData(containerId, importId, dataId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -628,7 +629,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listImportsData(containerId: string, importId: string, count?: string, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): AxiosPromise<ContainersImportImportsDataResponse> {
+        listImportsData(containerId: string, importId: string, count?: string, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): AxiosPromise<ListImportDataResponse> {
             return ImportsApiFp(configuration).listImportsData(containerId, importId, count, limit, offset, sortBy, sortDesc, options).then((request) => request(axios, basePath));
         },
         /**
@@ -640,7 +641,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveImportData(containerId: string, importId: string, dataId: number, options?: any): AxiosPromise<ContainersImportImportsDataDataIdResponse> {
+        retrieveImportData(containerId: string, importId: string, dataId: number, options?: any): AxiosPromise<GetImportDataResponse> {
             return ImportsApiFp(configuration).retrieveImportData(containerId, importId, dataId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -653,7 +654,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateImportData(containerId: string, importId: string, dataId: number, body?: DataStaging, options?: any): AxiosPromise<ContainersImportImportsDataDataIdResponse> {
+        updateImportData(containerId: string, importId: string, dataId: number, body?: DataStaging, options?: any): AxiosPromise<UpdateImportDataResponse> {
             return ImportsApiFp(configuration).updateImportData(containerId, importId, dataId, body, options).then((request) => request(axios, basePath));
         },
     };
@@ -670,28 +671,28 @@ export class ImportsApi extends BaseAPI {
      * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
      * @summary AddDataToImport
      * @param {string} containerId 
-     * @param {string} sourceId 
      * @param {string} importId 
+     * @param {string} dataSourceId 
      * @param {string} [file] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportsApi
      */
-    public addDataToImport(containerId: string, sourceId: string, importId: string, file?: string, options?: any) {
-        return ImportsApiFp(this.configuration).addDataToImport(containerId, sourceId, importId, file, options).then((request) => request(this.axios, this.basePath));
+    public addDataToImport(containerId: string, importId: string, dataSourceId: string, file?: string, options?: any) {
+        return ImportsApiFp(this.configuration).addDataToImport(containerId, importId, dataSourceId, file, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Creates a new import.
      * @summary CreateImport
      * @param {string} containerId 
-     * @param {string} sourceId 
+     * @param {string} dataSourceId 
      * @param {ContainersDatasourcesImportsRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportsApi
      */
-    public createImport(containerId: string, sourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any) {
-        return ImportsApiFp(this.configuration).createImport(containerId, sourceId, body, options).then((request) => request(this.axios, this.basePath));
+    public createImport(containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any) {
+        return ImportsApiFp(this.configuration).createImport(containerId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Delete import will delete an import ONLY IF the import has not been processed.

@@ -2,7 +2,5 @@ wwwroot/*.js
 node_modules
 typings
 dist
-.env
-.idea
-.DS_Store
 .vscode
+.env

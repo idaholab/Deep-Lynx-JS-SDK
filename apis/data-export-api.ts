@@ -16,9 +16,9 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersDataExportResponse } from '../models';
-import { ContainersDataExportResponse1 } from '../models';
-import { Generic200 } from '../models';
+import { Generic200Response } from '../models';
+import { GetDataExportResponse } from '../models';
+import { ListDataExportsResponse } from '../models';
 import { NewDataExportRequest } from '../models';
 /**
  * DataExportApi - axios parameter creator
@@ -353,7 +353,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createDataExport(body: NewDataExportRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async createDataExport(body: NewDataExportRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).createDataExport(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -368,7 +368,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async deleteDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).deleteDataExport(containerId, exportId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -387,7 +387,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listDataExports(containerId: string, count?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersDataExportResponse>> {
+        async listDataExports(containerId: string, count?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListDataExportsResponse>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).listDataExports(containerId, count, limit, offset, sortBy, sortDesc, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -402,7 +402,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersDataExportResponse1>> {
+        async retrieveDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetDataExportResponse>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).retrieveDataExport(containerId, exportId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -417,7 +417,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async startDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async startDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).startDataExport(containerId, exportId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -432,7 +432,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async stopDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async stopDataExport(containerId: string, exportId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).stopDataExport(containerId, exportId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -456,7 +456,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDataExport(body: NewDataExportRequest, containerId: string, options?: any): AxiosPromise<void> {
+        createDataExport(body: NewDataExportRequest, containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataExportApiFp(configuration).createDataExport(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -467,7 +467,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<Generic200> {
+        deleteDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataExportApiFp(configuration).deleteDataExport(containerId, exportId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -482,7 +482,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listDataExports(containerId: string, count?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): AxiosPromise<ContainersDataExportResponse> {
+        listDataExports(containerId: string, count?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): AxiosPromise<ListDataExportsResponse> {
             return DataExportApiFp(configuration).listDataExports(containerId, count, limit, offset, sortBy, sortDesc, options).then((request) => request(axios, basePath));
         },
         /**
@@ -493,7 +493,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<ContainersDataExportResponse1> {
+        retrieveDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<GetDataExportResponse> {
             return DataExportApiFp(configuration).retrieveDataExport(containerId, exportId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -504,7 +504,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        startDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<Generic200> {
+        startDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataExportApiFp(configuration).startDataExport(containerId, exportId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -515,7 +515,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        stopDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<Generic200> {
+        stopDataExport(containerId: string, exportId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataExportApiFp(configuration).stopDataExport(containerId, exportId, options).then((request) => request(axios, basePath));
         },
     };

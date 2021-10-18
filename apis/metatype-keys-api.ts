@@ -16,11 +16,13 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersMetatypesKeysKeyIdResponse } from '../models';
-import { ContainersMetatypesKeysResponse } from '../models';
-import { Generic200 } from '../models';
-import { NewTypeKeyRequest } from '../models';
-import { UpdateTypeKeyRequest } from '../models';
+import { CreateMetatypeKeysResponse } from '../models';
+import { Generic200Response } from '../models';
+import { GetMetatypeKeyResponse } from '../models';
+import { ListMetatypeKeysResponse } from '../models';
+import { NewMetatypeKeyRequest } from '../models';
+import { UpdateMetatypeKeyRequest } from '../models';
+import { UpdateMetatypeKeyResponse } from '../models';
 /**
  * MetatypeKeysApi - axios parameter creator
  * @export
@@ -84,13 +86,13 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
         /**
          * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
          * @summary CreateMetatypeKey
-         * @param {NewTypeKeyRequest} body 
+         * @param {NewMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeKey: async (body: NewTypeKeyRequest, containerId: string, metatypeId: string, options: any = {}): Promise<RequestArgs> => {
+        createMetatypeKey: async (body: NewMetatypeKeyRequest, containerId: string, metatypeId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createMetatypeKey.');
@@ -243,14 +245,14 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
         /**
          * Updates a single key for a metatype.
          * @summary UpdateMetatypeKey
-         * @param {UpdateTypeKeyRequest} body 
+         * @param {UpdateMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatypeKey: async (body: UpdateTypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options: any = {}): Promise<RequestArgs> => {
+        updateMetatypeKey: async (body: UpdateMetatypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling updateMetatypeKey.');
@@ -321,7 +323,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await MetatypeKeysApiAxiosParamCreator(configuration).archiveMetatypeKey(containerId, metatypeId, keyId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -331,13 +333,13 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
         /**
          * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
          * @summary CreateMetatypeKey
-         * @param {NewTypeKeyRequest} body 
+         * @param {NewMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMetatypeKey(body: NewTypeKeyRequest, containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesKeysResponse>> {
+        async createMetatypeKey(body: NewMetatypeKeyRequest, containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypeKeysResponse>> {
             const localVarAxiosArgs = await MetatypeKeysApiAxiosParamCreator(configuration).createMetatypeKey(body, containerId, metatypeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -352,7 +354,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listMetatypesKeys(containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesKeysResponse>> {
+        async listMetatypesKeys(containerId: string, metatypeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypeKeysResponse>> {
             const localVarAxiosArgs = await MetatypeKeysApiAxiosParamCreator(configuration).listMetatypesKeys(containerId, metatypeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -368,7 +370,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesKeysKeyIdResponse>> {
+        async retrieveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMetatypeKeyResponse>> {
             const localVarAxiosArgs = await MetatypeKeysApiAxiosParamCreator(configuration).retrieveMetatypeKey(containerId, metatypeId, keyId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -378,14 +380,14 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
         /**
          * Updates a single key for a metatype.
          * @summary UpdateMetatypeKey
-         * @param {UpdateTypeKeyRequest} body 
+         * @param {UpdateMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateMetatypeKey(body: UpdateTypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersMetatypesKeysKeyIdResponse>> {
+        async updateMetatypeKey(body: UpdateMetatypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateMetatypeKeyResponse>> {
             const localVarAxiosArgs = await MetatypeKeysApiAxiosParamCreator(configuration).updateMetatypeKey(body, containerId, metatypeId, keyId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -410,19 +412,19 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): AxiosPromise<Generic200> {
+        archiveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): AxiosPromise<Generic200Response> {
             return MetatypeKeysApiFp(configuration).archiveMetatypeKey(containerId, metatypeId, keyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
          * @summary CreateMetatypeKey
-         * @param {NewTypeKeyRequest} body 
+         * @param {NewMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeKey(body: NewTypeKeyRequest, containerId: string, metatypeId: string, options?: any): AxiosPromise<ContainersMetatypesKeysResponse> {
+        createMetatypeKey(body: NewMetatypeKeyRequest, containerId: string, metatypeId: string, options?: any): AxiosPromise<CreateMetatypeKeysResponse> {
             return MetatypeKeysApiFp(configuration).createMetatypeKey(body, containerId, metatypeId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -433,7 +435,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypesKeys(containerId: string, metatypeId: string, options?: any): AxiosPromise<ContainersMetatypesKeysResponse> {
+        listMetatypesKeys(containerId: string, metatypeId: string, options?: any): AxiosPromise<ListMetatypeKeysResponse> {
             return MetatypeKeysApiFp(configuration).listMetatypesKeys(containerId, metatypeId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -445,20 +447,20 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): AxiosPromise<ContainersMetatypesKeysKeyIdResponse> {
+        retrieveMetatypeKey(containerId: string, metatypeId: string, keyId: string, options?: any): AxiosPromise<GetMetatypeKeyResponse> {
             return MetatypeKeysApiFp(configuration).retrieveMetatypeKey(containerId, metatypeId, keyId, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a single key for a metatype.
          * @summary UpdateMetatypeKey
-         * @param {UpdateTypeKeyRequest} body 
+         * @param {UpdateMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateMetatypeKey(body: UpdateTypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options?: any): AxiosPromise<ContainersMetatypesKeysKeyIdResponse> {
+        updateMetatypeKey(body: UpdateMetatypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options?: any): AxiosPromise<UpdateMetatypeKeyResponse> {
             return MetatypeKeysApiFp(configuration).updateMetatypeKey(body, containerId, metatypeId, keyId, options).then((request) => request(axios, basePath));
         },
     };
@@ -487,14 +489,14 @@ export class MetatypeKeysApi extends BaseAPI {
     /**
      * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
      * @summary CreateMetatypeKey
-     * @param {NewTypeKeyRequest} body 
+     * @param {NewMetatypeKeyRequest} body 
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypeKeysApi
      */
-    public createMetatypeKey(body: NewTypeKeyRequest, containerId: string, metatypeId: string, options?: any) {
+    public createMetatypeKey(body: NewMetatypeKeyRequest, containerId: string, metatypeId: string, options?: any) {
         return MetatypeKeysApiFp(this.configuration).createMetatypeKey(body, containerId, metatypeId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -525,7 +527,7 @@ export class MetatypeKeysApi extends BaseAPI {
     /**
      * Updates a single key for a metatype.
      * @summary UpdateMetatypeKey
-     * @param {UpdateTypeKeyRequest} body 
+     * @param {UpdateMetatypeKeyRequest} body 
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {string} keyId 
@@ -533,7 +535,7 @@ export class MetatypeKeysApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MetatypeKeysApi
      */
-    public updateMetatypeKey(body: UpdateTypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options?: any) {
+    public updateMetatypeKey(body: UpdateMetatypeKeyRequest, containerId: string, metatypeId: string, keyId: string, options?: any) {
         return MetatypeKeysApiFp(this.configuration).updateMetatypeKey(body, containerId, metatypeId, keyId, options).then((request) => request(this.axios, this.basePath));
     }
 }

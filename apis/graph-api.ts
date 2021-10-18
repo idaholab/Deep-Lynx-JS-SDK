@@ -16,14 +16,15 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ContainersGraphsEdgesResponse } from '../models';
-import { ContainersGraphsEdgesResponse1 } from '../models';
-import { ContainersGraphsNodesMetatypeResponse } from '../models';
-import { ContainersGraphsNodesResponse } from '../models';
-import { ContainersGraphsNodesResponse1 } from '../models';
 import { CreateOrUpdateEdgesRequest } from '../models';
 import { CreateOrUpdateNodesRequest } from '../models';
-import { Generic200 } from '../models';
+import { Generic200Response } from '../models';
+import { GetEdgeResponse } from '../models';
+import { GetNodeResponse } from '../models';
+import { ListEdgeFiles } from '../models';
+import { ListEdgesResponse } from '../models';
+import { ListNodeFiles } from '../models';
+import { ListNodesResponse } from '../models';
 /**
  * GraphApi - axios parameter creator
  * @export
@@ -105,6 +106,114 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication httpBearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Attach a file to an edge.
+         * @summary AttachEdgeFile
+         * @param {string} containerId 
+         * @param {string} fileId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachEdgeFile: async (containerId: string, fileId: string, edgeId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling attachEdgeFile.');
+            }
+            // verify required parameter 'fileId' is not null or undefined
+            if (fileId === null || fileId === undefined) {
+                throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling attachEdgeFile.');
+            }
+            // verify required parameter 'edgeId' is not null or undefined
+            if (edgeId === null || edgeId === undefined) {
+                throw new RequiredError('edgeId','Required parameter edgeId was null or undefined when calling attachEdgeFile.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/edges/{edge_id}/files/{file_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)))
+                .replace(`{${"edge_id"}}`, encodeURIComponent(String(edgeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication httpBearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Attach a file to a node.
+         * @summary AttachNodeFile
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} fileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachNodeFile: async (containerId: string, nodeId: string, fileId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling attachNodeFile.');
+            }
+            // verify required parameter 'nodeId' is not null or undefined
+            if (nodeId === null || nodeId === undefined) {
+                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling attachNodeFile.');
+            }
+            // verify required parameter 'fileId' is not null or undefined
+            if (fileId === null || fileId === undefined) {
+                throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling attachNodeFile.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/nodes/{node_id}/files/{file_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"node_id"}}`, encodeURIComponent(String(nodeId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -225,6 +334,162 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Detach file from node
+         * @summary DeleteNodeFile
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} fileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteNodeFile: async (containerId: string, nodeId: string, fileId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling deleteNodeFile.');
+            }
+            // verify required parameter 'nodeId' is not null or undefined
+            if (nodeId === null || nodeId === undefined) {
+                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling deleteNodeFile.');
+            }
+            // verify required parameter 'fileId' is not null or undefined
+            if (fileId === null || fileId === undefined) {
+                throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling deleteNodeFile.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/nodes/{node_id}/files/{file_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"node_id"}}`, encodeURIComponent(String(nodeId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication httpBearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Detach file from an edge.
+         * @summary DetachNodeFile
+         * @param {string} containerId 
+         * @param {string} fileId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachNodeFile: async (containerId: string, fileId: string, edgeId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling detachNodeFile.');
+            }
+            // verify required parameter 'fileId' is not null or undefined
+            if (fileId === null || fileId === undefined) {
+                throw new RequiredError('fileId','Required parameter fileId was null or undefined when calling detachNodeFile.');
+            }
+            // verify required parameter 'edgeId' is not null or undefined
+            if (edgeId === null || edgeId === undefined) {
+                throw new RequiredError('edgeId','Required parameter edgeId was null or undefined when calling detachNodeFile.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/edges/{edge_id}/files/{file_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"file_id"}}`, encodeURIComponent(String(fileId)))
+                .replace(`{${"edge_id"}}`, encodeURIComponent(String(edgeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication httpBearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lists all attached files for edge.
+         * @summary ListEdgeFiles
+         * @param {string} containerId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEdgeFiles: async (containerId: string, edgeId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listEdgeFiles.');
+            }
+            // verify required parameter 'edgeId' is not null or undefined
+            if (edgeId === null || edgeId === undefined) {
+                throw new RequiredError('edgeId','Required parameter edgeId was null or undefined when calling listEdgeFiles.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/edges/{edge_id}/files`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"edge_id"}}`, encodeURIComponent(String(edgeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication httpBearer required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * List Edges from storage
          * @summary ListEdges
          * @param {string} containerId 
@@ -279,6 +544,54 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             if (relationshipPairName !== undefined) {
                 localVarQueryParameter['relationshipPairName'] = relationshipPairName;
             }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lists all attached files for node.
+         * @summary ListNodeFiles
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listNodeFiles: async (containerId: string, nodeId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listNodeFiles.');
+            }
+            // verify required parameter 'nodeId' is not null or undefined
+            if (nodeId === null || nodeId === undefined) {
+                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling listNodeFiles.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/nodes/{node_id}/files`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"node_id"}}`, encodeURIComponent(String(nodeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication httpBearer required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -529,7 +842,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveEdge(containerId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveEdge(containerId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).archiveEdge(containerId, edgeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -544,8 +857,40 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveNode(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveNode(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).archiveNode(containerId, nodeId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Attach a file to an edge.
+         * @summary AttachEdgeFile
+         * @param {string} containerId 
+         * @param {string} fileId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async attachEdgeFile(containerId: string, fileId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).attachEdgeFile(containerId, fileId, edgeId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Attach a file to a node.
+         * @summary AttachNodeFile
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} fileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async attachNodeFile(containerId: string, nodeId: string, fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).attachNodeFile(containerId, nodeId, fileId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -559,7 +904,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrUpdateEdges(containerId: string, body?: CreateOrUpdateEdgesRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async createOrUpdateEdges(containerId: string, body?: CreateOrUpdateEdgesRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).createOrUpdateEdges(containerId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -574,8 +919,55 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createOrUpdateNodes(body: CreateOrUpdateNodesRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async createOrUpdateNodes(body: CreateOrUpdateNodesRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).createOrUpdateNodes(body, containerId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Detach file from node
+         * @summary DeleteNodeFile
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} fileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteNodeFile(containerId: string, nodeId: string, fileId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).deleteNodeFile(containerId, nodeId, fileId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Detach file from an edge.
+         * @summary DetachNodeFile
+         * @param {string} containerId 
+         * @param {string} fileId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async detachNodeFile(containerId: string, fileId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).detachNodeFile(containerId, fileId, edgeId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Lists all attached files for edge.
+         * @summary ListEdgeFiles
+         * @param {string} containerId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listEdgeFiles(containerId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEdgeFiles>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listEdgeFiles(containerId, edgeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -594,8 +986,23 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersGraphsEdgesResponse1>> {
+        async listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEdgesResponse>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Lists all attached files for node.
+         * @summary ListNodeFiles
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listNodeFiles(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodeFiles>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodeFiles(containerId, nodeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -612,7 +1019,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersGraphsNodesResponse>> {
+        async listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesResponse>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -629,7 +1036,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersGraphsNodesMetatypeResponse>> {
+        async listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesResponse>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -644,7 +1051,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveEdge(containerId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersGraphsEdgesResponse>> {
+        async retrieveEdge(containerId: string, edgeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEdgeResponse>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).retrieveEdge(containerId, edgeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -659,7 +1066,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveNode(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersGraphsNodesResponse1>> {
+        async retrieveNode(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetNodeResponse>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).retrieveNode(containerId, nodeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -683,7 +1090,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveEdge(containerId: string, edgeId: string, options?: any): AxiosPromise<Generic200> {
+        archiveEdge(containerId: string, edgeId: string, options?: any): AxiosPromise<Generic200Response> {
             return GraphApiFp(configuration).archiveEdge(containerId, edgeId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -694,8 +1101,32 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveNode(containerId: string, nodeId: string, options?: any): AxiosPromise<Generic200> {
+        archiveNode(containerId: string, nodeId: string, options?: any): AxiosPromise<Generic200Response> {
             return GraphApiFp(configuration).archiveNode(containerId, nodeId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Attach a file to an edge.
+         * @summary AttachEdgeFile
+         * @param {string} containerId 
+         * @param {string} fileId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachEdgeFile(containerId: string, fileId: string, edgeId: string, options?: any): AxiosPromise<Generic200Response> {
+            return GraphApiFp(configuration).attachEdgeFile(containerId, fileId, edgeId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Attach a file to a node.
+         * @summary AttachNodeFile
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} fileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        attachNodeFile(containerId: string, nodeId: string, fileId: string, options?: any): AxiosPromise<Generic200Response> {
+            return GraphApiFp(configuration).attachNodeFile(containerId, nodeId, fileId, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
@@ -705,7 +1136,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrUpdateEdges(containerId: string, body?: CreateOrUpdateEdgesRequest, options?: any): AxiosPromise<Generic200> {
+        createOrUpdateEdges(containerId: string, body?: CreateOrUpdateEdgesRequest, options?: any): AxiosPromise<Generic200Response> {
             return GraphApiFp(configuration).createOrUpdateEdges(containerId, body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -716,8 +1147,43 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createOrUpdateNodes(body: CreateOrUpdateNodesRequest, containerId: string, options?: any): AxiosPromise<Generic200> {
+        createOrUpdateNodes(body: CreateOrUpdateNodesRequest, containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return GraphApiFp(configuration).createOrUpdateNodes(body, containerId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Detach file from node
+         * @summary DeleteNodeFile
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} fileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteNodeFile(containerId: string, nodeId: string, fileId: string, options?: any): AxiosPromise<Generic200Response> {
+            return GraphApiFp(configuration).deleteNodeFile(containerId, nodeId, fileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Detach file from an edge.
+         * @summary DetachNodeFile
+         * @param {string} containerId 
+         * @param {string} fileId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        detachNodeFile(containerId: string, fileId: string, edgeId: string, options?: any): AxiosPromise<Generic200Response> {
+            return GraphApiFp(configuration).detachNodeFile(containerId, fileId, edgeId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Lists all attached files for edge.
+         * @summary ListEdgeFiles
+         * @param {string} containerId 
+         * @param {string} edgeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEdgeFiles(containerId: string, edgeId: string, options?: any): AxiosPromise<ListEdgeFiles> {
+            return GraphApiFp(configuration).listEdgeFiles(containerId, edgeId, options).then((request) => request(axios, basePath));
         },
         /**
          * List Edges from storage
@@ -732,8 +1198,19 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any): AxiosPromise<ContainersGraphsEdgesResponse1> {
+        listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any): AxiosPromise<ListEdgesResponse> {
             return GraphApiFp(configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Lists all attached files for node.
+         * @summary ListNodeFiles
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listNodeFiles(containerId: string, nodeId: string, options?: any): AxiosPromise<ListNodeFiles> {
+            return GraphApiFp(configuration).listNodeFiles(containerId, nodeId, options).then((request) => request(axios, basePath));
         },
         /**
          * List nodes
@@ -746,7 +1223,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any): AxiosPromise<ContainersGraphsNodesResponse> {
+        listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any): AxiosPromise<ListNodesResponse> {
             return GraphApiFp(configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, options).then((request) => request(axios, basePath));
         },
         /**
@@ -759,7 +1236,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ContainersGraphsNodesMetatypeResponse> {
+        listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ListNodesResponse> {
             return GraphApiFp(configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
@@ -770,7 +1247,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveEdge(containerId: string, edgeId: string, options?: any): AxiosPromise<ContainersGraphsEdgesResponse> {
+        retrieveEdge(containerId: string, edgeId: string, options?: any): AxiosPromise<GetEdgeResponse> {
             return GraphApiFp(configuration).retrieveEdge(containerId, edgeId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -781,7 +1258,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveNode(containerId: string, nodeId: string, options?: any): AxiosPromise<ContainersGraphsNodesResponse1> {
+        retrieveNode(containerId: string, nodeId: string, options?: any): AxiosPromise<GetNodeResponse> {
             return GraphApiFp(configuration).retrieveNode(containerId, nodeId, options).then((request) => request(axios, basePath));
         },
     };
@@ -819,6 +1296,32 @@ export class GraphApi extends BaseAPI {
         return GraphApiFp(this.configuration).archiveNode(containerId, nodeId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Attach a file to an edge.
+     * @summary AttachEdgeFile
+     * @param {string} containerId 
+     * @param {string} fileId 
+     * @param {string} edgeId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public attachEdgeFile(containerId: string, fileId: string, edgeId: string, options?: any) {
+        return GraphApiFp(this.configuration).attachEdgeFile(containerId, fileId, edgeId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Attach a file to a node.
+     * @summary AttachNodeFile
+     * @param {string} containerId 
+     * @param {string} nodeId 
+     * @param {string} fileId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public attachNodeFile(containerId: string, nodeId: string, fileId: string, options?: any) {
+        return GraphApiFp(this.configuration).attachNodeFile(containerId, nodeId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
      * @summary CreateOrUpdateEdges
      * @param {string} containerId 
@@ -843,6 +1346,44 @@ export class GraphApi extends BaseAPI {
         return GraphApiFp(this.configuration).createOrUpdateNodes(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Detach file from node
+     * @summary DeleteNodeFile
+     * @param {string} containerId 
+     * @param {string} nodeId 
+     * @param {string} fileId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public deleteNodeFile(containerId: string, nodeId: string, fileId: string, options?: any) {
+        return GraphApiFp(this.configuration).deleteNodeFile(containerId, nodeId, fileId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Detach file from an edge.
+     * @summary DetachNodeFile
+     * @param {string} containerId 
+     * @param {string} fileId 
+     * @param {string} edgeId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public detachNodeFile(containerId: string, fileId: string, edgeId: string, options?: any) {
+        return GraphApiFp(this.configuration).detachNodeFile(containerId, fileId, edgeId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Lists all attached files for edge.
+     * @summary ListEdgeFiles
+     * @param {string} containerId 
+     * @param {string} edgeId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public listEdgeFiles(containerId: string, edgeId: string, options?: any) {
+        return GraphApiFp(this.configuration).listEdgeFiles(containerId, edgeId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * List Edges from storage
      * @summary ListEdges
      * @param {string} containerId 
@@ -858,6 +1399,18 @@ export class GraphApi extends BaseAPI {
      */
     public listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any) {
         return GraphApiFp(this.configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Lists all attached files for node.
+     * @summary ListNodeFiles
+     * @param {string} containerId 
+     * @param {string} nodeId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public listNodeFiles(containerId: string, nodeId: string, options?: any) {
+        return GraphApiFp(this.configuration).listNodeFiles(containerId, nodeId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * List nodes

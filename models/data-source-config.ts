@@ -22,23 +22,17 @@ export interface DataSourceConfig {
      * @type {string}
      * @memberof DataSourceConfig
      */
-    endpoint: any;
+    kind: any;
     /**
      * 
      * @type {string}
      * @memberof DataSourceConfig
      */
-    authMethod: any;
+    dataType: any;
     /**
      * 
      * @type {string}
      * @memberof DataSourceConfig
      */
-    username: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof DataSourceConfig
-     */
-    password: any;
+    dataFormat: any;
 }

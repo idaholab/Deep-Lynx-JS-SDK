@@ -17,15 +17,17 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AssignRoleRequest } from '../models';
-import { ContainersUsersResponse } from '../models';
-import { ContainersUsersResponse1 } from '../models';
-import { ContainersUsersRolesResponse } from '../models';
-import { Generic200 } from '../models';
-import { Model404NotFound } from '../models';
-import { UserResponse } from '../models';
-import { UsersInvitesResponse } from '../models';
-import { UsersPermissionsResponse } from '../models';
-import { UsersResponse } from '../models';
+import { ContainerInvite } from '../models';
+import { Generic200Response } from '../models';
+import { GetUserResponse } from '../models';
+import { ListContainerInvitesResponse } from '../models';
+import { ListUserInvitesResponse } from '../models';
+import { ListUserPermissionsResponse } from '../models';
+import { ListUserRoles } from '../models';
+import { ListUsersForContainerResponse } from '../models';
+import { ListUsersResponse } from '../models';
+import { NotFound404 } from '../models';
+import { User } from '../models';
 /**
  * UsersApi - axios parameter creator
  * @export
@@ -174,10 +176,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * Create a new user using the username_password identity type.
          * @summary InviteUserToContainer
          * @param {string} containerId 
+         * @param {ContainerInvite} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteUserToContainer: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
+        inviteUserToContainer: async (containerId: string, body?: ContainerInvite, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling inviteUserToContainer.');
@@ -196,6 +199,8 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication httpBearer required
 
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -206,6 +211,8 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -544,11 +551,11 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          * Updates the specified user.
          * @summary UpdateUser
          * @param {string} userId 
-         * @param {UserResponse} [body] 
+         * @param {User} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser: async (userId: string, body?: UserResponse, options: any = {}): Promise<RequestArgs> => {
+        updateUser: async (userId: string, body?: User, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             if (userId === null || userId === undefined) {
                 throw new RequiredError('userId','Required parameter userId was null or undefined when calling updateUser.');
@@ -603,7 +610,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acceptContainerInvite(token: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async acceptContainerInvite(token: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).acceptContainerInvite(token, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -618,7 +625,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async assignUserRole(body: AssignRoleRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async assignUserRole(body: AssignRoleRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).assignUserRole(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -632,7 +639,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteUser(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async deleteUser(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).deleteUser(userId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -643,11 +650,12 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * Create a new user using the username_password identity type.
          * @summary InviteUserToContainer
          * @param {string} containerId 
+         * @param {ContainerInvite} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inviteUserToContainer(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).inviteUserToContainer(containerId, options);
+        async inviteUserToContainer(containerId: string, body?: ContainerInvite, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).inviteUserToContainer(containerId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -660,7 +668,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listInvitedUsersForContainer(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async listInvitedUsersForContainer(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListContainerInvitesResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listInvitedUsersForContainer(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -673,7 +681,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listOutstandingInvites(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersInvitesResponse>> {
+        async listOutstandingInvites(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListUserInvitesResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listOutstandingInvites(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -686,7 +694,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listUserPermissions(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersPermissionsResponse>> {
+        async listUserPermissions(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListUserPermissionsResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listUserPermissions(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -705,7 +713,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listUsers(count?: boolean, loadKeys?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UsersResponse>> {
+        async listUsers(count?: boolean, loadKeys?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListUsersResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listUsers(count, loadKeys, limit, offset, sortBy, sortDesc, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -721,7 +729,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listUsersForContainer(containerId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersUsersResponse1>> {
+        async listUsersForContainer(containerId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListUsersForContainerResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listUsersForContainer(containerId, limit, offset, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -736,7 +744,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listUsersRoles(containerId: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersUsersRolesResponse>> {
+        async listUsersRoles(containerId: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListUserRoles>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listUsersRoles(containerId, userId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -751,7 +759,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveUser(containerId: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainersUsersResponse>> {
+        async retrieveUser(containerId: string, userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).retrieveUser(containerId, userId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -762,11 +770,11 @@ export const UsersApiFp = function(configuration?: Configuration) {
          * Updates the specified user.
          * @summary UpdateUser
          * @param {string} userId 
-         * @param {UserResponse} [body] 
+         * @param {User} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateUser(userId: string, body?: UserResponse, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async updateUser(userId: string, body?: User, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).updateUser(userId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -789,7 +797,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptContainerInvite(token: string, options?: any): AxiosPromise<Generic200> {
+        acceptContainerInvite(token: string, options?: any): AxiosPromise<Generic200Response> {
             return UsersApiFp(configuration).acceptContainerInvite(token, options).then((request) => request(axios, basePath));
         },
         /**
@@ -800,7 +808,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        assignUserRole(body: AssignRoleRequest, containerId: string, options?: any): AxiosPromise<Generic200> {
+        assignUserRole(body: AssignRoleRequest, containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return UsersApiFp(configuration).assignUserRole(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -810,18 +818,19 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUser(userId: string, options?: any): AxiosPromise<Generic200> {
+        deleteUser(userId: string, options?: any): AxiosPromise<Generic200Response> {
             return UsersApiFp(configuration).deleteUser(userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new user using the username_password identity type.
          * @summary InviteUserToContainer
          * @param {string} containerId 
+         * @param {ContainerInvite} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inviteUserToContainer(containerId: string, options?: any): AxiosPromise<void> {
-            return UsersApiFp(configuration).inviteUserToContainer(containerId, options).then((request) => request(axios, basePath));
+        inviteUserToContainer(containerId: string, body?: ContainerInvite, options?: any): AxiosPromise<Generic200Response> {
+            return UsersApiFp(configuration).inviteUserToContainer(containerId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * List all invitations to container.
@@ -830,7 +839,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listInvitedUsersForContainer(containerId: string, options?: any): AxiosPromise<void> {
+        listInvitedUsersForContainer(containerId: string, options?: any): AxiosPromise<ListContainerInvitesResponse> {
             return UsersApiFp(configuration).listInvitedUsersForContainer(containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -839,7 +848,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listOutstandingInvites(options?: any): AxiosPromise<UsersInvitesResponse> {
+        listOutstandingInvites(options?: any): AxiosPromise<ListUserInvitesResponse> {
             return UsersApiFp(configuration).listOutstandingInvites(options).then((request) => request(axios, basePath));
         },
         /**
@@ -848,7 +857,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listUserPermissions(options?: any): AxiosPromise<UsersPermissionsResponse> {
+        listUserPermissions(options?: any): AxiosPromise<ListUserPermissionsResponse> {
             return UsersApiFp(configuration).listUserPermissions(options).then((request) => request(axios, basePath));
         },
         /**
@@ -863,7 +872,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listUsers(count?: boolean, loadKeys?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): AxiosPromise<UsersResponse> {
+        listUsers(count?: boolean, loadKeys?: boolean, limit?: number, offset?: number, sortBy?: string, sortDesc?: boolean, options?: any): AxiosPromise<ListUsersResponse> {
             return UsersApiFp(configuration).listUsers(count, loadKeys, limit, offset, sortBy, sortDesc, options).then((request) => request(axios, basePath));
         },
         /**
@@ -875,7 +884,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listUsersForContainer(containerId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ContainersUsersResponse1> {
+        listUsersForContainer(containerId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ListUsersForContainerResponse> {
             return UsersApiFp(configuration).listUsersForContainer(containerId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
@@ -886,7 +895,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listUsersRoles(containerId: string, userId: string, options?: any): AxiosPromise<ContainersUsersRolesResponse> {
+        listUsersRoles(containerId: string, userId: string, options?: any): AxiosPromise<ListUserRoles> {
             return UsersApiFp(configuration).listUsersRoles(containerId, userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -897,18 +906,18 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveUser(containerId: string, userId: string, options?: any): AxiosPromise<ContainersUsersResponse> {
+        retrieveUser(containerId: string, userId: string, options?: any): AxiosPromise<GetUserResponse> {
             return UsersApiFp(configuration).retrieveUser(containerId, userId, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the specified user.
          * @summary UpdateUser
          * @param {string} userId 
-         * @param {UserResponse} [body] 
+         * @param {User} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUser(userId: string, body?: UserResponse, options?: any): AxiosPromise<Generic200> {
+        updateUser(userId: string, body?: User, options?: any): AxiosPromise<Generic200Response> {
             return UsersApiFp(configuration).updateUser(userId, body, options).then((request) => request(axios, basePath));
         },
     };
@@ -959,12 +968,13 @@ export class UsersApi extends BaseAPI {
      * Create a new user using the username_password identity type.
      * @summary InviteUserToContainer
      * @param {string} containerId 
+     * @param {ContainerInvite} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public inviteUserToContainer(containerId: string, options?: any) {
-        return UsersApiFp(this.configuration).inviteUserToContainer(containerId, options).then((request) => request(this.axios, this.basePath));
+    public inviteUserToContainer(containerId: string, body?: ContainerInvite, options?: any) {
+        return UsersApiFp(this.configuration).inviteUserToContainer(containerId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * List all invitations to container.
@@ -1054,12 +1064,12 @@ export class UsersApi extends BaseAPI {
      * Updates the specified user.
      * @summary UpdateUser
      * @param {string} userId 
-     * @param {UserResponse} [body] 
+     * @param {User} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
      */
-    public updateUser(userId: string, body?: UserResponse, options?: any) {
+    public updateUser(userId: string, body?: User, options?: any) {
         return UsersApiFp(this.configuration).updateUser(userId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }

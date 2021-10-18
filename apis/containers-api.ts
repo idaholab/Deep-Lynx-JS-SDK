@@ -16,12 +16,18 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { BatchUpdateRequest } from '../models';
-import { ContainerImportSuccess } from '../models';
-import { ContainerResponse } from '../models';
-import { CreateRequest } from '../models';
-import { Generic200 } from '../models';
-import { UpdateRequest } from '../models';
+import { BatchContainerUpdateRequest } from '../models';
+import { BatchUpdateContainerResponse } from '../models';
+import { ContainerImportResponse } from '../models';
+import { ContainerImportUpdateResponse } from '../models';
+import { CreateContainerRequest } from '../models';
+import { CreateContainerResponse } from '../models';
+import { ErrorResponse } from '../models';
+import { Generic200Response } from '../models';
+import { GetContainerResponse } from '../models';
+import { ListContainerResponse } from '../models';
+import { UpdateContainerRequest } from '../models';
+import { UpdateContainerResponse } from '../models';
 /**
  * ContainersApi - axios parameter creator
  * @export
@@ -78,11 +84,11 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         /**
          * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
          * @summary ContainerBatchUpdate
-         * @param {Array&lt;BatchUpdateRequest&gt;} body 
+         * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        containerBatchUpdate: async (body: Array<BatchUpdateRequest>, options: any = {}): Promise<RequestArgs> => {
+        containerBatchUpdate: async (body: Array<BatchContainerUpdateRequest>, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling containerBatchUpdate.');
@@ -123,11 +129,11 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         /**
          * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
          * @summary CreateContainer
-         * @param {CreateRequest} body 
+         * @param {CreateContainerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createContainer: async (body: CreateRequest, options: any = {}): Promise<RequestArgs> => {
+        createContainer: async (body: CreateContainerRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createContainer.');
@@ -399,12 +405,12 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
          * @summary UpdateContainer
-         * @param {UpdateRequest} body 
+         * @param {UpdateContainerRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateContainer: async (body: UpdateRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        updateContainer: async (body: UpdateContainerRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling updateContainer.');
@@ -534,7 +540,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async archiveContainer(containerId: string, permanent?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async archiveContainer(containerId: string, permanent?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).archiveContainer(containerId, permanent, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -544,11 +550,11 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         /**
          * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
          * @summary ContainerBatchUpdate
-         * @param {Array&lt;BatchUpdateRequest&gt;} body 
+         * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async containerBatchUpdate(body: Array<BatchUpdateRequest>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerResponse>> {
+        async containerBatchUpdate(body: Array<BatchContainerUpdateRequest>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchUpdateContainerResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).containerBatchUpdate(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -558,11 +564,11 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         /**
          * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
          * @summary CreateContainer
-         * @param {CreateRequest} body 
+         * @param {CreateContainerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createContainer(body: CreateRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerResponse>> {
+        async createContainer(body: CreateContainerRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateContainerResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).createContainer(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -581,7 +587,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportSuccess>> {
+        async importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -594,7 +600,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listContainers(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerResponse>> {
+        async listContainers(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListContainerResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).listContainers(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -608,7 +614,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async repairContainerPermissions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async repairContainerPermissions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).repairContainerPermissions(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -622,7 +628,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveContainer(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerResponse>> {
+        async retrieveContainer(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetContainerResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).retrieveContainer(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -636,7 +642,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async setContainerActive(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200>> {
+        async setContainerActive(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).setContainerActive(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -646,12 +652,12 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
          * @summary UpdateContainer
-         * @param {UpdateRequest} body 
+         * @param {UpdateContainerRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateContainer(body: UpdateRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerResponse>> {
+        async updateContainer(body: UpdateContainerRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateContainerResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).updateContainer(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -670,7 +676,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportSuccess>> {
+        async updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportUpdateResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).updateContainerImport(containerId, name, description, dataVersioningEnabled, path, file, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -694,27 +700,27 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        archiveContainer(containerId: string, permanent?: boolean, options?: any): AxiosPromise<Generic200> {
+        archiveContainer(containerId: string, permanent?: boolean, options?: any): AxiosPromise<Generic200Response> {
             return ContainersApiFp(configuration).archiveContainer(containerId, permanent, options).then((request) => request(axios, basePath));
         },
         /**
          * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
          * @summary ContainerBatchUpdate
-         * @param {Array&lt;BatchUpdateRequest&gt;} body 
+         * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        containerBatchUpdate(body: Array<BatchUpdateRequest>, options?: any): AxiosPromise<ContainerResponse> {
+        containerBatchUpdate(body: Array<BatchContainerUpdateRequest>, options?: any): AxiosPromise<BatchUpdateContainerResponse> {
             return ContainersApiFp(configuration).containerBatchUpdate(body, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
          * @summary CreateContainer
-         * @param {CreateRequest} body 
+         * @param {CreateContainerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createContainer(body: CreateRequest, options?: any): AxiosPromise<ContainerResponse> {
+        createContainer(body: CreateContainerRequest, options?: any): AxiosPromise<CreateContainerResponse> {
             return ContainersApiFp(configuration).createContainer(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -729,7 +735,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any): AxiosPromise<ContainerImportSuccess> {
+        importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any): AxiosPromise<ContainerImportResponse> {
             return ContainersApiFp(configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options).then((request) => request(axios, basePath));
         },
         /**
@@ -738,7 +744,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listContainers(options?: any): AxiosPromise<ContainerResponse> {
+        listContainers(options?: any): AxiosPromise<ListContainerResponse> {
             return ContainersApiFp(configuration).listContainers(options).then((request) => request(axios, basePath));
         },
         /**
@@ -748,7 +754,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        repairContainerPermissions(containerId: string, options?: any): AxiosPromise<Generic200> {
+        repairContainerPermissions(containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return ContainersApiFp(configuration).repairContainerPermissions(containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -758,7 +764,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveContainer(containerId: string, options?: any): AxiosPromise<ContainerResponse> {
+        retrieveContainer(containerId: string, options?: any): AxiosPromise<GetContainerResponse> {
             return ContainersApiFp(configuration).retrieveContainer(containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -768,18 +774,18 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        setContainerActive(containerId: string, options?: any): AxiosPromise<Generic200> {
+        setContainerActive(containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return ContainersApiFp(configuration).setContainerActive(containerId, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
          * @summary UpdateContainer
-         * @param {UpdateRequest} body 
+         * @param {UpdateContainerRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateContainer(body: UpdateRequest, containerId: string, options?: any): AxiosPromise<ContainerResponse> {
+        updateContainer(body: UpdateContainerRequest, containerId: string, options?: any): AxiosPromise<UpdateContainerResponse> {
             return ContainersApiFp(configuration).updateContainer(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -794,7 +800,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any): AxiosPromise<ContainerImportSuccess> {
+        updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any): AxiosPromise<ContainerImportUpdateResponse> {
             return ContainersApiFp(configuration).updateContainerImport(containerId, name, description, dataVersioningEnabled, path, file, options).then((request) => request(axios, basePath));
         },
     };
@@ -822,23 +828,23 @@ export class ContainersApi extends BaseAPI {
     /**
      * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
      * @summary ContainerBatchUpdate
-     * @param {Array&lt;BatchUpdateRequest&gt;} body 
+     * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public containerBatchUpdate(body: Array<BatchUpdateRequest>, options?: any) {
+    public containerBatchUpdate(body: Array<BatchContainerUpdateRequest>, options?: any) {
         return ContainersApiFp(this.configuration).containerBatchUpdate(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
      * @summary CreateContainer
-     * @param {CreateRequest} body 
+     * @param {CreateContainerRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public createContainer(body: CreateRequest, options?: any) {
+    public createContainer(body: CreateContainerRequest, options?: any) {
         return ContainersApiFp(this.configuration).createContainer(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
@@ -903,13 +909,13 @@ export class ContainersApi extends BaseAPI {
     /**
      * Updates the container. This will fail if a container already exists with the proposed updated name.
      * @summary UpdateContainer
-     * @param {UpdateRequest} body 
+     * @param {UpdateContainerRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public updateContainer(body: UpdateRequest, containerId: string, options?: any) {
+    public updateContainer(body: UpdateContainerRequest, containerId: string, options?: any) {
         return ContainersApiFp(this.configuration).updateContainer(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
