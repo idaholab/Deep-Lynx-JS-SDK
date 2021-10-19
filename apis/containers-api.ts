@@ -16,7 +16,7 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { BatchContainerUpdateRequest } from '../models';
+import { BatchContainerUpdateRequestInner } from '../models';
 import { BatchUpdateContainerResponse } from '../models';
 import { ContainerImportResponse } from '../models';
 import { ContainerImportUpdateResponse } from '../models';
@@ -36,7 +36,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * Archives a Container. This is preferred over deletion as deletion has a cascading effect on the deleted type's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the type.
-         * @summary ArchiveContainer
+         * @summary Archive Container
          * @param {string} containerId 
          * @param {boolean} [permanent] If true, permanently deletes the container
          * @param {*} [options] Override http request option.
@@ -59,7 +59,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (permanent !== undefined) {
                 localVarQueryParameter['permanent'] = permanent;
@@ -83,12 +83,12 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
-         * @summary ContainerBatchUpdate
-         * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
+         * @summary Container Batch Update
+         * @param {Array&lt;BatchContainerUpdateRequestInner&gt;} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        containerBatchUpdate: async (body: Array<BatchContainerUpdateRequest>, options: any = {}): Promise<RequestArgs> => {
+        containerBatchUpdate: async (body: Array<BatchContainerUpdateRequestInner>, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling containerBatchUpdate.');
@@ -104,7 +104,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -128,7 +128,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
-         * @summary CreateContainer
+         * @summary Create Container
          * @param {CreateContainerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -149,7 +149,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -173,17 +173,37 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
-         * @summary ImportContainer
-         * @param {string} [name] 
-         * @param {string} [description] 
-         * @param {boolean} [dataVersioningEnabled] 
-         * @param {string} [path] 
-         * @param {string} [file] 
+         * @summary Import Container
+         * @param {string} name 
+         * @param {string} description 
+         * @param {boolean} dataVersioningEnabled 
+         * @param {string} path 
+         * @param {string} file 
          * @param {boolean} [dryrun] If true returns a description of the container that will be created and its contents.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importContainer: async (name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options: any = {}): Promise<RequestArgs> => {
+        importContainer: async (name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'name' is not null or undefined
+            if (name === null || name === undefined) {
+                throw new RequiredError('name','Required parameter name was null or undefined when calling importContainer.');
+            }
+            // verify required parameter 'description' is not null or undefined
+            if (description === null || description === undefined) {
+                throw new RequiredError('description','Required parameter description was null or undefined when calling importContainer.');
+            }
+            // verify required parameter 'dataVersioningEnabled' is not null or undefined
+            if (dataVersioningEnabled === null || dataVersioningEnabled === undefined) {
+                throw new RequiredError('dataVersioningEnabled','Required parameter dataVersioningEnabled was null or undefined when calling importContainer.');
+            }
+            // verify required parameter 'path' is not null or undefined
+            if (path === null || path === undefined) {
+                throw new RequiredError('path','Required parameter path was null or undefined when calling importContainer.');
+            }
+            // verify required parameter 'file' is not null or undefined
+            if (file === null || file === undefined) {
+                throw new RequiredError('file','Required parameter file was null or undefined when calling importContainer.');
+            }
             const localVarPath = `/containers/import`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -194,9 +214,9 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
+            const localVarFormParams = new FormData();
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (dryrun !== undefined) {
                 localVarQueryParameter['dryrun'] = dryrun;
@@ -204,25 +224,26 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
 
 
             if (name !== undefined) { 
-                localVarFormParams.set('name', name as any);
+                localVarFormParams.append('name', name as any);
             }
 
             if (description !== undefined) { 
-                localVarFormParams.set('description', description as any);
+                localVarFormParams.append('description', description as any);
             }
 
             if (dataVersioningEnabled !== undefined) { 
-                localVarFormParams.set('data_versioning_enabled', dataVersioningEnabled as any);
+                localVarFormParams.append('data_versioning_enabled', dataVersioningEnabled as any);
             }
 
             if (path !== undefined) { 
-                localVarFormParams.set('path', path as any);
+                localVarFormParams.append('path', path as any);
             }
 
             if (file !== undefined) { 
-                localVarFormParams.set('file', file as any);
+                localVarFormParams.append('file', file as any);
             }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -233,7 +254,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -242,7 +263,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * List all containers.
-         * @summary ListContainers
+         * @summary List Containers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -258,7 +279,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -278,7 +299,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Repairs a container's permission set
-         * @summary RepairContainerPermissions
+         * @summary Repair Container Permissions
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -300,7 +321,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -320,7 +341,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Retrieve container by ID.
-         * @summary RetrieveContainer
+         * @summary Retrieve Container
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -342,7 +363,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -362,7 +383,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Unarchives a Container. This is the only way to update this value of a container via API.
-         * @summary SetContainerActive
+         * @summary Set Container Active
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -384,7 +405,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -404,7 +425,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
-         * @summary UpdateContainer
+         * @summary Update Container
          * @param {UpdateContainerRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -431,7 +452,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -455,17 +476,37 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Updates an existing container via an ontology file.
-         * @summary UpdateContainerImport
+         * @summary Update Container Import
+         * @param {string} name 
+         * @param {string} description 
+         * @param {boolean} dataVersioningEnabled 
+         * @param {string} path 
+         * @param {string} file 
          * @param {string} containerId 
-         * @param {string} [name] 
-         * @param {string} [description] 
-         * @param {boolean} [dataVersioningEnabled] 
-         * @param {string} [path] 
-         * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateContainerImport: async (containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options: any = {}): Promise<RequestArgs> => {
+        updateContainerImport: async (name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, containerId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'name' is not null or undefined
+            if (name === null || name === undefined) {
+                throw new RequiredError('name','Required parameter name was null or undefined when calling updateContainerImport.');
+            }
+            // verify required parameter 'description' is not null or undefined
+            if (description === null || description === undefined) {
+                throw new RequiredError('description','Required parameter description was null or undefined when calling updateContainerImport.');
+            }
+            // verify required parameter 'dataVersioningEnabled' is not null or undefined
+            if (dataVersioningEnabled === null || dataVersioningEnabled === undefined) {
+                throw new RequiredError('dataVersioningEnabled','Required parameter dataVersioningEnabled was null or undefined when calling updateContainerImport.');
+            }
+            // verify required parameter 'path' is not null or undefined
+            if (path === null || path === undefined) {
+                throw new RequiredError('path','Required parameter path was null or undefined when calling updateContainerImport.');
+            }
+            // verify required parameter 'file' is not null or undefined
+            if (file === null || file === undefined) {
+                throw new RequiredError('file','Required parameter file was null or undefined when calling updateContainerImport.');
+            }
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling updateContainerImport.');
@@ -481,31 +522,32 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
+            const localVarFormParams = new FormData();
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
 
             if (name !== undefined) { 
-                localVarFormParams.set('name', name as any);
+                localVarFormParams.append('name', name as any);
             }
 
             if (description !== undefined) { 
-                localVarFormParams.set('description', description as any);
+                localVarFormParams.append('description', description as any);
             }
 
             if (dataVersioningEnabled !== undefined) { 
-                localVarFormParams.set('data_versioning_enabled', dataVersioningEnabled as any);
+                localVarFormParams.append('data_versioning_enabled', dataVersioningEnabled as any);
             }
 
             if (path !== undefined) { 
-                localVarFormParams.set('path', path as any);
+                localVarFormParams.append('path', path as any);
             }
 
             if (file !== undefined) { 
-                localVarFormParams.set('file', file as any);
+                localVarFormParams.append('file', file as any);
             }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -516,7 +558,7 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -534,7 +576,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Archives a Container. This is preferred over deletion as deletion has a cascading effect on the deleted type's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the type.
-         * @summary ArchiveContainer
+         * @summary Archive Container
          * @param {string} containerId 
          * @param {boolean} [permanent] If true, permanently deletes the container
          * @param {*} [options] Override http request option.
@@ -549,12 +591,12 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
-         * @summary ContainerBatchUpdate
-         * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
+         * @summary Container Batch Update
+         * @param {Array&lt;BatchContainerUpdateRequestInner&gt;} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async containerBatchUpdate(body: Array<BatchContainerUpdateRequest>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchUpdateContainerResponse>> {
+        async containerBatchUpdate(body: Array<BatchContainerUpdateRequestInner>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BatchUpdateContainerResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).containerBatchUpdate(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -563,7 +605,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
-         * @summary CreateContainer
+         * @summary Create Container
          * @param {CreateContainerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -577,17 +619,17 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
-         * @summary ImportContainer
-         * @param {string} [name] 
-         * @param {string} [description] 
-         * @param {boolean} [dataVersioningEnabled] 
-         * @param {string} [path] 
-         * @param {string} [file] 
+         * @summary Import Container
+         * @param {string} name 
+         * @param {string} description 
+         * @param {boolean} dataVersioningEnabled 
+         * @param {string} path 
+         * @param {string} file 
          * @param {boolean} [dryrun] If true returns a description of the container that will be created and its contents.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportResponse>> {
+        async importContainer(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -596,7 +638,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all containers.
-         * @summary ListContainers
+         * @summary List Containers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -609,7 +651,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Repairs a container's permission set
-         * @summary RepairContainerPermissions
+         * @summary Repair Container Permissions
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -623,7 +665,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve container by ID.
-         * @summary RetrieveContainer
+         * @summary Retrieve Container
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -637,7 +679,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Unarchives a Container. This is the only way to update this value of a container via API.
-         * @summary SetContainerActive
+         * @summary Set Container Active
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -651,7 +693,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
-         * @summary UpdateContainer
+         * @summary Update Container
          * @param {UpdateContainerRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -666,18 +708,18 @@ export const ContainersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Updates an existing container via an ontology file.
-         * @summary UpdateContainerImport
+         * @summary Update Container Import
+         * @param {string} name 
+         * @param {string} description 
+         * @param {boolean} dataVersioningEnabled 
+         * @param {string} path 
+         * @param {string} file 
          * @param {string} containerId 
-         * @param {string} [name] 
-         * @param {string} [description] 
-         * @param {boolean} [dataVersioningEnabled] 
-         * @param {string} [path] 
-         * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportUpdateResponse>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).updateContainerImport(containerId, name, description, dataVersioningEnabled, path, file, options);
+        async updateContainerImport(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportUpdateResponse>> {
+            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).updateContainerImport(name, description, dataVersioningEnabled, path, file, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -694,7 +736,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * Archives a Container. This is preferred over deletion as deletion has a cascading effect on the deleted type's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the type.
-         * @summary ArchiveContainer
+         * @summary Archive Container
          * @param {string} containerId 
          * @param {boolean} [permanent] If true, permanently deletes the container
          * @param {*} [options] Override http request option.
@@ -705,17 +747,17 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
-         * @summary ContainerBatchUpdate
-         * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
+         * @summary Container Batch Update
+         * @param {Array&lt;BatchContainerUpdateRequestInner&gt;} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        containerBatchUpdate(body: Array<BatchContainerUpdateRequest>, options?: any): AxiosPromise<BatchUpdateContainerResponse> {
+        containerBatchUpdate(body: Array<BatchContainerUpdateRequestInner>, options?: any): AxiosPromise<BatchUpdateContainerResponse> {
             return ContainersApiFp(configuration).containerBatchUpdate(body, options).then((request) => request(axios, basePath));
         },
         /**
          * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
-         * @summary CreateContainer
+         * @summary Create Container
          * @param {CreateContainerRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -725,22 +767,22 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
-         * @summary ImportContainer
-         * @param {string} [name] 
-         * @param {string} [description] 
-         * @param {boolean} [dataVersioningEnabled] 
-         * @param {string} [path] 
-         * @param {string} [file] 
+         * @summary Import Container
+         * @param {string} name 
+         * @param {string} description 
+         * @param {boolean} dataVersioningEnabled 
+         * @param {string} path 
+         * @param {string} file 
          * @param {boolean} [dryrun] If true returns a description of the container that will be created and its contents.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any): AxiosPromise<ContainerImportResponse> {
+        importContainer(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options?: any): AxiosPromise<ContainerImportResponse> {
             return ContainersApiFp(configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options).then((request) => request(axios, basePath));
         },
         /**
          * List all containers.
-         * @summary ListContainers
+         * @summary List Containers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -749,7 +791,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Repairs a container's permission set
-         * @summary RepairContainerPermissions
+         * @summary Repair Container Permissions
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -759,7 +801,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Retrieve container by ID.
-         * @summary RetrieveContainer
+         * @summary Retrieve Container
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -769,7 +811,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Unarchives a Container. This is the only way to update this value of a container via API.
-         * @summary SetContainerActive
+         * @summary Set Container Active
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -779,7 +821,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
-         * @summary UpdateContainer
+         * @summary Update Container
          * @param {UpdateContainerRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -790,18 +832,18 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Updates an existing container via an ontology file.
-         * @summary UpdateContainerImport
+         * @summary Update Container Import
+         * @param {string} name 
+         * @param {string} description 
+         * @param {boolean} dataVersioningEnabled 
+         * @param {string} path 
+         * @param {string} file 
          * @param {string} containerId 
-         * @param {string} [name] 
-         * @param {string} [description] 
-         * @param {boolean} [dataVersioningEnabled] 
-         * @param {string} [path] 
-         * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any): AxiosPromise<ContainerImportUpdateResponse> {
-            return ContainersApiFp(configuration).updateContainerImport(containerId, name, description, dataVersioningEnabled, path, file, options).then((request) => request(axios, basePath));
+        updateContainerImport(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, containerId: string, options?: any): AxiosPromise<ContainerImportUpdateResponse> {
+            return ContainersApiFp(configuration).updateContainerImport(name, description, dataVersioningEnabled, path, file, containerId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -815,7 +857,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
 export class ContainersApi extends BaseAPI {
     /**
      * Archives a Container. This is preferred over deletion as deletion has a cascading effect on the deleted type's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the type.
-     * @summary ArchiveContainer
+     * @summary Archive Container
      * @param {string} containerId 
      * @param {boolean} [permanent] If true, permanently deletes the container
      * @param {*} [options] Override http request option.
@@ -827,18 +869,18 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * Accepts an array of container objects - will attempt to update all of them in a single transaction. If the update fails, none of them will go through.
-     * @summary ContainerBatchUpdate
-     * @param {Array&lt;BatchContainerUpdateRequest&gt;} body 
+     * @summary Container Batch Update
+     * @param {Array&lt;BatchContainerUpdateRequestInner&gt;} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public containerBatchUpdate(body: Array<BatchContainerUpdateRequest>, options?: any) {
+    public containerBatchUpdate(body: Array<BatchContainerUpdateRequestInner>, options?: any) {
         return ContainersApiFp(this.configuration).containerBatchUpdate(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Creates a new container object. Containers are the root level object and are considered to contain both the ontology(in form of Metatypes, Metatype Keys, and MetatypeRelationships) as well as the data stored under that ontology.  Endpoint will accept both a single container request object, or an array of container request objects
-     * @summary CreateContainer
+     * @summary Create Container
      * @param {CreateContainerRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -849,23 +891,23 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
-     * @summary ImportContainer
-     * @param {string} [name] 
-     * @param {string} [description] 
-     * @param {boolean} [dataVersioningEnabled] 
-     * @param {string} [path] 
-     * @param {string} [file] 
+     * @summary Import Container
+     * @param {string} name 
+     * @param {string} description 
+     * @param {boolean} dataVersioningEnabled 
+     * @param {string} path 
+     * @param {string} file 
      * @param {boolean} [dryrun] If true returns a description of the container that will be created and its contents.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public importContainer(name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, dryrun?: boolean, options?: any) {
+    public importContainer(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options?: any) {
         return ContainersApiFp(this.configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * List all containers.
-     * @summary ListContainers
+     * @summary List Containers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
@@ -875,7 +917,7 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * Repairs a container's permission set
-     * @summary RepairContainerPermissions
+     * @summary Repair Container Permissions
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -886,7 +928,7 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * Retrieve container by ID.
-     * @summary RetrieveContainer
+     * @summary Retrieve Container
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -897,7 +939,7 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * Unarchives a Container. This is the only way to update this value of a container via API.
-     * @summary SetContainerActive
+     * @summary Set Container Active
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -908,7 +950,7 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * Updates the container. This will fail if a container already exists with the proposed updated name.
-     * @summary UpdateContainer
+     * @summary Update Container
      * @param {UpdateContainerRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -920,18 +962,18 @@ export class ContainersApi extends BaseAPI {
     }
     /**
      * Updates an existing container via an ontology file.
-     * @summary UpdateContainerImport
+     * @summary Update Container Import
+     * @param {string} name 
+     * @param {string} description 
+     * @param {boolean} dataVersioningEnabled 
+     * @param {string} path 
+     * @param {string} file 
      * @param {string} containerId 
-     * @param {string} [name] 
-     * @param {string} [description] 
-     * @param {boolean} [dataVersioningEnabled] 
-     * @param {string} [path] 
-     * @param {string} [file] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public updateContainerImport(containerId: string, name?: string, description?: string, dataVersioningEnabled?: boolean, path?: string, file?: string, options?: any) {
-        return ContainersApiFp(this.configuration).updateContainerImport(containerId, name, description, dataVersioningEnabled, path, file, options).then((request) => request(this.axios, this.basePath));
+    public updateContainerImport(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, containerId: string, options?: any) {
+        return ContainersApiFp(this.configuration).updateContainerImport(name, description, dataVersioningEnabled, path, file, containerId, options).then((request) => request(this.axios, this.basePath));
     }
 }

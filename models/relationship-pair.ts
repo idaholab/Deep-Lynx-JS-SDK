@@ -115,19 +115,19 @@ export interface RelationshipPair {
     relationshipPairName: any;
     /**
      * 
-     * @type {NodeMetatypeBody}
+     * @type {RelationshipPairDestinationMetatype}
      * @memberof RelationshipPair
      */
     destinationMetatype: any;
     /**
      * 
-     * @type {NodeMetatypeBody}
+     * @type {RelationshipPairDestinationMetatype}
      * @memberof RelationshipPair
      */
     originMetatype: any;
     /**
      * 
-     * @type {NodeMetatypeBody}
+     * @type {RelationshipPairDestinationMetatype}
      * @memberof RelationshipPair
      */
     relationship: any;

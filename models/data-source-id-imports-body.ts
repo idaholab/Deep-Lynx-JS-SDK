@@ -14,7 +14,25 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface DataSourceIdImportsBody
  */
-export interface UploadFileResponse {
+export interface DataSourceIdImportsBody {
+    /**
+     * 
+     * @type {string}
+     * @memberof DataSourceIdImportsBody
+     */
+    dataSourceId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataSourceIdImportsBody
+     */
+    reference?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataSourceIdImportsBody
+     */
+    statusMessage?: any;
 }

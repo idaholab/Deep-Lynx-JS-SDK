@@ -14,7 +14,13 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface RSAResponseValueChallengeMethods
  */
-export interface UploadFileResponse {
+export interface RSAResponseValueChallengeMethods {
+    /**
+     * 
+     * @type {Array&lt;RSAResponseValueChallengeMethodsChallenges&gt;}
+     * @memberof RSAResponseValueChallengeMethods
+     */
+    challenges?: any;
 }

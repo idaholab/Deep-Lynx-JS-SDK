@@ -61,7 +61,7 @@ export interface MetatypeKey {
     id: any;
     /**
      * 
-     * @type {string}
+     * @type {Array&lt;ModelObject&gt;}
      * @memberof MetatypeKey
      */
     options?: any | null;
@@ -103,7 +103,7 @@ export interface MetatypeKey {
     modifiedBy: any;
     /**
      * 
-     * @type {Validation}
+     * @type {UpdateMetatypeKeyRequestValidation}
      * @memberof MetatypeKey
      */
     validation: any;

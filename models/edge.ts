@@ -127,7 +127,7 @@ export interface Edge {
     typeMappingTransformationId: any;
     /**
      * 
-     * @type {any}
+     * @type {ModelObject}
      * @memberof Edge
      */
     compositeOriginalId?: any;

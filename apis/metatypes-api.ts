@@ -31,7 +31,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * Archives the metatype. This is preferred over deletion as deletion has a cascading effect on the deleted metatype's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the metatype.
-         * @summary ArchiveMetatype
+         * @summary Archive Metatype
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -59,7 +59,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -79,7 +79,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * Create a new metatype. Pass in an array for bulk creation.
-         * @summary CreateMetatype
+         * @summary Create Metatype
          * @param {NewMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -106,7 +106,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -130,7 +130,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * List all metatypes that the container has access to. 
-         * @summary ListMetatypes
+         * @summary List Metatypes
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -161,7 +161,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -217,7 +217,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * Retrieves a single metatype.
-         * @summary RetrieveMetaype
+         * @summary Retrieve Metatype
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -245,7 +245,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -265,7 +265,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * Update a single Metatype in storage. Will fail if the updated name has already been taken.
-         * @summary UpdateMetatype
+         * @summary Update Metatype
          * @param {UpdateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -298,7 +298,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -331,7 +331,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Archives the metatype. This is preferred over deletion as deletion has a cascading effect on the deleted metatype's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the metatype.
-         * @summary ArchiveMetatype
+         * @summary Archive Metatype
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -346,7 +346,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Create a new metatype. Pass in an array for bulk creation.
-         * @summary CreateMetatype
+         * @summary Create Metatype
          * @param {NewMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -361,7 +361,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all metatypes that the container has access to. 
-         * @summary ListMetatypes
+         * @summary List Metatypes
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -384,7 +384,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieves a single metatype.
-         * @summary RetrieveMetaype
+         * @summary Retrieve Metatype
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -399,7 +399,7 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update a single Metatype in storage. Will fail if the updated name has already been taken.
-         * @summary UpdateMetatype
+         * @summary Update Metatype
          * @param {UpdateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -424,7 +424,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * Archives the metatype. This is preferred over deletion as deletion has a cascading effect on the deleted metatype's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the metatype.
-         * @summary ArchiveMetatype
+         * @summary Archive Metatype
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -435,7 +435,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
         },
         /**
          * Create a new metatype. Pass in an array for bulk creation.
-         * @summary CreateMetatype
+         * @summary Create Metatype
          * @param {NewMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -446,7 +446,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
         },
         /**
          * List all metatypes that the container has access to. 
-         * @summary ListMetatypes
+         * @summary List Metatypes
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -465,7 +465,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
         },
         /**
          * Retrieves a single metatype.
-         * @summary RetrieveMetaype
+         * @summary Retrieve Metatype
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -476,7 +476,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
         },
         /**
          * Update a single Metatype in storage. Will fail if the updated name has already been taken.
-         * @summary UpdateMetatype
+         * @summary Update Metatype
          * @param {UpdateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -498,7 +498,7 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
 export class MetatypesApi extends BaseAPI {
     /**
      * Archives the metatype. This is preferred over deletion as deletion has a cascading effect on the deleted metatype's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the metatype.
-     * @summary ArchiveMetatype
+     * @summary Archive Metatype
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {*} [options] Override http request option.
@@ -510,7 +510,7 @@ export class MetatypesApi extends BaseAPI {
     }
     /**
      * Create a new metatype. Pass in an array for bulk creation.
-     * @summary CreateMetatype
+     * @summary Create Metatype
      * @param {NewMetatypeRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -522,7 +522,7 @@ export class MetatypesApi extends BaseAPI {
     }
     /**
      * List all metatypes that the container has access to. 
-     * @summary ListMetatypes
+     * @summary List Metatypes
      * @param {string} containerId 
      * @param {number} [limit] 
      * @param {number} [offset] 
@@ -542,7 +542,7 @@ export class MetatypesApi extends BaseAPI {
     }
     /**
      * Retrieves a single metatype.
-     * @summary RetrieveMetaype
+     * @summary Retrieve Metatype
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {*} [options] Override http request option.
@@ -554,7 +554,7 @@ export class MetatypesApi extends BaseAPI {
     }
     /**
      * Update a single Metatype in storage. Will fail if the updated name has already been taken.
-     * @summary UpdateMetatype
+     * @summary Update Metatype
      * @param {UpdateMetatypeRequest} body 
      * @param {string} containerId 
      * @param {string} metatypeId 

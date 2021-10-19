@@ -31,7 +31,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
     return {
         /**
          * Archiving the metatype key prevents any new types from implementing the key. It *does not remove key/value pairs on existing types*. We highly recommend you archive type keys instead of deleting them so that previous data is not affected.
-         * @summary ArchiveMetatypeKey
+         * @summary Archive Metatype Key
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
@@ -65,7 +65,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -85,7 +85,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
-         * @summary CreateMetatypeKey
+         * @summary Create Metatype Key
          * @param {NewMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -118,7 +118,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -142,7 +142,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * Lists all currently valid and available keys for the metatype.
-         * @summary ListMetatypesKeys
+         * @summary List Metatype's Keys
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -170,7 +170,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -190,7 +190,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * Retrieve the specified key for the metatype.
-         * @summary RetrieveMetatypeKey
+         * @summary Retrieve Metatype Key
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
@@ -224,7 +224,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -244,7 +244,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
         },
         /**
          * Updates a single key for a metatype.
-         * @summary UpdateMetatypeKey
+         * @summary Update Metatype Key
          * @param {UpdateMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -283,7 +283,7 @@ export const MetatypeKeysApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -316,7 +316,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Archiving the metatype key prevents any new types from implementing the key. It *does not remove key/value pairs on existing types*. We highly recommend you archive type keys instead of deleting them so that previous data is not affected.
-         * @summary ArchiveMetatypeKey
+         * @summary Archive Metatype Key
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
@@ -332,7 +332,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
         },
         /**
          * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
-         * @summary CreateMetatypeKey
+         * @summary Create Metatype Key
          * @param {NewMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -348,7 +348,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lists all currently valid and available keys for the metatype.
-         * @summary ListMetatypesKeys
+         * @summary List Metatype's Keys
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -363,7 +363,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve the specified key for the metatype.
-         * @summary RetrieveMetatypeKey
+         * @summary Retrieve Metatype Key
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
@@ -379,7 +379,7 @@ export const MetatypeKeysApiFp = function(configuration?: Configuration) {
         },
         /**
          * Updates a single key for a metatype.
-         * @summary UpdateMetatypeKey
+         * @summary Update Metatype Key
          * @param {UpdateMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -405,7 +405,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
     return {
         /**
          * Archiving the metatype key prevents any new types from implementing the key. It *does not remove key/value pairs on existing types*. We highly recommend you archive type keys instead of deleting them so that previous data is not affected.
-         * @summary ArchiveMetatypeKey
+         * @summary Archive Metatype Key
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
@@ -417,7 +417,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
         },
         /**
          * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
-         * @summary CreateMetatypeKey
+         * @summary Create Metatype Key
          * @param {NewMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -429,7 +429,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
         },
         /**
          * Lists all currently valid and available keys for the metatype.
-         * @summary ListMetatypesKeys
+         * @summary List Metatype's Keys
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {*} [options] Override http request option.
@@ -440,7 +440,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
         },
         /**
          * Retrieve the specified key for the metatype.
-         * @summary RetrieveMetatypeKey
+         * @summary Retrieve Metatype Key
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {string} keyId 
@@ -452,7 +452,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
         },
         /**
          * Updates a single key for a metatype.
-         * @summary UpdateMetatypeKey
+         * @summary Update Metatype Key
          * @param {UpdateMetatypeKeyRequest} body 
          * @param {string} containerId 
          * @param {string} metatypeId 
@@ -475,7 +475,7 @@ export const MetatypeKeysApiFactory = function (configuration?: Configuration, b
 export class MetatypeKeysApi extends BaseAPI {
     /**
      * Archiving the metatype key prevents any new types from implementing the key. It *does not remove key/value pairs on existing types*. We highly recommend you archive type keys instead of deleting them so that previous data is not affected.
-     * @summary ArchiveMetatypeKey
+     * @summary Archive Metatype Key
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {string} keyId 
@@ -488,7 +488,7 @@ export class MetatypeKeysApi extends BaseAPI {
     }
     /**
      * Creates a new key for a metatype. Keys consist of a unique key name (unique to the metatype only), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.  Pass in an array for bulk creation.  Currently the validation and cardinality functionality of keys are NOT checked at data insertion.
-     * @summary CreateMetatypeKey
+     * @summary Create Metatype Key
      * @param {NewMetatypeKeyRequest} body 
      * @param {string} containerId 
      * @param {string} metatypeId 
@@ -501,7 +501,7 @@ export class MetatypeKeysApi extends BaseAPI {
     }
     /**
      * Lists all currently valid and available keys for the metatype.
-     * @summary ListMetatypesKeys
+     * @summary List Metatype's Keys
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {*} [options] Override http request option.
@@ -513,7 +513,7 @@ export class MetatypeKeysApi extends BaseAPI {
     }
     /**
      * Retrieve the specified key for the metatype.
-     * @summary RetrieveMetatypeKey
+     * @summary Retrieve Metatype Key
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {string} keyId 
@@ -526,7 +526,7 @@ export class MetatypeKeysApi extends BaseAPI {
     }
     /**
      * Updates a single key for a metatype.
-     * @summary UpdateMetatypeKey
+     * @summary Update Metatype Key
      * @param {UpdateMetatypeKeyRequest} body 
      * @param {string} containerId 
      * @param {string} metatypeId 

@@ -17,4 +17,10 @@
  * @interface InlineResponse200
  */
 export interface InlineResponse200 {
+    /**
+     * 
+     * @type {any}
+     * @memberof InlineResponse200
+     */
+    data?: any;
 }

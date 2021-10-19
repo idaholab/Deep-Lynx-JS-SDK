@@ -31,7 +31,7 @@ export interface UpdateContainerRequest {
     description?: any;
     /**
      * 
-     * @type {ContainerConfig}
+     * @type {UpdateContainerRequestConfig}
      * @memberof UpdateContainerRequest
      */
     config?: any;

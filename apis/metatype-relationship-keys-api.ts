@@ -31,7 +31,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
     return {
         /**
          * Archives a Metatype Relationship Key.
-         * @summary ArchiveMetatypeRelationshipKey
+         * @summary Archive Metatype Relationship Key
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
@@ -65,7 +65,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -85,7 +85,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         },
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
-         * @summary CreateMetatypeRelationshipKey
+         * @summary Create Metatype Relationship Key
          * @param {NewMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -118,7 +118,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -142,7 +142,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         },
         /**
          * Retrieves all keys for a Metatype Relationship.
-         * @summary ListMetatypeRelationshipKeys
+         * @summary List Metatype Relationship Keys
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -170,7 +170,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -190,7 +190,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         },
         /**
          * Retrieve a single key for a Metatype Relationship by id.
-         * @summary RetrieveMetatypeRelationshipKey
+         * @summary Retrieve Metatype Relationship Key
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
@@ -224,7 +224,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -244,7 +244,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         },
         /**
          * Updates a Metatype Relationship key. The update must follow the same format as creation.
-         * @summary UpdateMetatypeRelationshipKey
+         * @summary Update Metaype Relationship Key
          * @param {RelationshipKey} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -283,7 +283,7 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -316,7 +316,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
     return {
         /**
          * Archives a Metatype Relationship Key.
-         * @summary ArchiveMetatypeRelationshipKey
+         * @summary Archive Metatype Relationship Key
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
@@ -332,7 +332,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         },
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
-         * @summary CreateMetatypeRelationshipKey
+         * @summary Create Metatype Relationship Key
          * @param {NewMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -348,7 +348,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         },
         /**
          * Retrieves all keys for a Metatype Relationship.
-         * @summary ListMetatypeRelationshipKeys
+         * @summary List Metatype Relationship Keys
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -363,7 +363,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         },
         /**
          * Retrieve a single key for a Metatype Relationship by id.
-         * @summary RetrieveMetatypeRelationshipKey
+         * @summary Retrieve Metatype Relationship Key
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
@@ -379,7 +379,7 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         },
         /**
          * Updates a Metatype Relationship key. The update must follow the same format as creation.
-         * @summary UpdateMetatypeRelationshipKey
+         * @summary Update Metaype Relationship Key
          * @param {RelationshipKey} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -405,7 +405,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
     return {
         /**
          * Archives a Metatype Relationship Key.
-         * @summary ArchiveMetatypeRelationshipKey
+         * @summary Archive Metatype Relationship Key
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
@@ -417,7 +417,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
         },
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
-         * @summary CreateMetatypeRelationshipKey
+         * @summary Create Metatype Relationship Key
          * @param {NewMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -429,7 +429,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
         },
         /**
          * Retrieves all keys for a Metatype Relationship.
-         * @summary ListMetatypeRelationshipKeys
+         * @summary List Metatype Relationship Keys
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -440,7 +440,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
         },
         /**
          * Retrieve a single key for a Metatype Relationship by id.
-         * @summary RetrieveMetatypeRelationshipKey
+         * @summary Retrieve Metatype Relationship Key
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {string} keyId 
@@ -452,7 +452,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
         },
         /**
          * Updates a Metatype Relationship key. The update must follow the same format as creation.
-         * @summary UpdateMetatypeRelationshipKey
+         * @summary Update Metaype Relationship Key
          * @param {RelationshipKey} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -475,7 +475,7 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
 export class MetatypeRelationshipKeysApi extends BaseAPI {
     /**
      * Archives a Metatype Relationship Key.
-     * @summary ArchiveMetatypeRelationshipKey
+     * @summary Archive Metatype Relationship Key
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {string} keyId 
@@ -488,7 +488,7 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     }
     /**
      * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
-     * @summary CreateMetatypeRelationshipKey
+     * @summary Create Metatype Relationship Key
      * @param {NewMetatypeRelationshipKeyRequest} body 
      * @param {string} containerId 
      * @param {string} relationshipId 
@@ -501,7 +501,7 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     }
     /**
      * Retrieves all keys for a Metatype Relationship.
-     * @summary ListMetatypeRelationshipKeys
+     * @summary List Metatype Relationship Keys
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {*} [options] Override http request option.
@@ -513,7 +513,7 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     }
     /**
      * Retrieve a single key for a Metatype Relationship by id.
-     * @summary RetrieveMetatypeRelationshipKey
+     * @summary Retrieve Metatype Relationship Key
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {string} keyId 
@@ -526,7 +526,7 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     }
     /**
      * Updates a Metatype Relationship key. The update must follow the same format as creation.
-     * @summary UpdateMetatypeRelationshipKey
+     * @summary Update Metaype Relationship Key
      * @param {RelationshipKey} body 
      * @param {string} containerId 
      * @param {string} relationshipId 

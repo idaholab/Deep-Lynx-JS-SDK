@@ -19,7 +19,7 @@
 export interface RSAResponse {
     /**
      * 
-     * @type {Value}
+     * @type {RSAResponseValue}
      * @memberof RSAResponse
      */
     value?: any;

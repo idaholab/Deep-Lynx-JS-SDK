@@ -20,6 +20,7 @@ import { CreateTransformationResponse } from '../models';
 import { CreateTypeMappingTransformationsRequest } from '../models';
 import { Generic200Response } from '../models';
 import { GetDataTypeMappingResponse } from '../models';
+import { ImportDataTypeMappingResponse } from '../models';
 import { ListDataTypeMappingResponse } from '../models';
 import { ListTransformationResponse } from '../models';
 import { TypeMapping } from '../models';
@@ -34,7 +35,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
     return {
         /**
          * Create a transformation for the type mapping.
-         * @summary CreateTransformation
+         * @summary Create Data Type Mapping's Transformations
          * @param {CreateTypeMappingTransformationsRequest} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -73,7 +74,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -97,7 +98,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Permanently remove data type mapping.
-         * @summary DeleteDataTypeMapping
+         * @summary Delete Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -131,7 +132,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -151,7 +152,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Delete a transformation.
-         * @summary DeleteTransformation
+         * @summary Delete Data Type Mapping's Transformations
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -191,7 +192,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -211,7 +212,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
-         * @summary ExportTypeMappings
+         * @summary Export Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {TypeMappingExportPayload} [body] 
@@ -240,7 +241,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -264,7 +265,68 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
-         * @summary ImportDataTypeMappings
+         * @summary Import Data Type Mappings
+         * @param {string} containerId 
+         * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importDataTypeMappings: async (containerId: string, dataSourceId: string, body?: Array<any>, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling importDataTypeMappings.');
+            }
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling importDataTypeMappings.');
+            }
+            const localVarPath = `/containers/{container_id}/import/datasources/{data_source_id}/mappings/import`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication BearerAuth required
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+         * @summary Import Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
@@ -292,15 +354,18 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
+            const localVarFormParams = new FormData();
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
 
             if (file !== undefined) { 
-                localVarFormParams.set('file', file as any);
+                localVarFormParams.append('file', file as any);
             }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -311,7 +376,9 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+            localVarRequestOptions.data = localVarFormParams;
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -320,7 +387,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Lists data type mappings for the data source
-         * @summary ListDataTypeMappings
+         * @summary List Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {number} [limit] 
@@ -356,7 +423,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -408,7 +475,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * List transformations for a type mapping from storage.
-         * @summary ListTransformations
+         * @summary List Data Type Mapping's Transformations
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -442,7 +509,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -462,7 +529,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Retrieve a data type mapping
-         * @summary RetrieveDataTypeMapping
+         * @summary Retrieve Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -496,7 +563,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -516,7 +583,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Updates a data type mapping.
-         * @summary UpdateDataTypeMapping
+         * @summary Update Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -551,7 +618,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -575,7 +642,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * Update a transformation.
-         * @summary UpdateTransformation
+         * @summary Update Data Type Mapping's Transformations
          * @param {CreateTypeMappingTransformationsRequest} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -620,7 +687,7 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -653,7 +720,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Create a transformation for the type mapping.
-         * @summary CreateTransformation
+         * @summary Create Data Type Mapping's Transformations
          * @param {CreateTypeMappingTransformationsRequest} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -670,7 +737,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Permanently remove data type mapping.
-         * @summary DeleteDataTypeMapping
+         * @summary Delete Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -686,7 +753,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Delete a transformation.
-         * @summary DeleteTransformation
+         * @summary Delete Data Type Mapping's Transformations
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -703,7 +770,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
-         * @summary ExportTypeMappings
+         * @summary Export Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {TypeMappingExportPayload} [body] 
@@ -719,14 +786,30 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
-         * @summary ImportDataTypeMappings
+         * @summary Import Data Type Mappings
+         * @param {string} containerId 
+         * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async importDataTypeMappings(containerId: string, dataSourceId: string, body?: Array<any>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportDataTypeMappingResponse>> {
+            const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).importDataTypeMappings(containerId, dataSourceId, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+         * @summary Import Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetDataTypeMappingResponse>>> {
+        async importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportDataTypeMappingResponse>> {
             const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).importDataTypeMappings(containerId, dataSourceId, file, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -735,7 +818,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lists data type mappings for the data source
-         * @summary ListDataTypeMappings
+         * @summary List Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {number} [limit] 
@@ -758,7 +841,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * List transformations for a type mapping from storage.
-         * @summary ListTransformations
+         * @summary List Data Type Mapping's Transformations
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -774,7 +857,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a data type mapping
-         * @summary RetrieveDataTypeMapping
+         * @summary Retrieve Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -790,7 +873,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Updates a data type mapping.
-         * @summary UpdateDataTypeMapping
+         * @summary Update Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -807,7 +890,7 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update a transformation.
-         * @summary UpdateTransformation
+         * @summary Update Data Type Mapping's Transformations
          * @param {CreateTypeMappingTransformationsRequest} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -834,7 +917,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
     return {
         /**
          * Create a transformation for the type mapping.
-         * @summary CreateTransformation
+         * @summary Create Data Type Mapping's Transformations
          * @param {CreateTypeMappingTransformationsRequest} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -847,7 +930,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Permanently remove data type mapping.
-         * @summary DeleteDataTypeMapping
+         * @summary Delete Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -859,7 +942,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Delete a transformation.
-         * @summary DeleteTransformation
+         * @summary Delete Data Type Mapping's Transformations
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -872,7 +955,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
-         * @summary ExportTypeMappings
+         * @summary Export Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {TypeMappingExportPayload} [body] 
@@ -884,19 +967,31 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
-         * @summary ImportDataTypeMappings
+         * @summary Import Data Type Mappings
+         * @param {string} containerId 
+         * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importDataTypeMappings(containerId: string, dataSourceId: string, body?: Array<any>, options?: any): AxiosPromise<ImportDataTypeMappingResponse> {
+            return DataTypeMappingsApiFp(configuration).importDataTypeMappings(containerId, dataSourceId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+         * @summary Import Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<Array<GetDataTypeMappingResponse>> {
+        importDataTypeMappings(containerId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<ImportDataTypeMappingResponse> {
             return DataTypeMappingsApiFp(configuration).importDataTypeMappings(containerId, dataSourceId, file, options).then((request) => request(axios, basePath));
         },
         /**
          * Lists data type mappings for the data source
-         * @summary ListDataTypeMappings
+         * @summary List Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {number} [limit] 
@@ -915,7 +1010,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * List transformations for a type mapping from storage.
-         * @summary ListTransformations
+         * @summary List Data Type Mapping's Transformations
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -927,7 +1022,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Retrieve a data type mapping
-         * @summary RetrieveDataTypeMapping
+         * @summary Retrieve Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -939,7 +1034,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Updates a data type mapping.
-         * @summary UpdateDataTypeMapping
+         * @summary Update Data Type Mapping
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} mappingId 
@@ -952,7 +1047,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
         },
         /**
          * Update a transformation.
-         * @summary UpdateTransformation
+         * @summary Update Data Type Mapping's Transformations
          * @param {CreateTypeMappingTransformationsRequest} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -976,7 +1071,7 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
 export class DataTypeMappingsApi extends BaseAPI {
     /**
      * Create a transformation for the type mapping.
-     * @summary CreateTransformation
+     * @summary Create Data Type Mapping's Transformations
      * @param {CreateTypeMappingTransformationsRequest} body 
      * @param {string} containerId 
      * @param {string} dataSourceId 
@@ -990,7 +1085,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Permanently remove data type mapping.
-     * @summary DeleteDataTypeMapping
+     * @summary Delete Data Type Mapping
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} mappingId 
@@ -1003,7 +1098,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Delete a transformation.
-     * @summary DeleteTransformation
+     * @summary Delete Data Type Mapping's Transformations
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} mappingId 
@@ -1017,7 +1112,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Export type mappings for a datasource. Providing a JSON body is optional. If provided, the mapping_ids may be specified to indicate certain type mapping IDs to return. Additionally, a target data source may be provided to which the mappings will be copied.
-     * @summary ExportTypeMappings
+     * @summary Export Type Mappings
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {TypeMappingExportPayload} [body] 
@@ -1030,7 +1125,21 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
-     * @summary ImportDataTypeMappings
+     * @summary Import Data Type Mappings
+     * @param {string} containerId 
+     * @param {string} dataSourceId 
+     * @param {Array&lt;any&gt;} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DataTypeMappingsApi
+     */
+    public importDataTypeMappings(containerId: string, dataSourceId: string, body?: Array<any>, options?: any) {
+        return DataTypeMappingsApiFp(this.configuration).importDataTypeMappings(containerId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+     * @summary Import Data Type Mappings
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} [file] 
@@ -1043,7 +1152,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Lists data type mappings for the data source
-     * @summary ListDataTypeMappings
+     * @summary List Data Type Mappings
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {number} [limit] 
@@ -1063,7 +1172,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * List transformations for a type mapping from storage.
-     * @summary ListTransformations
+     * @summary List Data Type Mapping's Transformations
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} mappingId 
@@ -1076,7 +1185,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Retrieve a data type mapping
-     * @summary RetrieveDataTypeMapping
+     * @summary Retrieve Data Type Mapping
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} mappingId 
@@ -1089,7 +1198,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Updates a data type mapping.
-     * @summary UpdateDataTypeMapping
+     * @summary Update Data Type Mapping
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} mappingId 
@@ -1103,7 +1212,7 @@ export class DataTypeMappingsApi extends BaseAPI {
     }
     /**
      * Update a transformation.
-     * @summary UpdateTransformation
+     * @summary Update Data Type Mapping's Transformations
      * @param {CreateTypeMappingTransformationsRequest} body 
      * @param {string} containerId 
      * @param {string} dataSourceId 

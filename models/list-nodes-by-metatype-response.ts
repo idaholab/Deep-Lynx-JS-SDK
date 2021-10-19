@@ -14,7 +14,19 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface ListNodesByMetatypeResponse
  */
-export interface UploadFileResponse {
+export interface ListNodesByMetatypeResponse {
+    /**
+     * 
+     * @type {Array&lt;Node&gt;}
+     * @memberof ListNodesByMetatypeResponse
+     */
+    value?: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ListNodesByMetatypeResponse
+     */
+    isError?: any;
 }

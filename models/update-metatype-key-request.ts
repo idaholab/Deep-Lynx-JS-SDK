@@ -67,7 +67,7 @@ export interface UpdateMetatypeKeyRequest {
     options?: any;
     /**
      * 
-     * @type {any}
+     * @type {ModelObject}
      * @memberof UpdateMetatypeKeyRequest
      */
     defaultValue?: any;
@@ -103,7 +103,7 @@ export interface UpdateMetatypeKeyRequest {
     modifiedBy: any;
     /**
      * 
-     * @type {Validation}
+     * @type {UpdateMetatypeKeyRequestValidation}
      * @memberof UpdateMetatypeKeyRequest
      */
     validation: any;

@@ -25,7 +25,7 @@ export interface ImportModel {
     errors?: any | null;
     /**
      * 
-     * @type {DataSourceConfig1}
+     * @type {ImportModelDataSourceConfig}
      * @memberof ImportModel
      */
     dataSourceConfig: any;

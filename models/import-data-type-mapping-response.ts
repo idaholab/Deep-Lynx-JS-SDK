@@ -14,7 +14,7 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface ImportDataTypeMappingResponse
  */
-export interface UploadFileResponse {
+export interface ImportDataTypeMappingResponse extends Array<ImportDataTypeMappingResponseInner> {
 }

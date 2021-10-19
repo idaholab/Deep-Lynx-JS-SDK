@@ -55,7 +55,7 @@ export interface RelationshipKey {
     cardinality: any;
     /**
      * 
-     * @type {Validation}
+     * @type {UpdateMetatypeKeyRequestValidation}
      * @memberof RelationshipKey
      */
     validation: any;

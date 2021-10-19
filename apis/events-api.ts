@@ -30,7 +30,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-         * @summary CreateRegisteredEvent
+         * @summary Create Registered Event
          * @param {CreateRegisteredEventRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -51,7 +51,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -75,7 +75,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Delete a registered event.
-         * @summary DeleteRegisteredEvent
+         * @summary Delete Registered Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -97,7 +97,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -117,7 +117,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Lists all registered events
-         * @summary ListRegisteredEvents
+         * @summary List Registered Events
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -133,7 +133,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -153,7 +153,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Retrieve a registered event
-         * @summary RetrieveRegisteredEvent
+         * @summary Retrieve Registered Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -175,7 +175,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -195,7 +195,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         },
         /**
          * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-         * @summary UpdateRegisteredEvent
+         * @summary Update Registered Event
          * @param {string} eventId 
          * @param {UpdateRegisteredEventRequest} [body] 
          * @param {boolean} [active] 
@@ -219,7 +219,7 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (active !== undefined) {
                 localVarQueryParameter['active'] = active;
@@ -256,7 +256,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-         * @summary CreateRegisteredEvent
+         * @summary Create Registered Event
          * @param {CreateRegisteredEventRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -270,7 +270,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Delete a registered event.
-         * @summary DeleteRegisteredEvent
+         * @summary Delete Registered Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -284,7 +284,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lists all registered events
-         * @summary ListRegisteredEvents
+         * @summary List Registered Events
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -297,7 +297,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a registered event
-         * @summary RetrieveRegisteredEvent
+         * @summary Retrieve Registered Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -311,7 +311,7 @@ export const EventsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-         * @summary UpdateRegisteredEvent
+         * @summary Update Registered Event
          * @param {string} eventId 
          * @param {UpdateRegisteredEventRequest} [body] 
          * @param {boolean} [active] 
@@ -336,7 +336,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-         * @summary CreateRegisteredEvent
+         * @summary Create Registered Event
          * @param {CreateRegisteredEventRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -346,7 +346,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Delete a registered event.
-         * @summary DeleteRegisteredEvent
+         * @summary Delete Registered Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -356,7 +356,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Lists all registered events
-         * @summary ListRegisteredEvents
+         * @summary List Registered Events
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -365,7 +365,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Retrieve a registered event
-         * @summary RetrieveRegisteredEvent
+         * @summary Retrieve Registered Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -375,7 +375,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         },
         /**
          * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-         * @summary UpdateRegisteredEvent
+         * @summary Update Registered Event
          * @param {string} eventId 
          * @param {UpdateRegisteredEventRequest} [body] 
          * @param {boolean} [active] 
@@ -397,7 +397,7 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
 export class EventsApi extends BaseAPI {
     /**
      * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-     * @summary CreateRegisteredEvent
+     * @summary Create Registered Event
      * @param {CreateRegisteredEventRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -408,7 +408,7 @@ export class EventsApi extends BaseAPI {
     }
     /**
      * Delete a registered event.
-     * @summary DeleteRegisteredEvent
+     * @summary Delete Registered Event
      * @param {string} eventId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -419,7 +419,7 @@ export class EventsApi extends BaseAPI {
     }
     /**
      * Lists all registered events
-     * @summary ListRegisteredEvents
+     * @summary List Registered Events
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
@@ -429,7 +429,7 @@ export class EventsApi extends BaseAPI {
     }
     /**
      * Retrieve a registered event
-     * @summary RetrieveRegisteredEvent
+     * @summary Retrieve Registered Event
      * @param {string} eventId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -440,7 +440,7 @@ export class EventsApi extends BaseAPI {
     }
     /**
      * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-     * @summary UpdateRegisteredEvent
+     * @summary Update Registered Event
      * @param {string} eventId 
      * @param {UpdateRegisteredEventRequest} [body] 
      * @param {boolean} [active] 

@@ -14,7 +14,25 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface RSAResponseValueContext
  */
-export interface UploadFileResponse {
+export interface RSAResponseValueContext {
+    /**
+     * 
+     * @type {string}
+     * @memberof RSAResponseValueContext
+     */
+    authnAttemptId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof RSAResponseValueContext
+     */
+    messageId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof RSAResponseValueContext
+     */
+    inResponseTo?: any;
 }

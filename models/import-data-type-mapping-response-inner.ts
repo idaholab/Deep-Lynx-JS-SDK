@@ -14,7 +14,19 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface ImportDataTypeMappingResponseInner
  */
-export interface UploadFileResponse {
+export interface ImportDataTypeMappingResponseInner {
+    /**
+     * 
+     * @type {TypeMapping}
+     * @memberof ImportDataTypeMappingResponseInner
+     */
+    value?: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImportDataTypeMappingResponseInner
+     */
+    isError?: any;
 }

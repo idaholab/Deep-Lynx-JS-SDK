@@ -17,8 +17,8 @@ import { Configuration } from '../configuration';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AddDataToImportResponse } from '../models';
-import { ContainersDatasourcesImportsRequest } from '../models';
 import { CreateImportResponse } from '../models';
+import { DataSourceIdImportsBody } from '../models';
 import { DataStaging } from '../models';
 import { Generic200Response } from '../models';
 import { GetImportDataResponse } from '../models';
@@ -32,7 +32,74 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-         * @summary AddDataToImport
+         * @summary Add Data to Import
+         * @param {string} containerId 
+         * @param {string} importId 
+         * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addDataToImport: async (containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling addDataToImport.');
+            }
+            // verify required parameter 'importId' is not null or undefined
+            if (importId === null || importId === undefined) {
+                throw new RequiredError('importId','Required parameter importId was null or undefined when calling addDataToImport.');
+            }
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling addDataToImport.');
+            }
+            const localVarPath = `/containers/{container_id}/datasources/{data_source_id}/imports/{import_id}/data`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"import_id"}}`, encodeURIComponent(String(importId)))
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication BearerAuth required
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
+         * @summary Add Data to Import
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} dataSourceId 
@@ -66,15 +133,18 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
+            const localVarFormParams = new FormData();
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
 
             if (file !== undefined) { 
-                localVarFormParams.set('file', file as any);
+                localVarFormParams.append('file', file as any);
             }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -85,7 +155,9 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+            localVarRequestOptions.data = localVarFormParams;
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -94,14 +166,14 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Creates a new import.
-         * @summary CreateImport
+         * @summary Create Import
          * @param {string} containerId 
          * @param {string} dataSourceId 
-         * @param {ContainersDatasourcesImportsRequest} [body] 
+         * @param {DataSourceIdImportsBody} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createImport: async (containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options: any = {}): Promise<RequestArgs> => {
+        createImport: async (containerId: string, dataSourceId: string, body?: DataSourceIdImportsBody, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling createImport.');
@@ -123,7 +195,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -147,7 +219,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Delete import will delete an import ONLY IF the import has not been processed.
-         * @summary DeleteImport
+         * @summary Delete Import
          * @param {string} containerId 
          * @param {string} importId 
          * @param {*} [options] Override http request option.
@@ -175,7 +247,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -195,7 +267,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Delete a single piece of data from an import.
-         * @summary DeleteImportData
+         * @summary Delete Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -229,7 +301,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -249,7 +321,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * List the data for an import.
-         * @summary ListImportsData
+         * @summary List Import's Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} [count] boolean indicating if the return value should be a count only
@@ -282,7 +354,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
@@ -322,7 +394,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Retrieve a single piece of data from an import.
-         * @summary RetrieveImportData
+         * @summary Retrieve Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -356,7 +428,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -376,7 +448,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * Update the data of an existing import.
-         * @summary UpdateImportData
+         * @summary Update Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -411,7 +483,7 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -444,7 +516,24 @@ export const ImportsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-         * @summary AddDataToImport
+         * @summary Add Data to Import
+         * @param {string} containerId 
+         * @param {string} importId 
+         * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async addDataToImport(containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddDataToImportResponse>> {
+            const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).addDataToImport(containerId, importId, dataSourceId, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
+         * @summary Add Data to Import
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} dataSourceId 
@@ -461,14 +550,14 @@ export const ImportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Creates a new import.
-         * @summary CreateImport
+         * @summary Create Import
          * @param {string} containerId 
          * @param {string} dataSourceId 
-         * @param {ContainersDatasourcesImportsRequest} [body] 
+         * @param {DataSourceIdImportsBody} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createImport(containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateImportResponse>> {
+        async createImport(containerId: string, dataSourceId: string, body?: DataSourceIdImportsBody, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateImportResponse>> {
             const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).createImport(containerId, dataSourceId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -477,7 +566,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Delete import will delete an import ONLY IF the import has not been processed.
-         * @summary DeleteImport
+         * @summary Delete Import
          * @param {string} containerId 
          * @param {string} importId 
          * @param {*} [options] Override http request option.
@@ -492,7 +581,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Delete a single piece of data from an import.
-         * @summary DeleteImportData
+         * @summary Delete Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -508,7 +597,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * List the data for an import.
-         * @summary ListImportsData
+         * @summary List Import's Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} [count] boolean indicating if the return value should be a count only
@@ -528,7 +617,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a single piece of data from an import.
-         * @summary RetrieveImportData
+         * @summary Retrieve Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -544,7 +633,7 @@ export const ImportsApiFp = function(configuration?: Configuration) {
         },
         /**
          * Update the data of an existing import.
-         * @summary UpdateImportData
+         * @summary Update Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -570,7 +659,20 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-         * @summary AddDataToImport
+         * @summary Add Data to Import
+         * @param {string} containerId 
+         * @param {string} importId 
+         * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addDataToImport(containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options?: any): AxiosPromise<AddDataToImportResponse> {
+            return ImportsApiFp(configuration).addDataToImport(containerId, importId, dataSourceId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
+         * @summary Add Data to Import
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} dataSourceId 
@@ -583,19 +685,19 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Creates a new import.
-         * @summary CreateImport
+         * @summary Create Import
          * @param {string} containerId 
          * @param {string} dataSourceId 
-         * @param {ContainersDatasourcesImportsRequest} [body] 
+         * @param {DataSourceIdImportsBody} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createImport(containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any): AxiosPromise<CreateImportResponse> {
+        createImport(containerId: string, dataSourceId: string, body?: DataSourceIdImportsBody, options?: any): AxiosPromise<CreateImportResponse> {
             return ImportsApiFp(configuration).createImport(containerId, dataSourceId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete import will delete an import ONLY IF the import has not been processed.
-         * @summary DeleteImport
+         * @summary Delete Import
          * @param {string} containerId 
          * @param {string} importId 
          * @param {*} [options] Override http request option.
@@ -606,7 +708,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Delete a single piece of data from an import.
-         * @summary DeleteImportData
+         * @summary Delete Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -618,7 +720,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * List the data for an import.
-         * @summary ListImportsData
+         * @summary List Import's Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} [count] boolean indicating if the return value should be a count only
@@ -634,7 +736,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Retrieve a single piece of data from an import.
-         * @summary RetrieveImportData
+         * @summary Retrieve Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -646,7 +748,7 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * Update the data of an existing import.
-         * @summary UpdateImportData
+         * @summary Update Import Data
          * @param {string} containerId 
          * @param {string} importId 
          * @param {number} dataId 
@@ -669,7 +771,22 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
 export class ImportsApi extends BaseAPI {
     /**
      * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-     * @summary AddDataToImport
+     * @summary Add Data to Import
+     * @param {string} containerId 
+     * @param {string} importId 
+     * @param {string} dataSourceId 
+     * @param {Array&lt;any&gt;} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ImportsApi
+     */
+    public addDataToImport(containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options?: any) {
+        return ImportsApiFp(this.configuration).addDataToImport(containerId, importId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
+     * @summary Add Data to Import
      * @param {string} containerId 
      * @param {string} importId 
      * @param {string} dataSourceId 
@@ -683,20 +800,20 @@ export class ImportsApi extends BaseAPI {
     }
     /**
      * Creates a new import.
-     * @summary CreateImport
+     * @summary Create Import
      * @param {string} containerId 
      * @param {string} dataSourceId 
-     * @param {ContainersDatasourcesImportsRequest} [body] 
+     * @param {DataSourceIdImportsBody} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportsApi
      */
-    public createImport(containerId: string, dataSourceId: string, body?: ContainersDatasourcesImportsRequest, options?: any) {
+    public createImport(containerId: string, dataSourceId: string, body?: DataSourceIdImportsBody, options?: any) {
         return ImportsApiFp(this.configuration).createImport(containerId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Delete import will delete an import ONLY IF the import has not been processed.
-     * @summary DeleteImport
+     * @summary Delete Import
      * @param {string} containerId 
      * @param {string} importId 
      * @param {*} [options] Override http request option.
@@ -708,7 +825,7 @@ export class ImportsApi extends BaseAPI {
     }
     /**
      * Delete a single piece of data from an import.
-     * @summary DeleteImportData
+     * @summary Delete Import Data
      * @param {string} containerId 
      * @param {string} importId 
      * @param {number} dataId 
@@ -721,7 +838,7 @@ export class ImportsApi extends BaseAPI {
     }
     /**
      * List the data for an import.
-     * @summary ListImportsData
+     * @summary List Import's Data
      * @param {string} containerId 
      * @param {string} importId 
      * @param {string} [count] boolean indicating if the return value should be a count only
@@ -738,7 +855,7 @@ export class ImportsApi extends BaseAPI {
     }
     /**
      * Retrieve a single piece of data from an import.
-     * @summary RetrieveImportData
+     * @summary Retrieve Import Data
      * @param {string} containerId 
      * @param {string} importId 
      * @param {number} dataId 
@@ -751,7 +868,7 @@ export class ImportsApi extends BaseAPI {
     }
     /**
      * Update the data of an existing import.
-     * @summary UpdateImportData
+     * @summary Update Import Data
      * @param {string} containerId 
      * @param {string} importId 
      * @param {number} dataId 

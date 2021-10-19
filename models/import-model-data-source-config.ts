@@ -14,7 +14,25 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface ImportModelDataSourceConfig
  */
-export interface UploadFileResponse {
+export interface ImportModelDataSourceConfig {
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportModelDataSourceConfig
+     */
+    kind: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportModelDataSourceConfig
+     */
+    dataType: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportModelDataSourceConfig
+     */
+    dataFormat?: any;
 }

@@ -36,7 +36,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * Accepts a container invite for the current user. The token received in the container invite previously must be attached to this request as a query parameter.
-         * @summary AcceptContainerInvite
+         * @summary Accept Container Invite
          * @param {string} token the token supplied in the container invite
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -57,7 +57,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (token !== undefined) {
                 localVarQueryParameter['token'] = token;
@@ -81,7 +81,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Assign a role to a user, roles must consist of role name and domain
-         * @summary AssignUserRole
+         * @summary Assign User Role
          * @param {AssignRoleRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -108,7 +108,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -132,7 +132,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Deletes the specified user.
-         * @summary DeleteUser
+         * @summary Delete User
          * @param {string} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -154,7 +154,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -174,7 +174,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Create a new user using the username_password identity type.
-         * @summary InviteUserToContainer
+         * @summary Invite User to Container
          * @param {string} containerId 
          * @param {ContainerInvite} [body] 
          * @param {*} [options] Override http request option.
@@ -197,7 +197,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -221,7 +221,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List all invitations to container.
-         * @summary ListInvitedUsersForContainer
+         * @summary List Invited Users for Container
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -243,7 +243,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -263,7 +263,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Lists the outstanding container invites for the current user.
-         * @summary ListOutstandingInvites
+         * @summary List Outstanding Invites
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -279,7 +279,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -299,7 +299,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List permissions for the user.
-         * @summary ListUserPermissions
+         * @summary List User Permissions
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -315,7 +315,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -335,7 +335,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List users.
-         * @summary ListUsers
+         * @summary List Users
          * @param {boolean} [count] boolean indicating if the return value should be a count only
          * @param {boolean} [loadKeys] if supplied, the API keys for the user will also be returned
          * @param {number} [limit] 
@@ -357,7 +357,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
@@ -401,7 +401,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List Users for container.
-         * @summary ListUsersForContainer
+         * @summary List Users for Container
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -425,7 +425,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -453,7 +453,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List Users' roles
-         * @summary ListUsersRoles
+         * @summary List User's Roles
          * @param {string} containerId 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -481,7 +481,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -501,7 +501,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Retrieve a user by ID
-         * @summary RetrieveUser
+         * @summary Retrieve User
          * @param {string} containerId 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -529,7 +529,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -549,7 +549,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Updates the specified user.
-         * @summary UpdateUser
+         * @summary Update User
          * @param {string} userId 
          * @param {User} [body] 
          * @param {*} [options] Override http request option.
@@ -572,7 +572,7 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -605,7 +605,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Accepts a container invite for the current user. The token received in the container invite previously must be attached to this request as a query parameter.
-         * @summary AcceptContainerInvite
+         * @summary Accept Container Invite
          * @param {string} token the token supplied in the container invite
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -619,7 +619,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Assign a role to a user, roles must consist of role name and domain
-         * @summary AssignUserRole
+         * @summary Assign User Role
          * @param {AssignRoleRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -634,7 +634,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Deletes the specified user.
-         * @summary DeleteUser
+         * @summary Delete User
          * @param {string} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -648,7 +648,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Create a new user using the username_password identity type.
-         * @summary InviteUserToContainer
+         * @summary Invite User to Container
          * @param {string} containerId 
          * @param {ContainerInvite} [body] 
          * @param {*} [options] Override http request option.
@@ -663,7 +663,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List all invitations to container.
-         * @summary ListInvitedUsersForContainer
+         * @summary List Invited Users for Container
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -677,7 +677,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lists the outstanding container invites for the current user.
-         * @summary ListOutstandingInvites
+         * @summary List Outstanding Invites
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -690,7 +690,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List permissions for the user.
-         * @summary ListUserPermissions
+         * @summary List User Permissions
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -703,7 +703,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List users.
-         * @summary ListUsers
+         * @summary List Users
          * @param {boolean} [count] boolean indicating if the return value should be a count only
          * @param {boolean} [loadKeys] if supplied, the API keys for the user will also be returned
          * @param {number} [limit] 
@@ -722,7 +722,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List Users for container.
-         * @summary ListUsersForContainer
+         * @summary List Users for Container
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -738,7 +738,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * List Users' roles
-         * @summary ListUsersRoles
+         * @summary List User's Roles
          * @param {string} containerId 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -753,7 +753,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a user by ID
-         * @summary RetrieveUser
+         * @summary Retrieve User
          * @param {string} containerId 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -768,7 +768,7 @@ export const UsersApiFp = function(configuration?: Configuration) {
         },
         /**
          * Updates the specified user.
-         * @summary UpdateUser
+         * @summary Update User
          * @param {string} userId 
          * @param {User} [body] 
          * @param {*} [options] Override http request option.
@@ -792,7 +792,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * Accepts a container invite for the current user. The token received in the container invite previously must be attached to this request as a query parameter.
-         * @summary AcceptContainerInvite
+         * @summary Accept Container Invite
          * @param {string} token the token supplied in the container invite
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -802,7 +802,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Assign a role to a user, roles must consist of role name and domain
-         * @summary AssignUserRole
+         * @summary Assign User Role
          * @param {AssignRoleRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -813,7 +813,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Deletes the specified user.
-         * @summary DeleteUser
+         * @summary Delete User
          * @param {string} userId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -823,7 +823,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Create a new user using the username_password identity type.
-         * @summary InviteUserToContainer
+         * @summary Invite User to Container
          * @param {string} containerId 
          * @param {ContainerInvite} [body] 
          * @param {*} [options] Override http request option.
@@ -834,7 +834,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List all invitations to container.
-         * @summary ListInvitedUsersForContainer
+         * @summary List Invited Users for Container
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -844,7 +844,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Lists the outstanding container invites for the current user.
-         * @summary ListOutstandingInvites
+         * @summary List Outstanding Invites
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -853,7 +853,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List permissions for the user.
-         * @summary ListUserPermissions
+         * @summary List User Permissions
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -862,7 +862,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List users.
-         * @summary ListUsers
+         * @summary List Users
          * @param {boolean} [count] boolean indicating if the return value should be a count only
          * @param {boolean} [loadKeys] if supplied, the API keys for the user will also be returned
          * @param {number} [limit] 
@@ -877,7 +877,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List Users for container.
-         * @summary ListUsersForContainer
+         * @summary List Users for Container
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -889,7 +889,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List Users' roles
-         * @summary ListUsersRoles
+         * @summary List User's Roles
          * @param {string} containerId 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -900,7 +900,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Retrieve a user by ID
-         * @summary RetrieveUser
+         * @summary Retrieve User
          * @param {string} containerId 
          * @param {string} userId 
          * @param {*} [options] Override http request option.
@@ -911,7 +911,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Updates the specified user.
-         * @summary UpdateUser
+         * @summary Update User
          * @param {string} userId 
          * @param {User} [body] 
          * @param {*} [options] Override http request option.
@@ -932,7 +932,7 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
 export class UsersApi extends BaseAPI {
     /**
      * Accepts a container invite for the current user. The token received in the container invite previously must be attached to this request as a query parameter.
-     * @summary AcceptContainerInvite
+     * @summary Accept Container Invite
      * @param {string} token the token supplied in the container invite
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -943,7 +943,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * Assign a role to a user, roles must consist of role name and domain
-     * @summary AssignUserRole
+     * @summary Assign User Role
      * @param {AssignRoleRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -955,7 +955,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * Deletes the specified user.
-     * @summary DeleteUser
+     * @summary Delete User
      * @param {string} userId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -966,7 +966,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * Create a new user using the username_password identity type.
-     * @summary InviteUserToContainer
+     * @summary Invite User to Container
      * @param {string} containerId 
      * @param {ContainerInvite} [body] 
      * @param {*} [options] Override http request option.
@@ -978,7 +978,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * List all invitations to container.
-     * @summary ListInvitedUsersForContainer
+     * @summary List Invited Users for Container
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -989,7 +989,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * Lists the outstanding container invites for the current user.
-     * @summary ListOutstandingInvites
+     * @summary List Outstanding Invites
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
@@ -999,7 +999,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * List permissions for the user.
-     * @summary ListUserPermissions
+     * @summary List User Permissions
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UsersApi
@@ -1009,7 +1009,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * List users.
-     * @summary ListUsers
+     * @summary List Users
      * @param {boolean} [count] boolean indicating if the return value should be a count only
      * @param {boolean} [loadKeys] if supplied, the API keys for the user will also be returned
      * @param {number} [limit] 
@@ -1025,7 +1025,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * List Users for container.
-     * @summary ListUsersForContainer
+     * @summary List Users for Container
      * @param {string} containerId 
      * @param {number} [limit] 
      * @param {number} [offset] 
@@ -1038,7 +1038,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * List Users' roles
-     * @summary ListUsersRoles
+     * @summary List User's Roles
      * @param {string} containerId 
      * @param {string} userId 
      * @param {*} [options] Override http request option.
@@ -1050,7 +1050,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * Retrieve a user by ID
-     * @summary RetrieveUser
+     * @summary Retrieve User
      * @param {string} containerId 
      * @param {string} userId 
      * @param {*} [options] Override http request option.
@@ -1062,7 +1062,7 @@ export class UsersApi extends BaseAPI {
     }
     /**
      * Updates the specified user.
-     * @summary UpdateUser
+     * @summary Update User
      * @param {string} userId 
      * @param {User} [body] 
      * @param {*} [options] Override http request option.

@@ -14,7 +14,25 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface RelationshipPairDestinationMetatype
  */
-export interface UploadFileResponse {
+export interface RelationshipPairDestinationMetatype {
+    /**
+     * 
+     * @type {string}
+     * @memberof RelationshipPairDestinationMetatype
+     */
+    name: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof RelationshipPairDestinationMetatype
+     */
+    description: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof RelationshipPairDestinationMetatype
+     */
+    id: any;
 }

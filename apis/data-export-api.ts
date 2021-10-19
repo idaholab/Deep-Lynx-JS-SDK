@@ -28,7 +28,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
     return {
         /**
          * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
-         * @summary CreateDataExport
+         * @summary Create Data Export
          * @param {NewDataExportRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -55,7 +55,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -79,7 +79,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Deletes a data export record. This does not guarantee the export will stop immediately.
-         * @summary DeleteDataExport
+         * @summary Delete Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -107,7 +107,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -127,7 +127,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * List data exports for the container.
-         * @summary ListDataExports
+         * @summary List Data Exports
          * @param {string} containerId 
          * @param {boolean} [count] boolean indicating if the return value should be a count only
          * @param {number} [limit] 
@@ -154,7 +154,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
@@ -194,7 +194,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Fetch a data export record by ID
-         * @summary RetrieveDataExport
+         * @summary Retrieve Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -222,7 +222,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -242,7 +242,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Start or restart a data export by id.
-         * @summary StartDataExport
+         * @summary Start Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -270,7 +270,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -290,7 +290,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * Stops a data export. Please note that this just sends a **stop** signal. The application's export adapter determines how to handle the said signal. In some cases the export stopping might not be immediate.
-         * @summary StopDataExport
+         * @summary Stop Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -318,7 +318,7 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -347,7 +347,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
-         * @summary CreateDataExport
+         * @summary Create Data Export
          * @param {NewDataExportRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -362,7 +362,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
         },
         /**
          * Deletes a data export record. This does not guarantee the export will stop immediately.
-         * @summary DeleteDataExport
+         * @summary Delete Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -377,7 +377,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
         },
         /**
          * List data exports for the container.
-         * @summary ListDataExports
+         * @summary List Data Exports
          * @param {string} containerId 
          * @param {boolean} [count] boolean indicating if the return value should be a count only
          * @param {number} [limit] 
@@ -396,7 +396,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
         },
         /**
          * Fetch a data export record by ID
-         * @summary RetrieveDataExport
+         * @summary Retrieve Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -411,7 +411,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
         },
         /**
          * Start or restart a data export by id.
-         * @summary StartDataExport
+         * @summary Start Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -426,7 +426,7 @@ export const DataExportApiFp = function(configuration?: Configuration) {
         },
         /**
          * Stops a data export. Please note that this just sends a **stop** signal. The application's export adapter determines how to handle the said signal. In some cases the export stopping might not be immediate.
-         * @summary StopDataExport
+         * @summary Stop Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -450,7 +450,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
-         * @summary CreateDataExport
+         * @summary Create Data Export
          * @param {NewDataExportRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -461,7 +461,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Deletes a data export record. This does not guarantee the export will stop immediately.
-         * @summary DeleteDataExport
+         * @summary Delete Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -472,7 +472,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * List data exports for the container.
-         * @summary ListDataExports
+         * @summary List Data Exports
          * @param {string} containerId 
          * @param {boolean} [count] boolean indicating if the return value should be a count only
          * @param {number} [limit] 
@@ -487,7 +487,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Fetch a data export record by ID
-         * @summary RetrieveDataExport
+         * @summary Retrieve Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -498,7 +498,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Start or restart a data export by id.
-         * @summary StartDataExport
+         * @summary Start Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -509,7 +509,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * Stops a data export. Please note that this just sends a **stop** signal. The application's export adapter determines how to handle the said signal. In some cases the export stopping might not be immediate.
-         * @summary StopDataExport
+         * @summary Stop Data Export
          * @param {string} containerId 
          * @param {string} exportId 
          * @param {*} [options] Override http request option.
@@ -530,7 +530,7 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
 export class DataExportApi extends BaseAPI {
     /**
      * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
-     * @summary CreateDataExport
+     * @summary Create Data Export
      * @param {NewDataExportRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -542,7 +542,7 @@ export class DataExportApi extends BaseAPI {
     }
     /**
      * Deletes a data export record. This does not guarantee the export will stop immediately.
-     * @summary DeleteDataExport
+     * @summary Delete Data Export
      * @param {string} containerId 
      * @param {string} exportId 
      * @param {*} [options] Override http request option.
@@ -554,7 +554,7 @@ export class DataExportApi extends BaseAPI {
     }
     /**
      * List data exports for the container.
-     * @summary ListDataExports
+     * @summary List Data Exports
      * @param {string} containerId 
      * @param {boolean} [count] boolean indicating if the return value should be a count only
      * @param {number} [limit] 
@@ -570,7 +570,7 @@ export class DataExportApi extends BaseAPI {
     }
     /**
      * Fetch a data export record by ID
-     * @summary RetrieveDataExport
+     * @summary Retrieve Data Export
      * @param {string} containerId 
      * @param {string} exportId 
      * @param {*} [options] Override http request option.
@@ -582,7 +582,7 @@ export class DataExportApi extends BaseAPI {
     }
     /**
      * Start or restart a data export by id.
-     * @summary StartDataExport
+     * @summary Start Data Export
      * @param {string} containerId 
      * @param {string} exportId 
      * @param {*} [options] Override http request option.
@@ -594,7 +594,7 @@ export class DataExportApi extends BaseAPI {
     }
     /**
      * Stops a data export. Please note that this just sends a **stop** signal. The application's export adapter determines how to handle the said signal. In some cases the export stopping might not be immediate.
-     * @summary StopDataExport
+     * @summary Stop Data Export
      * @param {string} containerId 
      * @param {string} exportId 
      * @param {*} [options] Override http request option.

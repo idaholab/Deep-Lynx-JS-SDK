@@ -31,7 +31,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
     return {
         /**
          * Archive the metatype relationship.
-         * @summary ArchiveMetatypeRelationship
+         * @summary Archive Metatype Relationship
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -59,7 +59,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -79,7 +79,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
         },
         /**
          * Create a new metatype relationship. Describes the connection that could exist between two metatypes and acts as a vehicle for relationship specific keys.  Pass in an array for bulk creation.
-         * @summary CreateMetatypeRelationship
+         * @summary Create Metatype Relationship
          * @param {NewMetatypeRelationshipRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -106,7 +106,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -130,7 +130,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
         },
         /**
          * List metatype relationships. Describes the connection between two metatypes and acts as a vehicle for relationship specific keys.
-         * @summary ListMetatypeRelationships
+         * @summary List Metatype Relationships
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -161,7 +161,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -217,7 +217,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
         },
         /**
          * Retrieve a single Metatype Relationship.
-         * @summary RetrieveMetatypeRelationship
+         * @summary Retrieve Metatype Relationship
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -245,7 +245,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -265,7 +265,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
         },
         /**
          * Updates the specified metatype relationship.
-         * @summary UpdateMetatypeRelationship
+         * @summary Update Metatype Relationship
          * @param {UpdateMetatypeRelationshipRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -298,7 +298,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -331,7 +331,7 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
     return {
         /**
          * Archive the metatype relationship.
-         * @summary ArchiveMetatypeRelationship
+         * @summary Archive Metatype Relationship
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -346,7 +346,7 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
         },
         /**
          * Create a new metatype relationship. Describes the connection that could exist between two metatypes and acts as a vehicle for relationship specific keys.  Pass in an array for bulk creation.
-         * @summary CreateMetatypeRelationship
+         * @summary Create Metatype Relationship
          * @param {NewMetatypeRelationshipRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -361,7 +361,7 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
         },
         /**
          * List metatype relationships. Describes the connection between two metatypes and acts as a vehicle for relationship specific keys.
-         * @summary ListMetatypeRelationships
+         * @summary List Metatype Relationships
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -384,7 +384,7 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
         },
         /**
          * Retrieve a single Metatype Relationship.
-         * @summary RetrieveMetatypeRelationship
+         * @summary Retrieve Metatype Relationship
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -399,7 +399,7 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
         },
         /**
          * Updates the specified metatype relationship.
-         * @summary UpdateMetatypeRelationship
+         * @summary Update Metatype Relationship
          * @param {UpdateMetatypeRelationshipRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -424,7 +424,7 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
     return {
         /**
          * Archive the metatype relationship.
-         * @summary ArchiveMetatypeRelationship
+         * @summary Archive Metatype Relationship
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -435,7 +435,7 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
         },
         /**
          * Create a new metatype relationship. Describes the connection that could exist between two metatypes and acts as a vehicle for relationship specific keys.  Pass in an array for bulk creation.
-         * @summary CreateMetatypeRelationship
+         * @summary Create Metatype Relationship
          * @param {NewMetatypeRelationshipRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -446,7 +446,7 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
         },
         /**
          * List metatype relationships. Describes the connection between two metatypes and acts as a vehicle for relationship specific keys.
-         * @summary ListMetatypeRelationships
+         * @summary List Metatype Relationships
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -465,7 +465,7 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
         },
         /**
          * Retrieve a single Metatype Relationship.
-         * @summary RetrieveMetatypeRelationship
+         * @summary Retrieve Metatype Relationship
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
@@ -476,7 +476,7 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
         },
         /**
          * Updates the specified metatype relationship.
-         * @summary UpdateMetatypeRelationship
+         * @summary Update Metatype Relationship
          * @param {UpdateMetatypeRelationshipRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
@@ -498,7 +498,7 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
 export class MetatypeRelationshipsApi extends BaseAPI {
     /**
      * Archive the metatype relationship.
-     * @summary ArchiveMetatypeRelationship
+     * @summary Archive Metatype Relationship
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {*} [options] Override http request option.
@@ -510,7 +510,7 @@ export class MetatypeRelationshipsApi extends BaseAPI {
     }
     /**
      * Create a new metatype relationship. Describes the connection that could exist between two metatypes and acts as a vehicle for relationship specific keys.  Pass in an array for bulk creation.
-     * @summary CreateMetatypeRelationship
+     * @summary Create Metatype Relationship
      * @param {NewMetatypeRelationshipRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -522,7 +522,7 @@ export class MetatypeRelationshipsApi extends BaseAPI {
     }
     /**
      * List metatype relationships. Describes the connection between two metatypes and acts as a vehicle for relationship specific keys.
-     * @summary ListMetatypeRelationships
+     * @summary List Metatype Relationships
      * @param {string} containerId 
      * @param {number} [limit] 
      * @param {number} [offset] 
@@ -542,7 +542,7 @@ export class MetatypeRelationshipsApi extends BaseAPI {
     }
     /**
      * Retrieve a single Metatype Relationship.
-     * @summary RetrieveMetatypeRelationship
+     * @summary Retrieve Metatype Relationship
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {*} [options] Override http request option.
@@ -554,7 +554,7 @@ export class MetatypeRelationshipsApi extends BaseAPI {
     }
     /**
      * Updates the specified metatype relationship.
-     * @summary UpdateMetatypeRelationship
+     * @summary Update Metatype Relationship
      * @param {UpdateMetatypeRelationshipRequest} body 
      * @param {string} containerId 
      * @param {string} relationshipId 

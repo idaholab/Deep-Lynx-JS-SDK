@@ -16,23 +16,5 @@
  * @export
  * @interface BatchContainerUpdateRequest
  */
-export interface BatchContainerUpdateRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequest
-     */
-    name: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequest
-     */
-    description: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequest
-     */
-    id: any;
+export interface BatchContainerUpdateRequest extends Array<BatchContainerUpdateRequestInner> {
 }

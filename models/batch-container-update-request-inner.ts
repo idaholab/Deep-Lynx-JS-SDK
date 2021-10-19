@@ -14,7 +14,25 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface BatchContainerUpdateRequestInner
  */
-export interface UploadFileResponse {
+export interface BatchContainerUpdateRequestInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchContainerUpdateRequestInner
+     */
+    name: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchContainerUpdateRequestInner
+     */
+    description: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof BatchContainerUpdateRequestInner
+     */
+    id: any;
 }

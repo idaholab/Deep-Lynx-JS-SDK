@@ -24,6 +24,7 @@ import { GetNodeResponse } from '../models';
 import { ListEdgeFiles } from '../models';
 import { ListEdgesResponse } from '../models';
 import { ListNodeFiles } from '../models';
+import { ListNodesByMetatypeResponse } from '../models';
 import { ListNodesResponse } from '../models';
 /**
  * GraphApi - axios parameter creator
@@ -33,7 +34,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * Archives an edge
-         * @summary ArchiveEdge
+         * @summary Archive Edge
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -61,7 +62,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -81,7 +82,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Archives a node
-         * @summary ArchiveNode
+         * @summary Archive Node
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -109,7 +110,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -129,7 +130,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Attach a file to an edge.
-         * @summary AttachEdgeFile
+         * @summary Attach Edge File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {string} edgeId 
@@ -163,7 +164,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -183,7 +184,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Attach a file to a node.
-         * @summary AttachNodeFile
+         * @summary Attach Node File
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {string} fileId 
@@ -217,7 +218,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -237,7 +238,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
-         * @summary CreateOrUpdateEdges
+         * @summary Create or Update Edges
          * @param {string} containerId 
          * @param {CreateOrUpdateEdgesRequest} [body] 
          * @param {*} [options] Override http request option.
@@ -260,7 +261,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -284,7 +285,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
-         * @summary CreateOrUpdateNodes
+         * @summary Create Or Update Nodes
          * @param {CreateOrUpdateNodesRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -311,7 +312,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -335,7 +336,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Detach file from node
-         * @summary DeleteNodeFile
+         * @summary Detach Node File
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {string} fileId 
@@ -369,7 +370,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -389,7 +390,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Detach file from an edge.
-         * @summary DetachNodeFile
+         * @summary Detach Node File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {string} edgeId 
@@ -423,7 +424,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -443,7 +444,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Lists all attached files for edge.
-         * @summary ListEdgeFiles
+         * @summary List Edge Files
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -471,7 +472,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -491,7 +492,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List Edges from storage
-         * @summary ListEdges
+         * @summary List Edges
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -519,7 +520,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -563,7 +564,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Lists all attached files for node.
-         * @summary ListNodeFiles
+         * @summary List Node Files
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -591,7 +592,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -611,7 +612,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List nodes
-         * @summary ListNodes
+         * @summary List Nodes
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -637,7 +638,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -673,7 +674,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List Nodes, filter by MetatypeID
-         * @summary ListNodesbyMetatypeID
+         * @summary List Nodes by Metatype ID
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {number} [limit] 
@@ -703,7 +704,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -731,7 +732,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Retrieve a single edge
-         * @summary RetrieveEdge
+         * @summary Retrieve Edge
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -759,7 +760,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -779,7 +780,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Retrieve a single node from storage.
-         * @summary RetrieveNode
+         * @summary Retrieve Node
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -807,7 +808,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -836,7 +837,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Archives an edge
-         * @summary ArchiveEdge
+         * @summary Archive Edge
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -851,7 +852,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Archives a node
-         * @summary ArchiveNode
+         * @summary Archive Node
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -866,7 +867,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Attach a file to an edge.
-         * @summary AttachEdgeFile
+         * @summary Attach Edge File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {string} edgeId 
@@ -882,7 +883,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Attach a file to a node.
-         * @summary AttachNodeFile
+         * @summary Attach Node File
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {string} fileId 
@@ -898,7 +899,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
-         * @summary CreateOrUpdateEdges
+         * @summary Create or Update Edges
          * @param {string} containerId 
          * @param {CreateOrUpdateEdgesRequest} [body] 
          * @param {*} [options] Override http request option.
@@ -913,7 +914,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
-         * @summary CreateOrUpdateNodes
+         * @summary Create Or Update Nodes
          * @param {CreateOrUpdateNodesRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -928,7 +929,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Detach file from node
-         * @summary DeleteNodeFile
+         * @summary Detach Node File
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {string} fileId 
@@ -944,7 +945,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Detach file from an edge.
-         * @summary DetachNodeFile
+         * @summary Detach Node File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {string} edgeId 
@@ -960,7 +961,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lists all attached files for edge.
-         * @summary ListEdgeFiles
+         * @summary List Edge Files
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -975,7 +976,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * List Edges from storage
-         * @summary ListEdges
+         * @summary List Edges
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -995,7 +996,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Lists all attached files for node.
-         * @summary ListNodeFiles
+         * @summary List Node Files
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -1010,7 +1011,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * List nodes
-         * @summary ListNodes
+         * @summary List Nodes
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -1028,7 +1029,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * List Nodes, filter by MetatypeID
-         * @summary ListNodesbyMetatypeID
+         * @summary List Nodes by Metatype ID
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {number} [limit] 
@@ -1036,7 +1037,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesResponse>> {
+        async listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesByMetatypeResponse>> {
             const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1045,7 +1046,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a single edge
-         * @summary RetrieveEdge
+         * @summary Retrieve Edge
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -1060,7 +1061,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a single node from storage.
-         * @summary RetrieveNode
+         * @summary Retrieve Node
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -1084,7 +1085,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * Archives an edge
-         * @summary ArchiveEdge
+         * @summary Archive Edge
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -1095,7 +1096,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Archives a node
-         * @summary ArchiveNode
+         * @summary Archive Node
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -1106,7 +1107,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Attach a file to an edge.
-         * @summary AttachEdgeFile
+         * @summary Attach Edge File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {string} edgeId 
@@ -1118,7 +1119,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Attach a file to a node.
-         * @summary AttachNodeFile
+         * @summary Attach Node File
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {string} fileId 
@@ -1130,7 +1131,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
-         * @summary CreateOrUpdateEdges
+         * @summary Create or Update Edges
          * @param {string} containerId 
          * @param {CreateOrUpdateEdgesRequest} [body] 
          * @param {*} [options] Override http request option.
@@ -1141,7 +1142,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
-         * @summary CreateOrUpdateNodes
+         * @summary Create Or Update Nodes
          * @param {CreateOrUpdateNodesRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -1152,7 +1153,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Detach file from node
-         * @summary DeleteNodeFile
+         * @summary Detach Node File
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {string} fileId 
@@ -1164,7 +1165,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Detach file from an edge.
-         * @summary DetachNodeFile
+         * @summary Detach Node File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {string} edgeId 
@@ -1176,7 +1177,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Lists all attached files for edge.
-         * @summary ListEdgeFiles
+         * @summary List Edge Files
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -1187,7 +1188,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List Edges from storage
-         * @summary ListEdges
+         * @summary List Edges
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -1203,7 +1204,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Lists all attached files for node.
-         * @summary ListNodeFiles
+         * @summary List Node Files
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -1214,7 +1215,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List nodes
-         * @summary ListNodes
+         * @summary List Nodes
          * @param {string} containerId 
          * @param {number} [limit] 
          * @param {number} [offset] 
@@ -1228,7 +1229,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List Nodes, filter by MetatypeID
-         * @summary ListNodesbyMetatypeID
+         * @summary List Nodes by Metatype ID
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {number} [limit] 
@@ -1236,12 +1237,12 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ListNodesResponse> {
+        listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ListNodesByMetatypeResponse> {
             return GraphApiFp(configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single edge
-         * @summary RetrieveEdge
+         * @summary Retrieve Edge
          * @param {string} containerId 
          * @param {string} edgeId 
          * @param {*} [options] Override http request option.
@@ -1252,7 +1253,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Retrieve a single node from storage.
-         * @summary RetrieveNode
+         * @summary Retrieve Node
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
@@ -1273,7 +1274,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
 export class GraphApi extends BaseAPI {
     /**
      * Archives an edge
-     * @summary ArchiveEdge
+     * @summary Archive Edge
      * @param {string} containerId 
      * @param {string} edgeId 
      * @param {*} [options] Override http request option.
@@ -1285,7 +1286,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Archives a node
-     * @summary ArchiveNode
+     * @summary Archive Node
      * @param {string} containerId 
      * @param {string} nodeId 
      * @param {*} [options] Override http request option.
@@ -1297,7 +1298,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Attach a file to an edge.
-     * @summary AttachEdgeFile
+     * @summary Attach Edge File
      * @param {string} containerId 
      * @param {string} fileId 
      * @param {string} edgeId 
@@ -1310,7 +1311,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Attach a file to a node.
-     * @summary AttachNodeFile
+     * @summary Attach Node File
      * @param {string} containerId 
      * @param {string} nodeId 
      * @param {string} fileId 
@@ -1323,7 +1324,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
-     * @summary CreateOrUpdateEdges
+     * @summary Create or Update Edges
      * @param {string} containerId 
      * @param {CreateOrUpdateEdgesRequest} [body] 
      * @param {*} [options] Override http request option.
@@ -1335,7 +1336,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
-     * @summary CreateOrUpdateNodes
+     * @summary Create Or Update Nodes
      * @param {CreateOrUpdateNodesRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -1347,7 +1348,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Detach file from node
-     * @summary DeleteNodeFile
+     * @summary Detach Node File
      * @param {string} containerId 
      * @param {string} nodeId 
      * @param {string} fileId 
@@ -1360,7 +1361,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Detach file from an edge.
-     * @summary DetachNodeFile
+     * @summary Detach Node File
      * @param {string} containerId 
      * @param {string} fileId 
      * @param {string} edgeId 
@@ -1373,7 +1374,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Lists all attached files for edge.
-     * @summary ListEdgeFiles
+     * @summary List Edge Files
      * @param {string} containerId 
      * @param {string} edgeId 
      * @param {*} [options] Override http request option.
@@ -1385,7 +1386,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * List Edges from storage
-     * @summary ListEdges
+     * @summary List Edges
      * @param {string} containerId 
      * @param {number} [limit] 
      * @param {number} [offset] 
@@ -1402,7 +1403,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Lists all attached files for node.
-     * @summary ListNodeFiles
+     * @summary List Node Files
      * @param {string} containerId 
      * @param {string} nodeId 
      * @param {*} [options] Override http request option.
@@ -1414,7 +1415,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * List nodes
-     * @summary ListNodes
+     * @summary List Nodes
      * @param {string} containerId 
      * @param {number} [limit] 
      * @param {number} [offset] 
@@ -1429,7 +1430,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * List Nodes, filter by MetatypeID
-     * @summary ListNodesbyMetatypeID
+     * @summary List Nodes by Metatype ID
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {number} [limit] 
@@ -1443,7 +1444,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Retrieve a single edge
-     * @summary RetrieveEdge
+     * @summary Retrieve Edge
      * @param {string} containerId 
      * @param {string} edgeId 
      * @param {*} [options] Override http request option.
@@ -1455,7 +1456,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * Retrieve a single node from storage.
-     * @summary RetrieveNode
+     * @summary Retrieve Node
      * @param {string} containerId 
      * @param {string} nodeId 
      * @param {*} [options] Override http request option.

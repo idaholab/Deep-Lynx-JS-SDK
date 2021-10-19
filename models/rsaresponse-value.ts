@@ -14,7 +14,37 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface RSAResponseValue
  */
-export interface UploadFileResponse {
+export interface RSAResponseValue {
+    /**
+     * 
+     * @type {string}
+     * @memberof RSAResponseValue
+     */
+    attemptResponseCode?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof RSAResponseValue
+     */
+    attemptReasonCode?: any;
+    /**
+     * 
+     * @type {RSAResponseValueChallengeMethods}
+     * @memberof RSAResponseValue
+     */
+    challengeMethods?: any;
+    /**
+     * 
+     * @type {Array&lt;RSAResponseValueCredentialValidationResults&gt;}
+     * @memberof RSAResponseValue
+     */
+    credentialValidationResults?: any;
+    /**
+     * 
+     * @type {RSAResponseValueContext}
+     * @memberof RSAResponseValue
+     */
+    context?: any;
 }

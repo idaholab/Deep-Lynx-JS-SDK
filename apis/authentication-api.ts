@@ -33,7 +33,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
     return {
         /**
          * Exchanges credentials for a JSON Web Token (JWT). Multiple authentication flows are supported, see Deep Lynx documentation for details.
-         * @summary ExchangeOAuthToken
+         * @summary Exchange OAuth Token
          * @param {TokenExchangeRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -50,7 +50,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -74,7 +74,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-         * @summary post-containers-container_id-metatypes-metatype_id
+         * @summary Validate Metatype Properties
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {any} [body] 
@@ -103,9 +103,9 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
-            localVarHeaderParameter['Content-Type'] = 'text/plain';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -127,7 +127,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * Cancels an RSA authentication attempt
-         * @summary post-rsa-cancel
+         * @summary RSA Cancel
          * @param {RSACancelRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -144,7 +144,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -168,7 +168,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-         * @summary post-rsa-initialize
+         * @summary RSA Initialize
          * @param {RSAInitRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -185,7 +185,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -209,7 +209,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * Returns the status of an RSA authentication attempt
-         * @summary post-rsa-status
+         * @summary RSA Status
          * @param {RSAStatusRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -226,7 +226,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -250,7 +250,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * Provides RSA with the user's SecurID to complete authentication
-         * @summary post-rsa-verify
+         * @summary RSA Verify
          * @param {RSAVerifyRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -267,7 +267,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -291,7 +291,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
         },
         /**
          * Returns an OAuth token. The API key and secret must be supplied.
-         * @summary RetrieveOAuthToken
+         * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
          * @param {string} xApiSecret The API secret
          * @param {string} [xApiExpiry] The API expiry date
@@ -318,7 +318,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (xApiKey !== undefined && xApiKey !== null) {
                 localVarHeaderParameter['x-api-key'] = String(xApiKey);
@@ -359,7 +359,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Exchanges credentials for a JSON Web Token (JWT). Multiple authentication flows are supported, see Deep Lynx documentation for details.
-         * @summary ExchangeOAuthToken
+         * @summary Exchange OAuth Token
          * @param {TokenExchangeRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -373,7 +373,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-         * @summary post-containers-container_id-metatypes-metatype_id
+         * @summary Validate Metatype Properties
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {any} [body] 
@@ -389,7 +389,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         },
         /**
          * Cancels an RSA authentication attempt
-         * @summary post-rsa-cancel
+         * @summary RSA Cancel
          * @param {RSACancelRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -403,7 +403,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         },
         /**
          * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-         * @summary post-rsa-initialize
+         * @summary RSA Initialize
          * @param {RSAInitRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -417,7 +417,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns the status of an RSA authentication attempt
-         * @summary post-rsa-status
+         * @summary RSA Status
          * @param {RSAStatusRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -431,7 +431,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         },
         /**
          * Provides RSA with the user's SecurID to complete authentication
-         * @summary post-rsa-verify
+         * @summary RSA Verify
          * @param {RSAVerifyRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -445,7 +445,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
         },
         /**
          * Returns an OAuth token. The API key and secret must be supplied.
-         * @summary RetrieveOAuthToken
+         * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
          * @param {string} xApiSecret The API secret
          * @param {string} [xApiExpiry] The API expiry date
@@ -470,7 +470,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
     return {
         /**
          * Exchanges credentials for a JSON Web Token (JWT). Multiple authentication flows are supported, see Deep Lynx documentation for details.
-         * @summary ExchangeOAuthToken
+         * @summary Exchange OAuth Token
          * @param {TokenExchangeRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -480,7 +480,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         },
         /**
          * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-         * @summary post-containers-container_id-metatypes-metatype_id
+         * @summary Validate Metatype Properties
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {any} [body] 
@@ -492,7 +492,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         },
         /**
          * Cancels an RSA authentication attempt
-         * @summary post-rsa-cancel
+         * @summary RSA Cancel
          * @param {RSACancelRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -502,7 +502,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         },
         /**
          * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-         * @summary post-rsa-initialize
+         * @summary RSA Initialize
          * @param {RSAInitRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -512,7 +512,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         },
         /**
          * Returns the status of an RSA authentication attempt
-         * @summary post-rsa-status
+         * @summary RSA Status
          * @param {RSAStatusRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -522,7 +522,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         },
         /**
          * Provides RSA with the user's SecurID to complete authentication
-         * @summary post-rsa-verify
+         * @summary RSA Verify
          * @param {RSAVerifyRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -532,7 +532,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
         },
         /**
          * Returns an OAuth token. The API key and secret must be supplied.
-         * @summary RetrieveOAuthToken
+         * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
          * @param {string} xApiSecret The API secret
          * @param {string} [xApiExpiry] The API expiry date
@@ -554,7 +554,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
 export class AuthenticationApi extends BaseAPI {
     /**
      * Exchanges credentials for a JSON Web Token (JWT). Multiple authentication flows are supported, see Deep Lynx documentation for details.
-     * @summary ExchangeOAuthToken
+     * @summary Exchange OAuth Token
      * @param {TokenExchangeRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -565,7 +565,7 @@ export class AuthenticationApi extends BaseAPI {
     }
     /**
      * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-     * @summary post-containers-container_id-metatypes-metatype_id
+     * @summary Validate Metatype Properties
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {any} [body] 
@@ -578,7 +578,7 @@ export class AuthenticationApi extends BaseAPI {
     }
     /**
      * Cancels an RSA authentication attempt
-     * @summary post-rsa-cancel
+     * @summary RSA Cancel
      * @param {RSACancelRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -589,7 +589,7 @@ export class AuthenticationApi extends BaseAPI {
     }
     /**
      * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-     * @summary post-rsa-initialize
+     * @summary RSA Initialize
      * @param {RSAInitRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -600,7 +600,7 @@ export class AuthenticationApi extends BaseAPI {
     }
     /**
      * Returns the status of an RSA authentication attempt
-     * @summary post-rsa-status
+     * @summary RSA Status
      * @param {RSAStatusRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -611,7 +611,7 @@ export class AuthenticationApi extends BaseAPI {
     }
     /**
      * Provides RSA with the user's SecurID to complete authentication
-     * @summary post-rsa-verify
+     * @summary RSA Verify
      * @param {RSAVerifyRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -622,7 +622,7 @@ export class AuthenticationApi extends BaseAPI {
     }
     /**
      * Returns an OAuth token. The API key and secret must be supplied.
-     * @summary RetrieveOAuthToken
+     * @summary Retrieve OAuth Token
      * @param {string} xApiKey The API key
      * @param {string} xApiSecret The API secret
      * @param {string} [xApiExpiry] The API expiry date

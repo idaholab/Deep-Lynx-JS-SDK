@@ -14,7 +14,13 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface UpdateContainerRequestConfig
  */
-export interface UploadFileResponse {
+export interface UpdateContainerRequestConfig {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateContainerRequestConfig
+     */
+    dataVersioningEnabled?: any;
 }

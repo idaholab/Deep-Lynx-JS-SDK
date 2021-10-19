@@ -14,7 +14,25 @@
 /**
  * 
  * @export
- * @interface UploadFileResponse
+ * @interface UpdateMetatypeKeyRequestValidation
  */
-export interface UploadFileResponse {
+export interface UpdateMetatypeKeyRequestValidation {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateMetatypeKeyRequestValidation
+     */
+    max: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateMetatypeKeyRequestValidation
+     */
+    min: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateMetatypeKeyRequestValidation
+     */
+    regex: any;
 }

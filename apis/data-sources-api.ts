@@ -23,10 +23,10 @@ import { CreateManualImportResponse } from '../models';
 import { Generic200Response } from '../models';
 import { GetDataSourceResponse } from '../models';
 import { GetFileInfoResponse } from '../models';
-import { InlineResponse200 } from '../models';
 import { ListDataSourceImportsResponse } from '../models';
 import { ListDataSourcesResponse } from '../models';
 import { UpdateDataSourceResponse } from '../models';
+import { UploadFileResponse } from '../models';
 /**
  * DataSourcesApi - axios parameter creator
  * @export
@@ -35,7 +35,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
     return {
         /**
          * Archive a data source, with options to permanently remove it (and associated data).
-         * @summary ArchiveDataSource
+         * @summary Archive Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [archive] Set to true to archive the data source.
@@ -66,7 +66,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             if (archive !== undefined) {
                 localVarQueryParameter['archive'] = archive;
@@ -98,7 +98,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Create new datasource. Supported data source types are `http`, `standard` (or `manual`), `jazz`, and `aveva`.
-         * @summary CreateDataSource
+         * @summary Create Data Source
          * @param {CreateDataSourceRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -125,7 +125,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -149,7 +149,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Create a manual import.
-         * @summary CreateManualImport
+         * @summary Create Manual Import
          * @param {any} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -182,9 +182,9 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
-            localVarHeaderParameter['Content-Type'] = 'text/plain';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -206,7 +206,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Downloads a previously uploaded file.
-         * @summary DownloadFile
+         * @summary Download File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {*} [options] Override http request option.
@@ -234,7 +234,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -254,7 +254,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * List the datasources for the container.
-         * @summary ListDataSources
+         * @summary List Data Sources
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -276,7 +276,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -296,7 +296,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * List the imports for the datasource.
-         * @summary ListImportsForDataSource
+         * @summary List Imports for Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -324,7 +324,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -344,7 +344,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Retrieve a single data source by ID.
-         * @summary RetrieveDataSource
+         * @summary Retrieve Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -372,7 +372,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -392,7 +392,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Get information about a file by ID.
-         * @summary RetrieveFile
+         * @summary Retrieve File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {*} [options] Override http request option.
@@ -420,7 +420,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -440,7 +440,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Sets a data source active.
-         * @summary SetDataSourceActive
+         * @summary Set Data Source Active
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -468,7 +468,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -488,7 +488,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
-         * @summary SetDataSourceConfiguration
+         * @summary Set Data Source Configuration
          * @param {CreateDataSourceConfig} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -521,7 +521,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
@@ -545,7 +545,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Sets a data source inactive.
-         * @summary SetDataSourceInactive
+         * @summary Set Data Source Inactive
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -573,7 +573,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -593,7 +593,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
         },
         /**
          * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
-         * @summary UploadFile
+         * @summary Upload File
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
@@ -621,15 +621,16 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new URLSearchParams();
+            const localVarFormParams = new FormData();
 
-            // authentication httpBearer required
+            // authentication BearerAuth required
 
 
             if (file !== undefined) { 
-                localVarFormParams.set('file', file as any);
+                localVarFormParams.append('file', file as any);
             }
-            localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -640,7 +641,7 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams.toString();
+            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -658,7 +659,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Archive a data source, with options to permanently remove it (and associated data).
-         * @summary ArchiveDataSource
+         * @summary Archive Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [archive] Set to true to archive the data source.
@@ -676,7 +677,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Create new datasource. Supported data source types are `http`, `standard` (or `manual`), `jazz`, and `aveva`.
-         * @summary CreateDataSource
+         * @summary Create Data Source
          * @param {CreateDataSourceRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -691,7 +692,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Create a manual import.
-         * @summary CreateManualImport
+         * @summary Create Manual Import
          * @param {any} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -707,7 +708,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Downloads a previously uploaded file.
-         * @summary DownloadFile
+         * @summary Download File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {*} [options] Override http request option.
@@ -722,7 +723,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * List the datasources for the container.
-         * @summary ListDataSources
+         * @summary List Data Sources
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -736,7 +737,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * List the imports for the datasource.
-         * @summary ListImportsForDataSource
+         * @summary List Imports for Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -751,7 +752,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve a single data source by ID.
-         * @summary RetrieveDataSource
+         * @summary Retrieve Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -766,7 +767,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Get information about a file by ID.
-         * @summary RetrieveFile
+         * @summary Retrieve File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {*} [options] Override http request option.
@@ -781,7 +782,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Sets a data source active.
-         * @summary SetDataSourceActive
+         * @summary Set Data Source Active
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -796,7 +797,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
-         * @summary SetDataSourceConfiguration
+         * @summary Set Data Source Configuration
          * @param {CreateDataSourceConfig} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -812,7 +813,7 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Sets a data source inactive.
-         * @summary SetDataSourceInactive
+         * @summary Set Data Source Inactive
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -827,14 +828,14 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
         },
         /**
          * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
-         * @summary UploadFile
+         * @summary Upload File
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileResponse>> {
             const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).uploadFile(containerId, dataSourceId, file, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -852,7 +853,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
     return {
         /**
          * Archive a data source, with options to permanently remove it (and associated data).
-         * @summary ArchiveDataSource
+         * @summary Archive Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [archive] Set to true to archive the data source.
@@ -866,7 +867,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Create new datasource. Supported data source types are `http`, `standard` (or `manual`), `jazz`, and `aveva`.
-         * @summary CreateDataSource
+         * @summary Create Data Source
          * @param {CreateDataSourceRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
@@ -877,7 +878,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Create a manual import.
-         * @summary CreateManualImport
+         * @summary Create Manual Import
          * @param {any} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -889,7 +890,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Downloads a previously uploaded file.
-         * @summary DownloadFile
+         * @summary Download File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {*} [options] Override http request option.
@@ -900,7 +901,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * List the datasources for the container.
-         * @summary ListDataSources
+         * @summary List Data Sources
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -910,7 +911,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * List the imports for the datasource.
-         * @summary ListImportsForDataSource
+         * @summary List Imports for Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -921,7 +922,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Retrieve a single data source by ID.
-         * @summary RetrieveDataSource
+         * @summary Retrieve Data Source
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -932,7 +933,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Get information about a file by ID.
-         * @summary RetrieveFile
+         * @summary Retrieve File
          * @param {string} containerId 
          * @param {string} fileId 
          * @param {*} [options] Override http request option.
@@ -943,7 +944,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Sets a data source active.
-         * @summary SetDataSourceActive
+         * @summary Set Data Source Active
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -954,7 +955,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
-         * @summary SetDataSourceConfiguration
+         * @summary Set Data Source Configuration
          * @param {CreateDataSourceConfig} body 
          * @param {string} containerId 
          * @param {string} dataSourceId 
@@ -966,7 +967,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Sets a data source inactive.
-         * @summary SetDataSourceInactive
+         * @summary Set Data Source Inactive
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {*} [options] Override http request option.
@@ -977,14 +978,14 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
         },
         /**
          * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
-         * @summary UploadFile
+         * @summary Upload File
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<InlineResponse200> {
+        uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<UploadFileResponse> {
             return DataSourcesApiFp(configuration).uploadFile(containerId, dataSourceId, file, options).then((request) => request(axios, basePath));
         },
     };
@@ -999,7 +1000,7 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
 export class DataSourcesApi extends BaseAPI {
     /**
      * Archive a data source, with options to permanently remove it (and associated data).
-     * @summary ArchiveDataSource
+     * @summary Archive Data Source
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} [archive] Set to true to archive the data source.
@@ -1014,7 +1015,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Create new datasource. Supported data source types are `http`, `standard` (or `manual`), `jazz`, and `aveva`.
-     * @summary CreateDataSource
+     * @summary Create Data Source
      * @param {CreateDataSourceRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
@@ -1026,7 +1027,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Create a manual import.
-     * @summary CreateManualImport
+     * @summary Create Manual Import
      * @param {any} body 
      * @param {string} containerId 
      * @param {string} dataSourceId 
@@ -1039,7 +1040,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Downloads a previously uploaded file.
-     * @summary DownloadFile
+     * @summary Download File
      * @param {string} containerId 
      * @param {string} fileId 
      * @param {*} [options] Override http request option.
@@ -1051,7 +1052,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * List the datasources for the container.
-     * @summary ListDataSources
+     * @summary List Data Sources
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1062,7 +1063,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * List the imports for the datasource.
-     * @summary ListImportsForDataSource
+     * @summary List Imports for Data Source
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {*} [options] Override http request option.
@@ -1074,7 +1075,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Retrieve a single data source by ID.
-     * @summary RetrieveDataSource
+     * @summary Retrieve Data Source
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {*} [options] Override http request option.
@@ -1086,7 +1087,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Get information about a file by ID.
-     * @summary RetrieveFile
+     * @summary Retrieve File
      * @param {string} containerId 
      * @param {string} fileId 
      * @param {*} [options] Override http request option.
@@ -1098,7 +1099,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Sets a data source active.
-     * @summary SetDataSourceActive
+     * @summary Set Data Source Active
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {*} [options] Override http request option.
@@ -1110,7 +1111,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Updates a data source's configuration in storage. Note that this request body's structure must match that of the data source's adapter type.
-     * @summary SetDataSourceConfiguration
+     * @summary Set Data Source Configuration
      * @param {CreateDataSourceConfig} body 
      * @param {string} containerId 
      * @param {string} dataSourceId 
@@ -1123,7 +1124,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Sets a data source inactive.
-     * @summary SetDataSourceInactive
+     * @summary Set Data Source Inactive
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {*} [options] Override http request option.
@@ -1135,7 +1136,7 @@ export class DataSourcesApi extends BaseAPI {
     }
     /**
      * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
-     * @summary UploadFile
+     * @summary Upload File
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} [file] 
