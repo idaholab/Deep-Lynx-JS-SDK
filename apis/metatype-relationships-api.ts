@@ -136,7 +136,6 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
          * @param {number} [offset] 
          * @param {string} [name] Filter metatype relationships with names that match this pattern
          * @param {string} [description] Filter metatype relationships with descriptions that match this pattern
-         * @param {string} [archived] Set to true to include archived metatype relationships
          * @param {string} [count] Set to true to return an integer count of the number of metatype relationships
          * @param {string} [loadKeys] Set to false to not return the keys for the selected metatype relationships (true by default)
          * @param {string} [sortBy] Supply the name of a metatype relationship attribute (name, created_at, etc) by which to sort
@@ -144,7 +143,7 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypeRelationships: async (containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options: any = {}): Promise<RequestArgs> => {
+        listMetatypeRelationships: async (containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listMetatypeRelationships.');
@@ -177,10 +176,6 @@ export const MetatypeRelationshipsApiAxiosParamCreator = function (configuration
 
             if (description !== undefined) {
                 localVarQueryParameter['description'] = description;
-            }
-
-            if (archived !== undefined) {
-                localVarQueryParameter['archived'] = archived;
             }
 
             if (count !== undefined) {
@@ -367,7 +362,6 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
          * @param {number} [offset] 
          * @param {string} [name] Filter metatype relationships with names that match this pattern
          * @param {string} [description] Filter metatype relationships with descriptions that match this pattern
-         * @param {string} [archived] Set to true to include archived metatype relationships
          * @param {string} [count] Set to true to return an integer count of the number of metatype relationships
          * @param {string} [loadKeys] Set to false to not return the keys for the selected metatype relationships (true by default)
          * @param {string} [sortBy] Supply the name of a metatype relationship attribute (name, created_at, etc) by which to sort
@@ -375,8 +369,8 @@ export const MetatypeRelationshipsApiFp = function(configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listMetatypeRelationships(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypeRelationshipsResponse>> {
-            const localVarAxiosArgs = await MetatypeRelationshipsApiAxiosParamCreator(configuration).listMetatypeRelationships(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options);
+        async listMetatypeRelationships(containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypeRelationshipsResponse>> {
+            const localVarAxiosArgs = await MetatypeRelationshipsApiAxiosParamCreator(configuration).listMetatypeRelationships(containerId, limit, offset, name, description, count, loadKeys, sortBy, sortDesc, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -452,7 +446,6 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
          * @param {number} [offset] 
          * @param {string} [name] Filter metatype relationships with names that match this pattern
          * @param {string} [description] Filter metatype relationships with descriptions that match this pattern
-         * @param {string} [archived] Set to true to include archived metatype relationships
          * @param {string} [count] Set to true to return an integer count of the number of metatype relationships
          * @param {string} [loadKeys] Set to false to not return the keys for the selected metatype relationships (true by default)
          * @param {string} [sortBy] Supply the name of a metatype relationship attribute (name, created_at, etc) by which to sort
@@ -460,8 +453,8 @@ export const MetatypeRelationshipsApiFactory = function (configuration?: Configu
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypeRelationships(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): AxiosPromise<ListMetatypeRelationshipsResponse> {
-            return MetatypeRelationshipsApiFp(configuration).listMetatypeRelationships(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options).then((request) => request(axios, basePath));
+        listMetatypeRelationships(containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): AxiosPromise<ListMetatypeRelationshipsResponse> {
+            return MetatypeRelationshipsApiFp(configuration).listMetatypeRelationships(containerId, limit, offset, name, description, count, loadKeys, sortBy, sortDesc, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single Metatype Relationship.
@@ -528,7 +521,6 @@ export class MetatypeRelationshipsApi extends BaseAPI {
      * @param {number} [offset] 
      * @param {string} [name] Filter metatype relationships with names that match this pattern
      * @param {string} [description] Filter metatype relationships with descriptions that match this pattern
-     * @param {string} [archived] Set to true to include archived metatype relationships
      * @param {string} [count] Set to true to return an integer count of the number of metatype relationships
      * @param {string} [loadKeys] Set to false to not return the keys for the selected metatype relationships (true by default)
      * @param {string} [sortBy] Supply the name of a metatype relationship attribute (name, created_at, etc) by which to sort
@@ -537,8 +529,8 @@ export class MetatypeRelationshipsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MetatypeRelationshipsApi
      */
-    public listMetatypeRelationships(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any) {
-        return MetatypeRelationshipsApiFp(this.configuration).listMetatypeRelationships(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options).then((request) => request(this.axios, this.basePath));
+    public listMetatypeRelationships(containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any) {
+        return MetatypeRelationshipsApiFp(this.configuration).listMetatypeRelationships(containerId, limit, offset, name, description, count, loadKeys, sortBy, sortDesc, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve a single Metatype Relationship.

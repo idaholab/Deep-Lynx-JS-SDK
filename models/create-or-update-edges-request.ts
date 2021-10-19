@@ -28,37 +28,31 @@ export interface CreateOrUpdateEdgesRequest {
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    originalDataId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateOrUpdateEdgesRequest
-     */
     dataSourceId: any;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    originNodeId: any;
+    originId: any;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    destinationNodeId: any;
+    destinationId: any;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    originNodeOriginalId: any;
+    originOriginalId: any;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    destinationNodeOriginalId: any;
+    destinationOriginalId: any;
     /**
      * 
      * @type {string}
@@ -70,7 +64,25 @@ export interface CreateOrUpdateEdgesRequest {
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    modifiedAt: any;
+    originDataSourceId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateOrUpdateEdgesRequest
+     */
+    destinationDataSourceId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateOrUpdateEdgesRequest
+     */
+    destinationMetatypeId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateOrUpdateEdgesRequest
+     */
+    originMetatypeId?: any;
     /**
      * 
      * @type {any}

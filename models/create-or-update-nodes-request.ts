@@ -30,7 +30,7 @@ export interface CreateOrUpdateNodesRequest {
      */
     containerId: any;
     /**
-     * 
+     * Passing in just the original data id will attempt to update a node with the same composite id (data source id, metatype id, and original data id).
      * @type {string}
      * @memberof CreateOrUpdateNodesRequest
      */
@@ -46,19 +46,7 @@ export interface CreateOrUpdateNodesRequest {
      * @type {string}
      * @memberof CreateOrUpdateNodesRequest
      */
-    dataTypeMappingId?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateOrUpdateNodesRequest
-     */
     metatypeId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateOrUpdateNodesRequest
-     */
-    modifiedAt?: any;
     /**
      * 
      * @type {any}

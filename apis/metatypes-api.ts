@@ -136,7 +136,6 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
          * @param {number} [offset] 
          * @param {string} [name] Filter metatypes with names that match this pattern
          * @param {string} [description] Filter metatypes with descriptions that match this pattern
-         * @param {string} [archived] Set to true to include archived metatypes
          * @param {string} [count] Set to true to return an integer count of the number of metatypes
          * @param {string} [loadKeys] Set to false to not return the keys for the selected metatypes (true by default)
          * @param {string} [sortBy] Supply the name of a metatype attribute (name, created_at, etc) by which to sort
@@ -144,7 +143,7 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypes: async (containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options: any = {}): Promise<RequestArgs> => {
+        listMetatypes: async (containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listMetatypes.');
@@ -177,10 +176,6 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
 
             if (description !== undefined) {
                 localVarQueryParameter['description'] = description;
-            }
-
-            if (archived !== undefined) {
-                localVarQueryParameter['archived'] = archived;
             }
 
             if (count !== undefined) {
@@ -367,7 +362,6 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
          * @param {number} [offset] 
          * @param {string} [name] Filter metatypes with names that match this pattern
          * @param {string} [description] Filter metatypes with descriptions that match this pattern
-         * @param {string} [archived] Set to true to include archived metatypes
          * @param {string} [count] Set to true to return an integer count of the number of metatypes
          * @param {string} [loadKeys] Set to false to not return the keys for the selected metatypes (true by default)
          * @param {string} [sortBy] Supply the name of a metatype attribute (name, created_at, etc) by which to sort
@@ -375,8 +369,8 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypesResponse>> {
-            const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).listMetatypes(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options);
+        async listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListMetatypesResponse>> {
+            const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).listMetatypes(containerId, limit, offset, name, description, count, loadKeys, sortBy, sortDesc, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -452,7 +446,6 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          * @param {number} [offset] 
          * @param {string} [name] Filter metatypes with names that match this pattern
          * @param {string} [description] Filter metatypes with descriptions that match this pattern
-         * @param {string} [archived] Set to true to include archived metatypes
          * @param {string} [count] Set to true to return an integer count of the number of metatypes
          * @param {string} [loadKeys] Set to false to not return the keys for the selected metatypes (true by default)
          * @param {string} [sortBy] Supply the name of a metatype attribute (name, created_at, etc) by which to sort
@@ -460,8 +453,8 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): AxiosPromise<ListMetatypesResponse> {
-            return MetatypesApiFp(configuration).listMetatypes(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options).then((request) => request(axios, basePath));
+        listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any): AxiosPromise<ListMetatypesResponse> {
+            return MetatypesApiFp(configuration).listMetatypes(containerId, limit, offset, name, description, count, loadKeys, sortBy, sortDesc, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a single metatype.
@@ -528,7 +521,6 @@ export class MetatypesApi extends BaseAPI {
      * @param {number} [offset] 
      * @param {string} [name] Filter metatypes with names that match this pattern
      * @param {string} [description] Filter metatypes with descriptions that match this pattern
-     * @param {string} [archived] Set to true to include archived metatypes
      * @param {string} [count] Set to true to return an integer count of the number of metatypes
      * @param {string} [loadKeys] Set to false to not return the keys for the selected metatypes (true by default)
      * @param {string} [sortBy] Supply the name of a metatype attribute (name, created_at, etc) by which to sort
@@ -537,8 +529,8 @@ export class MetatypesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MetatypesApi
      */
-    public listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, archived?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any) {
-        return MetatypesApiFp(this.configuration).listMetatypes(containerId, limit, offset, name, description, archived, count, loadKeys, sortBy, sortDesc, options).then((request) => request(this.axios, this.basePath));
+    public listMetatypes(containerId: string, limit?: number, offset?: number, name?: string, description?: string, count?: string, loadKeys?: string, sortBy?: string, sortDesc?: string, options?: any) {
+        return MetatypesApiFp(this.configuration).listMetatypes(containerId, limit, offset, name, description, count, loadKeys, sortBy, sortDesc, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieves a single metatype.
