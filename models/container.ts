@@ -71,10 +71,4 @@ export interface Container {
      * @memberof Container
      */
     config?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Container
-     */
-    activeGraphId: any;
 }

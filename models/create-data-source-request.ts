@@ -28,7 +28,7 @@ export interface CreateDataSourceRequest {
      * @type {string}
      * @memberof CreateDataSourceRequest
      */
-    adapterType: any;
+    adapterType?: any;
     /**
      * 
      * @type {boolean}

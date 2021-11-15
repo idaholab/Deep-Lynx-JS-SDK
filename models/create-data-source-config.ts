@@ -22,13 +22,13 @@ export interface CreateDataSourceConfig {
      * @type {string}
      * @memberof CreateDataSourceConfig
      */
-    endpoint: any;
+    endpoint?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateDataSourceConfig
      */
-    authMethod: any;
+    authMethod?: any;
     /**
      * 
      * @type {string}

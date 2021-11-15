@@ -40,13 +40,13 @@ export interface DataSource {
      * @type {DataSourceConfig}
      * @memberof DataSource
      */
-    config: any;
+    config?: any;
     /**
      * 
      * @type {string}
      * @memberof DataSource
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {string}
@@ -70,31 +70,31 @@ export interface DataSource {
      * @type {string}
      * @memberof DataSource
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof DataSource
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof DataSource
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof DataSource
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {boolean}
      * @memberof DataSource
      */
-    archived: any;
+    archived?: any;
     /**
      * 
      * @type {string}

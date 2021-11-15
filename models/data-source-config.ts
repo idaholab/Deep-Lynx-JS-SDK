@@ -22,17 +22,17 @@ export interface DataSourceConfig {
      * @type {string}
      * @memberof DataSourceConfig
      */
-    kind: any;
+    kind?: any;
     /**
      * 
      * @type {string}
      * @memberof DataSourceConfig
      */
-    dataType: any;
+    dataType?: any;
     /**
      * 
      * @type {string}
      * @memberof DataSourceConfig
      */
-    dataFormat: any;
+    dataFormat?: any;
 }

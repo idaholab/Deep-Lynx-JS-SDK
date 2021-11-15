@@ -29,4 +29,16 @@ export interface CreateContainerRequest {
      * @memberof CreateContainerRequest
      */
     description?: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateContainerRequest
+     */
+    archived?: any;
+    /**
+     * 
+     * @type {ContainerConfig}
+     * @memberof CreateContainerRequest
+     */
+    config?: any;
 }
