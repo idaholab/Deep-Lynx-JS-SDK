@@ -16,10 +16,10 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { CreateDataExportRequest } from '../models';
 import { Generic200Response } from '../models';
 import { GetDataExportResponse } from '../models';
 import { ListDataExportsResponse } from '../models';
-import { NewDataExportRequest } from '../models';
 /**
  * DataExportApi - axios parameter creator
  * @export
@@ -29,12 +29,12 @@ export const DataExportApiAxiosParamCreator = function (configuration?: Configur
         /**
          * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
          * @summary Create Data Export
-         * @param {NewDataExportRequest} body 
+         * @param {CreateDataExportRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDataExport: async (body: NewDataExportRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        createDataExport: async (body: CreateDataExportRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createDataExport.');
@@ -348,12 +348,12 @@ export const DataExportApiFp = function(configuration?: Configuration) {
         /**
          * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
          * @summary Create Data Export
-         * @param {NewDataExportRequest} body 
+         * @param {CreateDataExportRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createDataExport(body: NewDataExportRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+        async createDataExport(body: CreateDataExportRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await DataExportApiAxiosParamCreator(configuration).createDataExport(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -451,12 +451,12 @@ export const DataExportApiFactory = function (configuration?: Configuration, bas
         /**
          * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
          * @summary Create Data Export
-         * @param {NewDataExportRequest} body 
+         * @param {CreateDataExportRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDataExport(body: NewDataExportRequest, containerId: string, options?: any): AxiosPromise<Generic200Response> {
+        createDataExport(body: CreateDataExportRequest, containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return DataExportApiFp(configuration).createDataExport(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -531,13 +531,13 @@ export class DataExportApi extends BaseAPI {
     /**
      * Create a new data export with the included configuration. Configuration values may be encrypted depending on the adapter you've choosen. See the readme for the exporters for more information.
      * @summary Create Data Export
-     * @param {NewDataExportRequest} body 
+     * @param {CreateDataExportRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataExportApi
      */
-    public createDataExport(body: NewDataExportRequest, containerId: string, options?: any) {
+    public createDataExport(body: CreateDataExportRequest, containerId: string, options?: any) {
         return DataExportApiFp(this.configuration).createDataExport(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**

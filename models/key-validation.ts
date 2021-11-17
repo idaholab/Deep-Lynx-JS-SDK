@@ -22,17 +22,17 @@ export interface KeyValidation {
      * @type {string}
      * @memberof KeyValidation
      */
-    regex: any;
+    regex?: any;
     /**
      * 
      * @type {number}
      * @memberof KeyValidation
      */
-    min: any;
+    min?: any;
     /**
      * 
      * @type {number}
      * @memberof KeyValidation
      */
-    max: any;
+    max?: any;
 }

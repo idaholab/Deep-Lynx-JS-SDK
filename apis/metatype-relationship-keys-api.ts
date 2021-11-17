@@ -16,11 +16,11 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { CreateMetatypeRelationshipKeyRequest } from '../models';
 import { CreateMetatypeRelationshipKeysResponse } from '../models';
 import { Generic200Response } from '../models';
 import { GetMetatypeRelationshipKeyResponse } from '../models';
 import { ListMetatypeRelationshipKeysResponse } from '../models';
-import { NewMetatypeRelationshipKeyRequest } from '../models';
 import { RelationshipKey } from '../models';
 import { UpdateMetatypeRelationshipKeyResponse } from '../models';
 /**
@@ -86,13 +86,13 @@ export const MetatypeRelationshipKeysApiAxiosParamCreator = function (configurat
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
          * @summary Create Metatype Relationship Key
-         * @param {NewMetatypeRelationshipKeyRequest} body 
+         * @param {CreateMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeRelationshipKey: async (body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options: any = {}): Promise<RequestArgs> => {
+        createMetatypeRelationshipKey: async (body: CreateMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createMetatypeRelationshipKey.');
@@ -333,13 +333,13 @@ export const MetatypeRelationshipKeysApiFp = function(configuration?: Configurat
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
          * @summary Create Metatype Relationship Key
-         * @param {NewMetatypeRelationshipKeyRequest} body 
+         * @param {CreateMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMetatypeRelationshipKey(body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypeRelationshipKeysResponse>> {
+        async createMetatypeRelationshipKey(body: CreateMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypeRelationshipKeysResponse>> {
             const localVarAxiosArgs = await MetatypeRelationshipKeysApiAxiosParamCreator(configuration).createMetatypeRelationshipKey(body, containerId, relationshipId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -418,13 +418,13 @@ export const MetatypeRelationshipKeysApiFactory = function (configuration?: Conf
         /**
          * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
          * @summary Create Metatype Relationship Key
-         * @param {NewMetatypeRelationshipKeyRequest} body 
+         * @param {CreateMetatypeRelationshipKeyRequest} body 
          * @param {string} containerId 
          * @param {string} relationshipId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatypeRelationshipKey(body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): AxiosPromise<CreateMetatypeRelationshipKeysResponse> {
+        createMetatypeRelationshipKey(body: CreateMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any): AxiosPromise<CreateMetatypeRelationshipKeysResponse> {
             return MetatypeRelationshipKeysApiFp(configuration).createMetatypeRelationshipKey(body, containerId, relationshipId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -489,14 +489,14 @@ export class MetatypeRelationshipKeysApi extends BaseAPI {
     /**
      * Creates a new key for a metatype relationship. Keys consist of a unique key name (unique to the metatype relationship), key type, default values, and allowed values. Of those, only the first two are required.  The `dataType` field accepts only one of the following values: number, string, date, boolean, enumeration, file.   The fields `defaultValue` and `options` will only accept an array of the following types: string, boolean, number, float.
      * @summary Create Metatype Relationship Key
-     * @param {NewMetatypeRelationshipKeyRequest} body 
+     * @param {CreateMetatypeRelationshipKeyRequest} body 
      * @param {string} containerId 
      * @param {string} relationshipId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypeRelationshipKeysApi
      */
-    public createMetatypeRelationshipKey(body: NewMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any) {
+    public createMetatypeRelationshipKey(body: CreateMetatypeRelationshipKeyRequest, containerId: string, relationshipId: string, options?: any) {
         return MetatypeRelationshipKeysApiFp(this.configuration).createMetatypeRelationshipKey(body, containerId, relationshipId, options).then((request) => request(this.axios, this.basePath));
     }
     /**

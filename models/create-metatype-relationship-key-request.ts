@@ -14,109 +14,67 @@
 /**
  * 
  * @export
- * @interface RelationshipKey
+ * @interface CreateMetatypeRelationshipKeyRequest
  */
-export interface RelationshipKey {
+export interface CreateMetatypeRelationshipKeyRequest {
     /**
      * 
      * @type {string}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    name?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    description?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    propertyName?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    dataType?: any;
+    name: any;
     /**
      * 
      * @type {boolean}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
     required?: any;
     /**
      * 
-     * @type {number}
-     * @memberof RelationshipKey
+     * @type {string}
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    cardinality?: any;
+    propertyName: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateMetatypeRelationshipKeyRequest
+     */
+    description: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateMetatypeRelationshipKeyRequest
+     */
+    dataType: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateMetatypeRelationshipKeyRequest
+     */
+    cardinality: any;
     /**
      * 
      * @type {KeyValidation}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    validation?: any;
+    validation: any;
     /**
      * 
      * @type {boolean}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    unique?: any;
+    unique: any;
     /**
      * 
-     * @type {Array&lt;any&gt;}
-     * @memberof RelationshipKey
+     * @type {Array&lt;string&gt;}
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    options?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    defaultValue?: any | null;
+    options: any;
     /**
      * 
      * @type {string}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    metatypeRelationshipId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    id: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RelationshipKey
-     */
-    archived?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    createdAt?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    modifiedAt?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    createdBy?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    modifiedBy?: any;
+    defaultValue?: any;
 }

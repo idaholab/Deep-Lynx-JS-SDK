@@ -22,17 +22,17 @@ export interface RelationshipPairDestinationMetatype {
      * @type {string}
      * @memberof RelationshipPairDestinationMetatype
      */
-    name: any;
+    name?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPairDestinationMetatype
      */
-    description: any;
+    description?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPairDestinationMetatype
      */
-    id: any;
+    id?: any;
 }

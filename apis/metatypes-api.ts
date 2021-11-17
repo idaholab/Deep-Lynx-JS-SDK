@@ -16,11 +16,11 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { CreateMetatypeRequest } from '../models';
 import { CreateMetatypesResponse } from '../models';
 import { Generic200Response } from '../models';
 import { GetMetatypeResponse } from '../models';
 import { ListMetatypesResponse } from '../models';
-import { NewMetatypeRequest } from '../models';
 import { UpdateMetatypeRequest } from '../models';
 import { UpdateMetatypeResponse } from '../models';
 /**
@@ -80,12 +80,12 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Create a new metatype. Pass in an array for bulk creation.
          * @summary Create Metatype
-         * @param {NewMetatypeRequest} body 
+         * @param {CreateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatype: async (body: NewMetatypeRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        createMetatype: async (body: CreateMetatypeRequest, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling createMetatype.');
@@ -342,12 +342,12 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
         /**
          * Create a new metatype. Pass in an array for bulk creation.
          * @summary Create Metatype
-         * @param {NewMetatypeRequest} body 
+         * @param {CreateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createMetatype(body: NewMetatypeRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypesResponse>> {
+        async createMetatype(body: CreateMetatypeRequest, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMetatypesResponse>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).createMetatype(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -430,12 +430,12 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
         /**
          * Create a new metatype. Pass in an array for bulk creation.
          * @summary Create Metatype
-         * @param {NewMetatypeRequest} body 
+         * @param {CreateMetatypeRequest} body 
          * @param {string} containerId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createMetatype(body: NewMetatypeRequest, containerId: string, options?: any): AxiosPromise<CreateMetatypesResponse> {
+        createMetatype(body: CreateMetatypeRequest, containerId: string, options?: any): AxiosPromise<CreateMetatypesResponse> {
             return MetatypesApiFp(configuration).createMetatype(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -504,13 +504,13 @@ export class MetatypesApi extends BaseAPI {
     /**
      * Create a new metatype. Pass in an array for bulk creation.
      * @summary Create Metatype
-     * @param {NewMetatypeRequest} body 
+     * @param {CreateMetatypeRequest} body 
      * @param {string} containerId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypesApi
      */
-    public createMetatype(body: NewMetatypeRequest, containerId: string, options?: any) {
+    public createMetatype(body: CreateMetatypeRequest, containerId: string, options?: any) {
         return MetatypesApiFp(this.configuration).createMetatype(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**

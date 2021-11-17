@@ -14,109 +14,19 @@
 /**
  * 
  * @export
- * @interface RelationshipKey
+ * @interface CreateMetatypeRelationshipRequest
  */
-export interface RelationshipKey {
+export interface CreateMetatypeRelationshipRequest {
     /**
      * 
      * @type {string}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipRequest
      */
-    name?: any;
+    name: any;
     /**
      * 
      * @type {string}
-     * @memberof RelationshipKey
+     * @memberof CreateMetatypeRelationshipRequest
      */
-    description?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    propertyName?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    dataType?: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RelationshipKey
-     */
-    required?: any;
-    /**
-     * 
-     * @type {number}
-     * @memberof RelationshipKey
-     */
-    cardinality?: any;
-    /**
-     * 
-     * @type {KeyValidation}
-     * @memberof RelationshipKey
-     */
-    validation?: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RelationshipKey
-     */
-    unique?: any;
-    /**
-     * 
-     * @type {Array&lt;any&gt;}
-     * @memberof RelationshipKey
-     */
-    options?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    defaultValue?: any | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    metatypeRelationshipId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    id: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RelationshipKey
-     */
-    archived?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    createdAt?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    modifiedAt?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    createdBy?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof RelationshipKey
-     */
-    modifiedBy?: any;
+    description: any;
 }

@@ -28,31 +28,31 @@ export interface RelationshipPair {
      * @type {string}
      * @memberof RelationshipPair
      */
-    description: any;
+    description?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    relationshipType: any;
+    relationshipType?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    relationshipId: any;
+    relationshipId?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    originMetatypeId: any;
+    originMetatypeId?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    destinationMetatypeId: any;
+    destinationMetatypeId?: any;
     /**
      * 
      * @type {string}
@@ -64,71 +64,71 @@ export interface RelationshipPair {
      * @type {boolean}
      * @memberof RelationshipPair
      */
-    archived: any;
+    archived?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    containerId: any;
+    containerId?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    originMetatypeName: any;
+    originMetatypeName?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    destinationMetatypeName: any;
+    destinationMetatypeName?: any;
     /**
      * 
      * @type {string}
      * @memberof RelationshipPair
      */
-    relationshipPairName: any;
+    relationshipPairName?: any;
     /**
      * 
      * @type {RelationshipPairDestinationMetatype}
      * @memberof RelationshipPair
      */
-    destinationMetatype: any;
+    destinationMetatype?: any;
     /**
      * 
      * @type {RelationshipPairDestinationMetatype}
      * @memberof RelationshipPair
      */
-    originMetatype: any;
+    originMetatype?: any;
     /**
      * 
      * @type {RelationshipPairDestinationMetatype}
      * @memberof RelationshipPair
      */
-    relationship: any;
+    relationship?: any;
 }

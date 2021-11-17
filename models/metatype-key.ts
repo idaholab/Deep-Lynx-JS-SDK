@@ -34,7 +34,7 @@ export interface MetatypeKey {
      * @type {string}
      * @memberof MetatypeKey
      */
-    propertyName: any;
+    propertyName?: any;
     /**
      * 
      * @type {string}
@@ -46,7 +46,7 @@ export interface MetatypeKey {
      * @type {boolean}
      * @memberof MetatypeKey
      */
-    required: any;
+    required?: any;
     /**
      * 
      * @type {string}
@@ -58,10 +58,10 @@ export interface MetatypeKey {
      * @type {string}
      * @memberof MetatypeKey
      */
-    id: any;
+    id?: any;
     /**
      * 
-     * @type {Array&lt;ModelObject&gt;}
+     * @type {Array&lt;any&gt;}
      * @memberof MetatypeKey
      */
     options?: any | null;
@@ -76,35 +76,35 @@ export interface MetatypeKey {
      * @type {boolean}
      * @memberof MetatypeKey
      */
-    archived: any;
+    archived?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeKey
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeKey
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeKey
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeKey
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
-     * @type {UpdateMetatypeKeyRequestValidation}
+     * @type {KeyValidation}
      * @memberof MetatypeKey
      */
-    validation: any;
+    validation?: any;
 }

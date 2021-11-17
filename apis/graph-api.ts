@@ -674,7 +674,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * List Nodes, filter by MetatypeID
-         * @summary List Nodes by Metatype ID
+         * @summary List Nodes By Metatype ID
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {number} [limit] 
@@ -682,14 +682,14 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodesbyMetatypeID: async (containerId: string, metatypeId: string, limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
+        listNodesByMetatypeID: async (containerId: string, metatypeId: string, limit?: number, offset?: number, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listNodesbyMetatypeID.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listNodesByMetatypeID.');
             }
             // verify required parameter 'metatypeId' is not null or undefined
             if (metatypeId === null || metatypeId === undefined) {
-                throw new RequiredError('metatypeId','Required parameter metatypeId was null or undefined when calling listNodesbyMetatypeID.');
+                throw new RequiredError('metatypeId','Required parameter metatypeId was null or undefined when calling listNodesByMetatypeID.');
             }
             const localVarPath = `/containers/{container_id}/graphs/nodes/metatype/{metatype_id}`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
@@ -1029,7 +1029,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
         },
         /**
          * List Nodes, filter by MetatypeID
-         * @summary List Nodes by Metatype ID
+         * @summary List Nodes By Metatype ID
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {number} [limit] 
@@ -1037,8 +1037,8 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesByMetatypeResponse>> {
-            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options);
+        async listNodesByMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesByMetatypeResponse>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodesByMetatypeID(containerId, metatypeId, limit, offset, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1229,7 +1229,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * List Nodes, filter by MetatypeID
-         * @summary List Nodes by Metatype ID
+         * @summary List Nodes By Metatype ID
          * @param {string} containerId 
          * @param {string} metatypeId 
          * @param {number} [limit] 
@@ -1237,8 +1237,8 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ListNodesByMetatypeResponse> {
-            return GraphApiFp(configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options).then((request) => request(axios, basePath));
+        listNodesByMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any): AxiosPromise<ListNodesByMetatypeResponse> {
+            return GraphApiFp(configuration).listNodesByMetatypeID(containerId, metatypeId, limit, offset, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a single edge
@@ -1430,7 +1430,7 @@ export class GraphApi extends BaseAPI {
     }
     /**
      * List Nodes, filter by MetatypeID
-     * @summary List Nodes by Metatype ID
+     * @summary List Nodes By Metatype ID
      * @param {string} containerId 
      * @param {string} metatypeId 
      * @param {number} [limit] 
@@ -1439,8 +1439,8 @@ export class GraphApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GraphApi
      */
-    public listNodesbyMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any) {
-        return GraphApiFp(this.configuration).listNodesbyMetatypeID(containerId, metatypeId, limit, offset, options).then((request) => request(this.axios, this.basePath));
+    public listNodesByMetatypeID(containerId: string, metatypeId: string, limit?: number, offset?: number, options?: any) {
+        return GraphApiFp(this.configuration).listNodesByMetatypeID(containerId, metatypeId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve a single edge
