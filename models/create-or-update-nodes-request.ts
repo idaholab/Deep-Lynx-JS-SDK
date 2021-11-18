@@ -52,5 +52,5 @@ export interface CreateOrUpdateNodesRequest {
      * @type {any}
      * @memberof CreateOrUpdateNodesRequest
      */
-    properties: any;
+    properties?: any;
 }

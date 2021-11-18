@@ -22,43 +22,43 @@ export interface CreateManualImport {
      * @type {string}
      * @memberof CreateManualImport
      */
-    status: any;
+    status?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateManualImport
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateManualImport
      */
-    dataSourceId: any;
+    dataSourceId?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateManualImport
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateManualImport
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateManualImport
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateManualImport
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {string}

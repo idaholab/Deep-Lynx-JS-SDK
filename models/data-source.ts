@@ -28,7 +28,7 @@ export interface DataSource {
      * @type {string}
      * @memberof DataSource
      */
-    status: any;
+    status?: any;
     /**
      * 
      * @type {boolean}

@@ -22,13 +22,13 @@ export interface Event {
      * @type {boolean}
      * @memberof Event
      */
-    active: any;
+    active?: any;
     /**
      * 
      * @type {string}
      * @memberof Event
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {string}
@@ -64,23 +64,23 @@ export interface Event {
      * @type {string}
      * @memberof Event
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof Event
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof Event
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof Event
      */
-    modifiedBy: any;
+    modifiedBy?: any;
 }

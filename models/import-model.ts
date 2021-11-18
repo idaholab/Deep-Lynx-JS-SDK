@@ -28,13 +28,13 @@ export interface ImportModel {
      * @type {DataSourceConfig}
      * @memberof ImportModel
      */
-    dataSourceConfig: any;
+    dataSourceConfig?: any;
     /**
      * 
      * @type {number}
      * @memberof ImportModel
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {string}
@@ -52,25 +52,25 @@ export interface ImportModel {
      * @type {any}
      * @memberof ImportModel
      */
-    data: any;
+    data?: any;
     /**
      * 
      * @type {string}
      * @memberof ImportModel
      */
-    insertedAt: any;
+    insertedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof ImportModel
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof ImportModel
      */
-    shapeHash: any;
+    shapeHash?: any;
     /**
      * 
      * @type {string}

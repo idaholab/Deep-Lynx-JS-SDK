@@ -34,7 +34,7 @@ export interface CreateMetatypeRelationshipKeyRequest {
      * @type {string}
      * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    propertyName: any;
+    propertyName?: any;
     /**
      * 
      * @type {string}
@@ -52,25 +52,25 @@ export interface CreateMetatypeRelationshipKeyRequest {
      * @type {number}
      * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    cardinality: any;
+    cardinality?: any;
     /**
      * 
      * @type {KeyValidation}
      * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    validation: any;
+    validation?: any;
     /**
      * 
      * @type {boolean}
      * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    unique: any;
+    unique?: any;
     /**
      * 
      * @type {Array&lt;string&gt;}
      * @memberof CreateMetatypeRelationshipKeyRequest
      */
-    options: any;
+    options?: any;
     /**
      * 
      * @type {string}

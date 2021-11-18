@@ -22,11 +22,11 @@ export interface BatchUpdateContainerResponse {
      * @type {Array&lt;Container&gt;}
      * @memberof BatchUpdateContainerResponse
      */
-    value: any;
+    value?: any;
     /**
      * 
      * @type {boolean}
      * @memberof BatchUpdateContainerResponse
      */
-    isError: any;
+    isError?: any;
 }

@@ -19,22 +19,22 @@
 export interface Node {
     /**
      * 
-     * @type {any}
-     * @memberof Node
-     */
-    properties: any;
-    /**
-     * 
      * @type {string}
      * @memberof Node
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {string}
      * @memberof Node
      */
     containerId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Node
+     */
+    metatypeId?: any;
     /**
      * 
      * @type {NodeMetatypeBody}
@@ -46,25 +46,55 @@ export interface Node {
      * @type {string}
      * @memberof Node
      */
-    metatypeName: any;
+    metatypeName?: any;
     /**
      * 
      * @type {string}
      * @memberof Node
      */
-    graphId: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Node
-     */
-    archived: any;
+    dataSourceId?: any;
     /**
      * 
      * @type {string}
      * @memberof Node
      */
-    createdAt: any;
+    importDataId?: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof Node
+     */
+    dataStagingId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Node
+     */
+    typeMappingTransformationId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Node
+     */
+    originalDataId?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof Node
+     */
+    properties?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof Node
+     */
+    metadata?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Node
+     */
+    createdAt?: any;
     /**
      * 
      * @type {string}
@@ -76,53 +106,17 @@ export interface Node {
      * @type {string}
      * @memberof Node
      */
-    originalDataId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Node
-     */
-    dataSourceId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Node
-     */
     deletedAt?: any | null;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Node
      */
-    dataStagingId: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof Node
      */
-    importDataId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Node
-     */
-    typeMappingTransformationId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Node
-     */
-    compositeOriginalId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Node
-     */
-    createdBy: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Node
-     */
-    modifiedBy: any;
+    modifiedBy?: any;
 }

@@ -22,11 +22,11 @@ export interface ValidateMetatypePropertiesResponse {
      * @type {any}
      * @memberof ValidateMetatypePropertiesResponse
      */
-    value: any;
+    value?: any;
     /**
      * 
      * @type {boolean}
      * @memberof ValidateMetatypePropertiesResponse
      */
-    isError: any;
+    isError?: any;
 }

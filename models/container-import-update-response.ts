@@ -22,11 +22,11 @@ export interface ContainerImportUpdateResponse {
      * @type {string}
      * @memberof ContainerImportUpdateResponse
      */
-    value: any;
+    value?: any;
     /**
      * 
      * @type {boolean}
      * @memberof ContainerImportUpdateResponse
      */
-    isError: any;
+    isError?: any;
 }

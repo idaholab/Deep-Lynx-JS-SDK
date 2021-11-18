@@ -22,11 +22,11 @@ export interface ListContainerResponse {
      * @type {Array&lt;Container&gt;}
      * @memberof ListContainerResponse
      */
-    value: any;
+    value?: any;
     /**
      * 
      * @type {boolean}
      * @memberof ListContainerResponse
      */
-    isError: any;
+    isError?: any;
 }

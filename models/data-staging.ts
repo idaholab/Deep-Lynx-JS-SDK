@@ -22,7 +22,7 @@ export interface DataStaging {
      * @type {string}
      * @memberof DataStaging
      */
-    dataSourceId: any;
+    dataSourceId?: any;
     /**
      * 
      * @type {string}
@@ -34,11 +34,35 @@ export interface DataStaging {
      * @type {any}
      * @memberof DataStaging
      */
-    data: any;
+    data?: any;
     /**
      * 
      * @type {string}
      * @memberof DataStaging
      */
     shapeHash?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataStaging
+     */
+    id?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataStaging
+     */
+    errors?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataStaging
+     */
+    insertedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataStaging
+     */
+    createdAt?: any;
 }

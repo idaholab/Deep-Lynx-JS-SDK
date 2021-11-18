@@ -34,41 +34,41 @@ export interface Container {
      * @type {string}
      * @memberof Container
      */
-    id: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Container
-     */
-    archived: any;
+    id?: any;
     /**
      * 
      * @type {string}
      * @memberof Container
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof Container
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof Container
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof Container
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {ContainerConfig}
      * @memberof Container
      */
     config?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Container
+     */
+    deletedAt?: any;
 }

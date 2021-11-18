@@ -126,170 +126,6 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             };
         },
         /**
-         * Cancels an RSA authentication attempt
-         * @summary RSA Cancel
-         * @param {RSACancelRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaCancel: async (body?: RSACancelRequest, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/rsa/cancel`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-         * @summary RSA Initialize
-         * @param {RSAInitRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaInitialize: async (body?: RSAInitRequest, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/rsa/initialize`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns the status of an RSA authentication attempt
-         * @summary RSA Status
-         * @param {RSAStatusRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaStatus: async (body?: RSAStatusRequest, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/rsa/status`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Provides RSA with the user's SecurID to complete authentication
-         * @summary RSA Verify
-         * @param {RSAVerifyRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaVerify: async (body?: RSAVerifyRequest, options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/rsa/verify`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Returns an OAuth token. The API key and secret must be supplied.
          * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
@@ -348,6 +184,170 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Cancels an RSA authentication attempt
+         * @summary RSA Cancel
+         * @param {RSACancelRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaCancel: async (body?: RSACancelRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rsa/cancel`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
+         * @summary RSA Initialize
+         * @param {RSAInitRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaInitialize: async (body?: RSAInitRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rsa/initialize`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns the status of an RSA authentication attempt
+         * @summary RSA Status
+         * @param {RSAStatusRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaStatus: async (body?: RSAStatusRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rsa/status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Provides RSA with the user's SecurID to complete authentication
+         * @summary RSA Verify
+         * @param {RSAVerifyRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaVerify: async (body?: RSAVerifyRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/rsa/verify`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -388,14 +388,30 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Returns an OAuth token. The API key and secret must be supplied.
+         * @summary Retrieve OAuth Token
+         * @param {string} xApiKey The API key
+         * @param {string} xApiSecret The API secret
+         * @param {string} [xApiExpiry] The API expiry date
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveOAuthToken(xApiKey: string, xApiSecret: string, xApiExpiry?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).retrieveOAuthToken(xApiKey, xApiSecret, xApiExpiry, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Cancels an RSA authentication attempt
          * @summary RSA Cancel
          * @param {RSACancelRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postRsaCancel(body?: RSACancelRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAResponse>> {
-            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).postRsaCancel(body, options);
+        async rsaCancel(body?: RSACancelRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAResponse>> {
+            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).rsaCancel(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -408,8 +424,8 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postRsaInitialize(body?: RSAInitRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAResponse>> {
-            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).postRsaInitialize(body, options);
+        async rsaInitialize(body?: RSAInitRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAResponse>> {
+            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).rsaInitialize(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -422,8 +438,8 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postRsaStatus(body?: RSAStatusRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAStatusResponse>> {
-            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).postRsaStatus(body, options);
+        async rsaStatus(body?: RSAStatusRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAStatusResponse>> {
+            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).rsaStatus(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -436,24 +452,8 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postRsaVerify(body?: RSAVerifyRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAResponse>> {
-            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).postRsaVerify(body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Returns an OAuth token. The API key and secret must be supplied.
-         * @summary Retrieve OAuth Token
-         * @param {string} xApiKey The API key
-         * @param {string} xApiSecret The API secret
-         * @param {string} [xApiExpiry] The API expiry date
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async retrieveOAuthToken(xApiKey: string, xApiSecret: string, xApiExpiry?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).retrieveOAuthToken(xApiKey, xApiSecret, xApiExpiry, options);
+        async rsaVerify(body?: RSAVerifyRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RSAResponse>> {
+            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).rsaVerify(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -491,46 +491,6 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
             return AuthenticationApiFp(configuration).postContainersContainerIdMetatypesMetatypeId(containerId, metatypeId, body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Cancels an RSA authentication attempt
-         * @summary RSA Cancel
-         * @param {RSACancelRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaCancel(body?: RSACancelRequest, options?: any): AxiosPromise<RSAResponse> {
-            return AuthenticationApiFp(configuration).postRsaCancel(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-         * @summary RSA Initialize
-         * @param {RSAInitRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaInitialize(body?: RSAInitRequest, options?: any): AxiosPromise<RSAResponse> {
-            return AuthenticationApiFp(configuration).postRsaInitialize(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns the status of an RSA authentication attempt
-         * @summary RSA Status
-         * @param {RSAStatusRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaStatus(body?: RSAStatusRequest, options?: any): AxiosPromise<RSAStatusResponse> {
-            return AuthenticationApiFp(configuration).postRsaStatus(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Provides RSA with the user's SecurID to complete authentication
-         * @summary RSA Verify
-         * @param {RSAVerifyRequest} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postRsaVerify(body?: RSAVerifyRequest, options?: any): AxiosPromise<RSAResponse> {
-            return AuthenticationApiFp(configuration).postRsaVerify(body, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Returns an OAuth token. The API key and secret must be supplied.
          * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
@@ -541,6 +501,46 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          */
         retrieveOAuthToken(xApiKey: string, xApiSecret: string, xApiExpiry?: string, options?: any): AxiosPromise<string> {
             return AuthenticationApiFp(configuration).retrieveOAuthToken(xApiKey, xApiSecret, xApiExpiry, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Cancels an RSA authentication attempt
+         * @summary RSA Cancel
+         * @param {RSACancelRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaCancel(body?: RSACancelRequest, options?: any): AxiosPromise<RSAResponse> {
+            return AuthenticationApiFp(configuration).rsaCancel(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
+         * @summary RSA Initialize
+         * @param {RSAInitRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaInitialize(body?: RSAInitRequest, options?: any): AxiosPromise<RSAResponse> {
+            return AuthenticationApiFp(configuration).rsaInitialize(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns the status of an RSA authentication attempt
+         * @summary RSA Status
+         * @param {RSAStatusRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaStatus(body?: RSAStatusRequest, options?: any): AxiosPromise<RSAStatusResponse> {
+            return AuthenticationApiFp(configuration).rsaStatus(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Provides RSA with the user's SecurID to complete authentication
+         * @summary RSA Verify
+         * @param {RSAVerifyRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rsaVerify(body?: RSAVerifyRequest, options?: any): AxiosPromise<RSAResponse> {
+            return AuthenticationApiFp(configuration).rsaVerify(body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -577,50 +577,6 @@ export class AuthenticationApi extends BaseAPI {
         return AuthenticationApiFp(this.configuration).postContainersContainerIdMetatypesMetatypeId(containerId, metatypeId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Cancels an RSA authentication attempt
-     * @summary RSA Cancel
-     * @param {RSACancelRequest} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public postRsaCancel(body?: RSACancelRequest, options?: any) {
-        return AuthenticationApiFp(this.configuration).postRsaCancel(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
-     * @summary RSA Initialize
-     * @param {RSAInitRequest} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public postRsaInitialize(body?: RSAInitRequest, options?: any) {
-        return AuthenticationApiFp(this.configuration).postRsaInitialize(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Returns the status of an RSA authentication attempt
-     * @summary RSA Status
-     * @param {RSAStatusRequest} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public postRsaStatus(body?: RSAStatusRequest, options?: any) {
-        return AuthenticationApiFp(this.configuration).postRsaStatus(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Provides RSA with the user's SecurID to complete authentication
-     * @summary RSA Verify
-     * @param {RSAVerifyRequest} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public postRsaVerify(body?: RSAVerifyRequest, options?: any) {
-        return AuthenticationApiFp(this.configuration).postRsaVerify(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
      * Returns an OAuth token. The API key and secret must be supplied.
      * @summary Retrieve OAuth Token
      * @param {string} xApiKey The API key
@@ -632,5 +588,49 @@ export class AuthenticationApi extends BaseAPI {
      */
     public retrieveOAuthToken(xApiKey: string, xApiSecret: string, xApiExpiry?: string, options?: any) {
         return AuthenticationApiFp(this.configuration).retrieveOAuthToken(xApiKey, xApiSecret, xApiExpiry, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Cancels an RSA authentication attempt
+     * @summary RSA Cancel
+     * @param {RSACancelRequest} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticationApi
+     */
+    public rsaCancel(body?: RSACancelRequest, options?: any) {
+        return AuthenticationApiFp(this.configuration).rsaCancel(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Used to begin (and optionally complete) an RSA authentication. Either a user's ID may be provided and the SecurID provided in a later `verify` request,  or else the user may provide both the user ID (`subjectName`) and `securID` at once to `initialize` to complete the authentication request.  The `securID` is the combination of the user's memorized token and 6 digit temporary RSA pin (with no spaces or characters between them).
+     * @summary RSA Initialize
+     * @param {RSAInitRequest} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticationApi
+     */
+    public rsaInitialize(body?: RSAInitRequest, options?: any) {
+        return AuthenticationApiFp(this.configuration).rsaInitialize(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns the status of an RSA authentication attempt
+     * @summary RSA Status
+     * @param {RSAStatusRequest} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticationApi
+     */
+    public rsaStatus(body?: RSAStatusRequest, options?: any) {
+        return AuthenticationApiFp(this.configuration).rsaStatus(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Provides RSA with the user's SecurID to complete authentication
+     * @summary RSA Verify
+     * @param {RSAVerifyRequest} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthenticationApi
+     */
+    public rsaVerify(body?: RSAVerifyRequest, options?: any) {
+        return AuthenticationApiFp(this.configuration).rsaVerify(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

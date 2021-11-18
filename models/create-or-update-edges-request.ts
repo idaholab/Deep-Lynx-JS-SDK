@@ -46,13 +46,13 @@ export interface CreateOrUpdateEdgesRequest {
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    originOriginalId: any;
+    originOriginalId?: any;
     /**
      * 
      * @type {string}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    destinationOriginalId: any;
+    destinationOriginalId?: any;
     /**
      * 
      * @type {string}
@@ -88,5 +88,5 @@ export interface CreateOrUpdateEdgesRequest {
      * @type {any}
      * @memberof CreateOrUpdateEdgesRequest
      */
-    properties: any;
+    properties?: any;
 }

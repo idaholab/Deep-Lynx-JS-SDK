@@ -34,43 +34,43 @@ export interface MetatypeRelationship {
      * @type {string}
      * @memberof MetatypeRelationship
      */
-    containerId: any;
+    containerId?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeRelationship
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {boolean}
      * @memberof MetatypeRelationship
      */
-    archived: any;
+    archived?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeRelationship
      */
-    createdAt: any;
+    createdAt?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeRelationship
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeRelationship
      */
-    createdBy: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof MetatypeRelationship
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {Array&lt;RelationshipKey&gt;}

@@ -64,13 +64,13 @@ export interface User {
      * @type {Array&lt;any&gt;}
      * @memberof User
      */
-    permissions: any;
+    permissions?: any;
     /**
      * 
      * @type {Array&lt;any&gt;}
      * @memberof User
      */
-    roles: any;
+    roles?: any;
     /**
      * 
      * @type {string}

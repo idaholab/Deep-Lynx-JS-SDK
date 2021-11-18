@@ -28,96 +28,6 @@ import { UpdateTaskResponse } from '../models';
 export const TasksApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Lists all tasks with a \"ready\" status
-         * @summary List Tasks
-         * @param {string} containerId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getContainersContainerIdTask: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling getContainersContainerIdTask.');
-            }
-            const localVarPath = `/containers/{container_id}/task`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves a specific task by ID
-         * @summary Get Task
-         * @param {string} containerId 
-         * @param {string} taskId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getContainersContainerIdTaskTaskId: async (containerId: string, taskId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling getContainersContainerIdTaskTaskId.');
-            }
-            // verify required parameter 'taskId' is not null or undefined
-            if (taskId === null || taskId === undefined) {
-                throw new RequiredError('taskId','Required parameter taskId was null or undefined when calling getContainersContainerIdTaskTaskId.');
-            }
-            const localVarPath = `/containers/{container_id}/task/{task_id}`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Creates a new task
          * @summary Create Task
          * @param {string} containerId 
@@ -125,10 +35,10 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postContainersContainerIdTask: async (containerId: string, body?: Task, options: any = {}): Promise<RequestArgs> => {
+        createTask: async (containerId: string, body?: Task, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling postContainersContainerIdTask.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling createTask.');
             }
             const localVarPath = `/containers/{container_id}/task`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
@@ -165,6 +75,96 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Retrieves a specific task by ID
+         * @summary Get Task
+         * @param {string} containerId 
+         * @param {string} taskId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTask: async (containerId: string, taskId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling getTask.');
+            }
+            // verify required parameter 'taskId' is not null or undefined
+            if (taskId === null || taskId === undefined) {
+                throw new RequiredError('taskId','Required parameter taskId was null or undefined when calling getTask.');
+            }
+            const localVarPath = `/containers/{container_id}/task/{task_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lists all tasks with a \"ready\" status
+         * @summary List Tasks
+         * @param {string} containerId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listTasks: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listTasks.');
+            }
+            const localVarPath = `/containers/{container_id}/task`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a task
          * @summary Update Task
          * @param {string} containerId 
@@ -173,14 +173,14 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putContainersContainerIdTaskTaskId: async (containerId: string, taskId: string, body?: Task, options: any = {}): Promise<RequestArgs> => {
+        updateTask: async (containerId: string, taskId: string, body?: Task, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling putContainersContainerIdTaskTaskId.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling updateTask.');
             }
             // verify required parameter 'taskId' is not null or undefined
             if (taskId === null || taskId === undefined) {
-                throw new RequiredError('taskId','Required parameter taskId was null or undefined when calling putContainersContainerIdTaskTaskId.');
+                throw new RequiredError('taskId','Required parameter taskId was null or undefined when calling updateTask.');
             }
             const localVarPath = `/containers/{container_id}/task/{task_id}`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
@@ -227,14 +227,15 @@ export const TasksApiAxiosParamCreator = function (configuration?: Configuration
 export const TasksApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Lists all tasks with a \"ready\" status
-         * @summary List Tasks
+         * Creates a new task
+         * @summary Create Task
          * @param {string} containerId 
+         * @param {Task} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getContainersContainerIdTask(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListTasksResponse>> {
-            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).getContainersContainerIdTask(containerId, options);
+        async createTask(containerId: string, body?: Task, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTaskResponse>> {
+            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).createTask(containerId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -248,23 +249,22 @@ export const TasksApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getContainersContainerIdTaskTaskId(containerId: string, taskId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTaskResponse>> {
-            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).getContainersContainerIdTaskTaskId(containerId, taskId, options);
+        async getTask(containerId: string, taskId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTaskResponse>> {
+            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).getTask(containerId, taskId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Creates a new task
-         * @summary Create Task
+         * Lists all tasks with a \"ready\" status
+         * @summary List Tasks
          * @param {string} containerId 
-         * @param {Task} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postContainersContainerIdTask(containerId: string, body?: Task, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateTaskResponse>> {
-            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).postContainersContainerIdTask(containerId, body, options);
+        async listTasks(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListTasksResponse>> {
+            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).listTasks(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -279,8 +279,8 @@ export const TasksApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putContainersContainerIdTaskTaskId(containerId: string, taskId: string, body?: Task, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateTaskResponse>> {
-            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).putContainersContainerIdTaskTaskId(containerId, taskId, body, options);
+        async updateTask(containerId: string, taskId: string, body?: Task, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateTaskResponse>> {
+            const localVarAxiosArgs = await TasksApiAxiosParamCreator(configuration).updateTask(containerId, taskId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -296,14 +296,15 @@ export const TasksApiFp = function(configuration?: Configuration) {
 export const TasksApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * Lists all tasks with a \"ready\" status
-         * @summary List Tasks
+         * Creates a new task
+         * @summary Create Task
          * @param {string} containerId 
+         * @param {Task} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContainersContainerIdTask(containerId: string, options?: any): AxiosPromise<ListTasksResponse> {
-            return TasksApiFp(configuration).getContainersContainerIdTask(containerId, options).then((request) => request(axios, basePath));
+        createTask(containerId: string, body?: Task, options?: any): AxiosPromise<CreateTaskResponse> {
+            return TasksApiFp(configuration).createTask(containerId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieves a specific task by ID
@@ -313,19 +314,18 @@ export const TasksApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContainersContainerIdTaskTaskId(containerId: string, taskId: string, options?: any): AxiosPromise<GetTaskResponse> {
-            return TasksApiFp(configuration).getContainersContainerIdTaskTaskId(containerId, taskId, options).then((request) => request(axios, basePath));
+        getTask(containerId: string, taskId: string, options?: any): AxiosPromise<GetTaskResponse> {
+            return TasksApiFp(configuration).getTask(containerId, taskId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Creates a new task
-         * @summary Create Task
+         * Lists all tasks with a \"ready\" status
+         * @summary List Tasks
          * @param {string} containerId 
-         * @param {Task} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postContainersContainerIdTask(containerId: string, body?: Task, options?: any): AxiosPromise<CreateTaskResponse> {
-            return TasksApiFp(configuration).postContainersContainerIdTask(containerId, body, options).then((request) => request(axios, basePath));
+        listTasks(containerId: string, options?: any): AxiosPromise<ListTasksResponse> {
+            return TasksApiFp(configuration).listTasks(containerId, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates a task
@@ -336,8 +336,8 @@ export const TasksApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putContainersContainerIdTaskTaskId(containerId: string, taskId: string, body?: Task, options?: any): AxiosPromise<UpdateTaskResponse> {
-            return TasksApiFp(configuration).putContainersContainerIdTaskTaskId(containerId, taskId, body, options).then((request) => request(axios, basePath));
+        updateTask(containerId: string, taskId: string, body?: Task, options?: any): AxiosPromise<UpdateTaskResponse> {
+            return TasksApiFp(configuration).updateTask(containerId, taskId, body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -350,15 +350,16 @@ export const TasksApiFactory = function (configuration?: Configuration, basePath
  */
 export class TasksApi extends BaseAPI {
     /**
-     * Lists all tasks with a \"ready\" status
-     * @summary List Tasks
+     * Creates a new task
+     * @summary Create Task
      * @param {string} containerId 
+     * @param {Task} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public getContainersContainerIdTask(containerId: string, options?: any) {
-        return TasksApiFp(this.configuration).getContainersContainerIdTask(containerId, options).then((request) => request(this.axios, this.basePath));
+    public createTask(containerId: string, body?: Task, options?: any) {
+        return TasksApiFp(this.configuration).createTask(containerId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieves a specific task by ID
@@ -369,20 +370,19 @@ export class TasksApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public getContainersContainerIdTaskTaskId(containerId: string, taskId: string, options?: any) {
-        return TasksApiFp(this.configuration).getContainersContainerIdTaskTaskId(containerId, taskId, options).then((request) => request(this.axios, this.basePath));
+    public getTask(containerId: string, taskId: string, options?: any) {
+        return TasksApiFp(this.configuration).getTask(containerId, taskId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Creates a new task
-     * @summary Create Task
+     * Lists all tasks with a \"ready\" status
+     * @summary List Tasks
      * @param {string} containerId 
-     * @param {Task} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public postContainersContainerIdTask(containerId: string, body?: Task, options?: any) {
-        return TasksApiFp(this.configuration).postContainersContainerIdTask(containerId, body, options).then((request) => request(this.axios, this.basePath));
+    public listTasks(containerId: string, options?: any) {
+        return TasksApiFp(this.configuration).listTasks(containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates a task
@@ -394,7 +394,7 @@ export class TasksApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TasksApi
      */
-    public putContainersContainerIdTaskTaskId(containerId: string, taskId: string, body?: Task, options?: any) {
-        return TasksApiFp(this.configuration).putContainersContainerIdTaskTaskId(containerId, taskId, body, options).then((request) => request(this.axios, this.basePath));
+    public updateTask(containerId: string, taskId: string, body?: Task, options?: any) {
+        return TasksApiFp(this.configuration).updateTask(containerId, taskId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }

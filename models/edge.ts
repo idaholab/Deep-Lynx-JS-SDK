@@ -19,16 +19,10 @@
 export interface Edge {
     /**
      * 
-     * @type {any}
-     * @memberof Edge
-     */
-    properties: any;
-    /**
-     * 
      * @type {string}
      * @memberof Edge
      */
-    id: any;
+    id?: any;
     /**
      * 
      * @type {string}
@@ -46,31 +40,97 @@ export interface Edge {
      * @type {string}
      * @memberof Edge
      */
-    graphId: any;
+    dataSourceId?: any;
     /**
      * 
      * @type {string}
      * @memberof Edge
      */
-    originNodeId: any;
+    importDataId?: any;
     /**
      * 
      * @type {string}
      * @memberof Edge
      */
-    destinationNodeId: any;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Edge
-     */
-    archived: any;
+    dataStagingId?: any;
     /**
      * 
      * @type {string}
      * @memberof Edge
      */
-    createdAt: any;
+    typeMappingTransformationId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    originId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    destinationId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    originOriginalId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    originDataSourceId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    originMetatypeId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    destinationOriginalId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    destinationDataSourceId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    destinationMetatypeId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    destinationNodeId?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof Edge
+     */
+    properties?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof Edge
+     */
+    metadata?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Edge
+     */
+    createdAt?: any;
     /**
      * 
      * @type {string}
@@ -82,77 +142,17 @@ export interface Edge {
      * @type {string}
      * @memberof Edge
      */
-    originalDataId?: any | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    dataSourceId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    originNodeOriginalId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    destinationNodeOriginalId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
     deletedAt?: any | null;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Edge
      */
-    dataStagingId: any;
+    createdBy?: any;
     /**
      * 
      * @type {string}
      * @memberof Edge
      */
-    importDataId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    typeMappingTransformationId: any;
-    /**
-     * 
-     * @type {ModelObject}
-     * @memberof Edge
-     */
-    compositeOriginalId?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    originNodeCompositeOriginalId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    destinationNodeCompositeOriginalId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    createdBy: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Edge
-     */
-    modifiedBy: any;
+    modifiedBy?: any;
 }
