@@ -59,4 +59,34 @@ export interface Task {
      * @memberof Task
      */
     config?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    statusMessage?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    createdAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    modifiedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    createdBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof Task
+     */
+    modifiedBy?: any;
 }
