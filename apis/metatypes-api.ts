@@ -18,11 +18,13 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { CreateMetatypeRequest } from '../models';
 import { CreateMetatypesResponse } from '../models';
+import { ErrorResponse } from '../models';
 import { Generic200Response } from '../models';
 import { GetMetatypeResponse } from '../models';
 import { ListMetatypesResponse } from '../models';
 import { UpdateMetatypeRequest } from '../models';
 import { UpdateMetatypeResponse } from '../models';
+import { ValidateMetatypePropertiesResponse } from '../models';
 /**
  * MetatypesApi - axios parameter creator
  * @export
@@ -315,6 +317,59 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
+         * @summary Validate Metatype Properties
+         * @param {string} containerId 
+         * @param {string} metatypeId 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateMetatypeProperties: async (containerId: string, metatypeId: string, body?: any, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling validateMetatypeProperties.');
+            }
+            // verify required parameter 'metatypeId' is not null or undefined
+            if (metatypeId === null || metatypeId === undefined) {
+                throw new RequiredError('metatypeId','Required parameter metatypeId was null or undefined when calling validateMetatypeProperties.');
+            }
+            const localVarPath = `/containers/{container_id}/metatypes/{metatype_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"metatype_id"}}`, encodeURIComponent(String(metatypeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -407,6 +462,22 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
+         * @summary Validate Metatype Properties
+         * @param {string} containerId 
+         * @param {string} metatypeId 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async validateMetatypeProperties(containerId: string, metatypeId: string, body?: any, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateMetatypePropertiesResponse>> {
+            const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).validateMetatypeProperties(containerId, metatypeId, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -478,6 +549,18 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          */
         updateMetatype(body: UpdateMetatypeRequest, containerId: string, metatypeId: string, options?: any): AxiosPromise<UpdateMetatypeResponse> {
             return MetatypesApiFp(configuration).updateMetatype(body, containerId, metatypeId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
+         * @summary Validate Metatype Properties
+         * @param {string} containerId 
+         * @param {string} metatypeId 
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateMetatypeProperties(containerId: string, metatypeId: string, body?: any, options?: any): AxiosPromise<ValidateMetatypePropertiesResponse> {
+            return MetatypesApiFp(configuration).validateMetatypeProperties(containerId, metatypeId, body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -556,5 +639,18 @@ export class MetatypesApi extends BaseAPI {
      */
     public updateMetatype(body: UpdateMetatypeRequest, containerId: string, metatypeId: string, options?: any) {
         return MetatypesApiFp(this.configuration).updateMetatype(body, containerId, metatypeId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
+     * @summary Validate Metatype Properties
+     * @param {string} containerId 
+     * @param {string} metatypeId 
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MetatypesApi
+     */
+    public validateMetatypeProperties(containerId: string, metatypeId: string, body?: any, options?: any) {
+        return MetatypesApiFp(this.configuration).validateMetatypeProperties(containerId, metatypeId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }

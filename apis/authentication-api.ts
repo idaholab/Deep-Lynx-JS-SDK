@@ -16,7 +16,6 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { ErrorResponse } from '../models';
 import { RSACancelRequest } from '../models';
 import { RSAInitRequest } from '../models';
 import { RSAResponse } from '../models';
@@ -24,7 +23,6 @@ import { RSAStatusRequest } from '../models';
 import { RSAStatusResponse } from '../models';
 import { RSAVerifyRequest } from '../models';
 import { TokenExchangeRequest } from '../models';
-import { ValidateMetatypePropertiesResponse } from '../models';
 /**
  * AuthenticationApi - axios parameter creator
  * @export
@@ -40,59 +38,6 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          */
         exchangeOAuthToken: async (body?: TokenExchangeRequest, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/oauth/exchange`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-         * @summary Validate Metatype Properties
-         * @param {string} containerId 
-         * @param {string} metatypeId 
-         * @param {any} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postContainersContainerIdMetatypesMetatypeId: async (containerId: string, metatypeId: string, body?: any, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling postContainersContainerIdMetatypesMetatypeId.');
-            }
-            // verify required parameter 'metatypeId' is not null or undefined
-            if (metatypeId === null || metatypeId === undefined) {
-                throw new RequiredError('metatypeId','Required parameter metatypeId was null or undefined when calling postContainersContainerIdMetatypesMetatypeId.');
-            }
-            const localVarPath = `/containers/{container_id}/metatypes/{metatype_id}`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"metatype_id"}}`, encodeURIComponent(String(metatypeId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -372,22 +317,6 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-         * @summary Validate Metatype Properties
-         * @param {string} containerId 
-         * @param {string} metatypeId 
-         * @param {any} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async postContainersContainerIdMetatypesMetatypeId(containerId: string, metatypeId: string, body?: any, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateMetatypePropertiesResponse>> {
-            const localVarAxiosArgs = await AuthenticationApiAxiosParamCreator(configuration).postContainersContainerIdMetatypesMetatypeId(containerId, metatypeId, body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
          * Returns an OAuth token. The API key and secret must be supplied.
          * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
@@ -479,18 +408,6 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
             return AuthenticationApiFp(configuration).exchangeOAuthToken(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-         * @summary Validate Metatype Properties
-         * @param {string} containerId 
-         * @param {string} metatypeId 
-         * @param {any} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postContainersContainerIdMetatypesMetatypeId(containerId: string, metatypeId: string, body?: any, options?: any): AxiosPromise<ValidateMetatypePropertiesResponse> {
-            return AuthenticationApiFp(configuration).postContainersContainerIdMetatypesMetatypeId(containerId, metatypeId, body, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Returns an OAuth token. The API key and secret must be supplied.
          * @summary Retrieve OAuth Token
          * @param {string} xApiKey The API key
@@ -562,19 +479,6 @@ export class AuthenticationApi extends BaseAPI {
      */
     public exchangeOAuthToken(body?: TokenExchangeRequest, options?: any) {
         return AuthenticationApiFp(this.configuration).exchangeOAuthToken(body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Returns any errors associated with the intended properties or keys for a metatype or else the data itself if no errors are present.
-     * @summary Validate Metatype Properties
-     * @param {string} containerId 
-     * @param {string} metatypeId 
-     * @param {any} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthenticationApi
-     */
-    public postContainersContainerIdMetatypesMetatypeId(containerId: string, metatypeId: string, body?: any, options?: any) {
-        return AuthenticationApiFp(this.configuration).postContainersContainerIdMetatypesMetatypeId(containerId, metatypeId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Returns an OAuth token. The API key and secret must be supplied.
