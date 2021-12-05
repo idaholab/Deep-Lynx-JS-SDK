@@ -592,15 +592,16 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             };
         },
         /**
-         * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
+         * Uploads a file and it's metadata to Deep Lynx. All additional fields on the multipart form will be processed and added as metadata to the file upload itself.   If you include a file field and call that \"metadata\" - you can include a normal metadata upload as either a json, csv, or xml file. This data will be processed like a normal import and the files attached to the processed data. Once Deep Lynx generates nodes and edges from that data, any files attached will automatically be attached to the resulting nodes/edges as well.  NOTE: The metadata file you upload, if json, must be wrapped in an array. If you do not pass in an array of objects, even if it's a single object, then Deep Lynx will attempt to split up your metadata into its parts instead of treating it like a whole object.
          * @summary Upload File
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
+         * @param {string} [importID] You can attach the metadata to an existing import if desired.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadFile: async (containerId: string, dataSourceId: string, file?: string, options: any = {}): Promise<RequestArgs> => {
+        uploadFile: async (containerId: string, dataSourceId: string, file?: string, importID?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling uploadFile.');
@@ -624,6 +625,10 @@ export const DataSourcesApiAxiosParamCreator = function (configuration?: Configu
             const localVarFormParams = new FormData();
 
             // authentication BearerAuth required
+
+            if (importID !== undefined) {
+                localVarQueryParameter['importID'] = importID;
+            }
 
 
             if (file !== undefined) { 
@@ -827,16 +832,17 @@ export const DataSourcesApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
+         * Uploads a file and it's metadata to Deep Lynx. All additional fields on the multipart form will be processed and added as metadata to the file upload itself.   If you include a file field and call that \"metadata\" - you can include a normal metadata upload as either a json, csv, or xml file. This data will be processed like a normal import and the files attached to the processed data. Once Deep Lynx generates nodes and edges from that data, any files attached will automatically be attached to the resulting nodes/edges as well.  NOTE: The metadata file you upload, if json, must be wrapped in an array. If you do not pass in an array of objects, even if it's a single object, then Deep Lynx will attempt to split up your metadata into its parts instead of treating it like a whole object.
          * @summary Upload File
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
+         * @param {string} [importID] You can attach the metadata to an existing import if desired.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileResponse>> {
-            const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).uploadFile(containerId, dataSourceId, file, options);
+        async uploadFile(containerId: string, dataSourceId: string, file?: string, importID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileResponse>> {
+            const localVarAxiosArgs = await DataSourcesApiAxiosParamCreator(configuration).uploadFile(containerId, dataSourceId, file, importID, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -977,16 +983,17 @@ export const DataSourcesApiFactory = function (configuration?: Configuration, ba
             return DataSourcesApiFp(configuration).setDataSourceInactive(containerId, dataSourceId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
+         * Uploads a file and it's metadata to Deep Lynx. All additional fields on the multipart form will be processed and added as metadata to the file upload itself.   If you include a file field and call that \"metadata\" - you can include a normal metadata upload as either a json, csv, or xml file. This data will be processed like a normal import and the files attached to the processed data. Once Deep Lynx generates nodes and edges from that data, any files attached will automatically be attached to the resulting nodes/edges as well.  NOTE: The metadata file you upload, if json, must be wrapped in an array. If you do not pass in an array of objects, even if it's a single object, then Deep Lynx will attempt to split up your metadata into its parts instead of treating it like a whole object.
          * @summary Upload File
          * @param {string} containerId 
          * @param {string} dataSourceId 
          * @param {string} [file] 
+         * @param {string} [importID] You can attach the metadata to an existing import if desired.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any): AxiosPromise<UploadFileResponse> {
-            return DataSourcesApiFp(configuration).uploadFile(containerId, dataSourceId, file, options).then((request) => request(axios, basePath));
+        uploadFile(containerId: string, dataSourceId: string, file?: string, importID?: string, options?: any): AxiosPromise<UploadFileResponse> {
+            return DataSourcesApiFp(configuration).uploadFile(containerId, dataSourceId, file, importID, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1135,16 +1142,17 @@ export class DataSourcesApi extends BaseAPI {
         return DataSourcesApiFp(this.configuration).setDataSourceInactive(containerId, dataSourceId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Uploads a file and metadata to Deep Lynx. This endpoint will accept multiple files and multiple metadata properties as form values. If metadata (additional key value pairs) are provided, an import is created for the data source in addition to the file upload. Transformations can be applied to this import to create nodes and edges in the graph with metadata for the uploaded file(s).
+     * Uploads a file and it's metadata to Deep Lynx. All additional fields on the multipart form will be processed and added as metadata to the file upload itself.   If you include a file field and call that \"metadata\" - you can include a normal metadata upload as either a json, csv, or xml file. This data will be processed like a normal import and the files attached to the processed data. Once Deep Lynx generates nodes and edges from that data, any files attached will automatically be attached to the resulting nodes/edges as well.  NOTE: The metadata file you upload, if json, must be wrapped in an array. If you do not pass in an array of objects, even if it's a single object, then Deep Lynx will attempt to split up your metadata into its parts instead of treating it like a whole object.
      * @summary Upload File
      * @param {string} containerId 
      * @param {string} dataSourceId 
      * @param {string} [file] 
+     * @param {string} [importID] You can attach the metadata to an existing import if desired.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DataSourcesApi
      */
-    public uploadFile(containerId: string, dataSourceId: string, file?: string, options?: any) {
-        return DataSourcesApiFp(this.configuration).uploadFile(containerId, dataSourceId, file, options).then((request) => request(this.axios, this.basePath));
+    public uploadFile(containerId: string, dataSourceId: string, file?: string, importID?: string, options?: any) {
+        return DataSourcesApiFp(this.configuration).uploadFile(containerId, dataSourceId, file, importID, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -237,7 +237,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
+         * This endpoint will attempt to create a connection between two nodes. You can either pass in the node's Deep Lynx IDs, or the node's original id, metatype id, and data source id to create these edges.
          * @summary Create or Update Edges
          * @param {string} containerId 
          * @param {CreateOrUpdateEdgesRequest} [body] 
@@ -284,7 +284,7 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
+         * This endpoint will either create new nodes or update nodes if one with the same original_id is passed.
          * @summary Create Or Update Nodes
          * @param {CreateOrUpdateNodesRequest} body 
          * @param {string} containerId 
@@ -898,7 +898,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
+         * This endpoint will attempt to create a connection between two nodes. You can either pass in the node's Deep Lynx IDs, or the node's original id, metatype id, and data source id to create these edges.
          * @summary Create or Update Edges
          * @param {string} containerId 
          * @param {CreateOrUpdateEdgesRequest} [body] 
@@ -913,7 +913,7 @@ export const GraphApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
+         * This endpoint will either create new nodes or update nodes if one with the same original_id is passed.
          * @summary Create Or Update Nodes
          * @param {CreateOrUpdateNodesRequest} body 
          * @param {string} containerId 
@@ -1130,7 +1130,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
             return GraphApiFp(configuration).attachNodeFile(containerId, nodeId, fileId, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
+         * This endpoint will attempt to create a connection between two nodes. You can either pass in the node's Deep Lynx IDs, or the node's original id, metatype id, and data source id to create these edges.
          * @summary Create or Update Edges
          * @param {string} containerId 
          * @param {CreateOrUpdateEdgesRequest} [body] 
@@ -1141,7 +1141,7 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
             return GraphApiFp(configuration).createOrUpdateEdges(containerId, body, options).then((request) => request(axios, basePath));
         },
         /**
-         * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
+         * This endpoint will either create new nodes or update nodes if one with the same original_id is passed.
          * @summary Create Or Update Nodes
          * @param {CreateOrUpdateNodesRequest} body 
          * @param {string} containerId 
@@ -1323,7 +1323,7 @@ export class GraphApi extends BaseAPI {
         return GraphApiFp(this.configuration).attachNodeFile(containerId, nodeId, fileId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * This endpoint will either create new edges or update edges if a `modified_at` property with a valid DateTime is passed.
+     * This endpoint will attempt to create a connection between two nodes. You can either pass in the node's Deep Lynx IDs, or the node's original id, metatype id, and data source id to create these edges.
      * @summary Create or Update Edges
      * @param {string} containerId 
      * @param {CreateOrUpdateEdgesRequest} [body] 
@@ -1335,7 +1335,7 @@ export class GraphApi extends BaseAPI {
         return GraphApiFp(this.configuration).createOrUpdateEdges(containerId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * This endpoint will either create new nodes or update nodes if a `modified_at` property with a valid DateTime is passed.
+     * This endpoint will either create new nodes or update nodes if one with the same original_id is passed.
      * @summary Create Or Update Nodes
      * @param {CreateOrUpdateNodesRequest} body 
      * @param {string} containerId 
