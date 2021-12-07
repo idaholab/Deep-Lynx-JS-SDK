@@ -36,73 +36,6 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} dataSourceId 
-         * @param {Array&lt;any&gt;} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        addDataToImport: async (containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling addDataToImport.');
-            }
-            // verify required parameter 'importId' is not null or undefined
-            if (importId === null || importId === undefined) {
-                throw new RequiredError('importId','Required parameter importId was null or undefined when calling addDataToImport.');
-            }
-            // verify required parameter 'dataSourceId' is not null or undefined
-            if (dataSourceId === null || dataSourceId === undefined) {
-                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling addDataToImport.');
-            }
-            const localVarPath = `/containers/{container_id}/datasources/{data_source_id}/imports/{import_id}/data`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"import_id"}}`, encodeURIComponent(String(importId)))
-                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new FormData();
-
-            // authentication BearerAuth required
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-         * @summary Add Data to Import
-         * @param {string} containerId 
-         * @param {string} importId 
-         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -156,8 +89,8 @@ export const ImportsApiAxiosParamCreator = function (configuration?: Configurati
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            const needsSerialization = (typeof file !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(file !== undefined ? file : {}) : (file || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -520,23 +453,6 @@ export const ImportsApiFp = function(configuration?: Configuration) {
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} dataSourceId 
-         * @param {Array&lt;any&gt;} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async addDataToImport(containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddDataToImportResponse>> {
-            const localVarAxiosArgs = await ImportsApiAxiosParamCreator(configuration).addDataToImport(containerId, importId, dataSourceId, body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-         * @summary Add Data to Import
-         * @param {string} containerId 
-         * @param {string} importId 
-         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -663,19 +579,6 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
          * @param {string} containerId 
          * @param {string} importId 
          * @param {string} dataSourceId 
-         * @param {Array&lt;any&gt;} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        addDataToImport(containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options?: any): AxiosPromise<AddDataToImportResponse> {
-            return ImportsApiFp(configuration).addDataToImport(containerId, importId, dataSourceId, body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-         * @summary Add Data to Import
-         * @param {string} containerId 
-         * @param {string} importId 
-         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -769,20 +672,6 @@ export const ImportsApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class ImportsApi extends BaseAPI {
-    /**
-     * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.
-     * @summary Add Data to Import
-     * @param {string} containerId 
-     * @param {string} importId 
-     * @param {string} dataSourceId 
-     * @param {Array&lt;any&gt;} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ImportsApi
-     */
-    public addDataToImport(containerId: string, importId: string, dataSourceId: string, body?: Array<any>, options?: any) {
-        return ImportsApiFp(this.configuration).addDataToImport(containerId, importId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
-    }
 
     /**
      * Adds data to an existing import. Accepts an array of JSON objects or a file in JSON or CSV format.

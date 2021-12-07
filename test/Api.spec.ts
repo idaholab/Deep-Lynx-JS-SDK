@@ -4,7 +4,7 @@ import { ContainersApi } from '../apis/containers-api'
 import { DataSourcesApi } from '../apis/data-sources-api'
 import { MiscApi } from '../apis/misc-api'
 import { AuthenticationApi } from '../apis/authentication-api'
-import { CreateRequest } from '../models/create-request'
+import { CreateContainerRequest } from '../models/create-container-request'
 import { CreateDataSourceRequest } from '../models';
 
 describe('A deep lynx sdk', async () => {
@@ -56,7 +56,7 @@ describe('A deep lynx sdk', async () => {
 
     it('can create a manual import', async function () {
         // create a container
-        const createRequest:CreateRequest = {
+        const createRequest:CreateContainerRequest = {
             name: containerName,
             description: 'Test container'
         }

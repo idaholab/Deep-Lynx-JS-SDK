@@ -1,6 +1,6 @@
 {
   "name": "deep-lynx-sdk",
-  "version": "1.0",
+  "version": "0.1.0",
   "description": "OpenAPI client for the Deep Lynx data warehouse",
   "author": "OpenAPI-Generator Contributors; Jeren Browning <jeren.browning@inl.gov>",
   "keywords": [
@@ -8,8 +8,15 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "deep lynx"
+    "deep-lynx"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idaholab/Deep_Lynx_JS_SDK"
+  },
+  "bugs": {
+    "url": "https://github.com/idaholab/Deep_Lynx_JS_SDK/issues"
+  },
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
