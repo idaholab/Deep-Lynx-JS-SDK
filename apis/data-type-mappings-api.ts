@@ -268,6 +268,67 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
          * @summary Import Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importDataTypeMappings: async (containerId: string, dataSourceId: string, body?: Array<any>, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling importDataTypeMappings.');
+            }
+            // verify required parameter 'dataSourceId' is not null or undefined
+            if (dataSourceId === null || dataSourceId === undefined) {
+                throw new RequiredError('dataSourceId','Required parameter dataSourceId was null or undefined when calling importDataTypeMappings.');
+            }
+            const localVarPath = `/containers/{container_id}/import/datasources/{data_source_id}/mappings/import`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"data_source_id"}}`, encodeURIComponent(String(dataSourceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+            const localVarFormParams = new FormData();
+
+            // authentication BearerAuth required
+
+
+            if (file !== undefined) { 
+                localVarFormParams.append('file', file as any);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = localVarFormParams;
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+         * @summary Import Data Type Mappings
+         * @param {string} containerId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -316,8 +377,8 @@ export const DataTypeMappingsApiAxiosParamCreator = function (configuration?: Co
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
-            const needsSerialization = (typeof file !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(file !== undefined ? file : {}) : (file || "");
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -728,6 +789,22 @@ export const DataTypeMappingsApiFp = function(configuration?: Configuration) {
          * @summary Import Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async importDataTypeMappings(containerId: string, dataSourceId: string, body?: Array<any>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportDataTypeMappingResponse>> {
+            const localVarAxiosArgs = await DataTypeMappingsApiAxiosParamCreator(configuration).importDataTypeMappings(containerId, dataSourceId, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+         * @summary Import Data Type Mappings
+         * @param {string} containerId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -893,6 +970,18 @@ export const DataTypeMappingsApiFactory = function (configuration?: Configuratio
          * @summary Import Data Type Mappings
          * @param {string} containerId 
          * @param {string} dataSourceId 
+         * @param {Array&lt;any&gt;} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importDataTypeMappings(containerId: string, dataSourceId: string, body?: Array<any>, options?: any): AxiosPromise<ImportDataTypeMappingResponse> {
+            return DataTypeMappingsApiFp(configuration).importDataTypeMappings(containerId, dataSourceId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+         * @summary Import Data Type Mappings
+         * @param {string} containerId 
+         * @param {string} dataSourceId 
          * @param {string} [file] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1033,6 +1122,19 @@ export class DataTypeMappingsApi extends BaseAPI {
      */
     public exportTypeMappings(containerId: string, dataSourceId: string, body?: TypeMappingExportPayload, options?: any) {
         return DataTypeMappingsApiFp(this.configuration).exportTypeMappings(containerId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Import type mappings for a datasource. Accepts either a JSON body or actual JSON file. The payload should be an array of type mapping classes, previously generated using the export route.
+     * @summary Import Data Type Mappings
+     * @param {string} containerId 
+     * @param {string} dataSourceId 
+     * @param {Array&lt;any&gt;} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DataTypeMappingsApi
+     */
+    public importDataTypeMappings(containerId: string, dataSourceId: string, body?: Array<any>, options?: any) {
+        return DataTypeMappingsApiFp(this.configuration).importDataTypeMappings(containerId, dataSourceId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
