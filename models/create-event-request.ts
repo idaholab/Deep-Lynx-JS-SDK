@@ -14,25 +14,37 @@
 /**
  * 
  * @export
- * @interface BatchContainerUpdateRequestInner
+ * @interface CreateEventRequest
  */
-export interface BatchContainerUpdateRequestInner {
+export interface CreateEventRequest {
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof CreateEventRequest
      */
-    name?: any;
+    containerId?: any;
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof CreateEventRequest
      */
-    description?: any;
+    dataSourceId?: any;
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof CreateEventRequest
      */
-    id?: any;
+    eventType: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof CreateEventRequest
+     */
+    eventConfig?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof CreateEventRequest
+     */
+    event: any;
 }

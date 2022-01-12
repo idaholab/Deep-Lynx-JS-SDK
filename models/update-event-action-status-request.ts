@@ -14,25 +14,31 @@
 /**
  * 
  * @export
- * @interface BatchContainerUpdateRequestInner
+ * @interface UpdateEventActionStatusRequest
  */
-export interface BatchContainerUpdateRequestInner {
+export interface UpdateEventActionStatusRequest {
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof UpdateEventActionStatusRequest
      */
-    name?: any;
+    eventId?: any;
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof UpdateEventActionStatusRequest
      */
-    description?: any;
+    eventActionId?: any;
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof UpdateEventActionStatusRequest
      */
-    id?: any;
+    status?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateEventActionStatusRequest
+     */
+    statusMessage?: any;
 }

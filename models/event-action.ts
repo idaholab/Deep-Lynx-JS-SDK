@@ -14,25 +14,91 @@
 /**
  * 
  * @export
- * @interface BatchContainerUpdateRequestInner
+ * @interface EventAction
  */
-export interface BatchContainerUpdateRequestInner {
+export interface EventAction {
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
-     */
-    name?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
-     */
-    description?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof EventAction
      */
     id?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    containerId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    dataSourceId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    eventType: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    actionType: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof EventAction
+     */
+    actionConfig?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    destination?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    destinationDataSourceId?: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EventAction
+     */
+    active?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    createdAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    modifiedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    deletedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    createdBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventAction
+     */
+    modifiedBy?: any;
 }

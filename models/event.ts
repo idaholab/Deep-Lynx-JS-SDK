@@ -19,34 +19,10 @@
 export interface Event {
     /**
      * 
-     * @type {boolean}
-     * @memberof Event
-     */
-    active?: any;
-    /**
-     * 
      * @type {string}
      * @memberof Event
      */
     id?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    appName: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    appUrl: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    dataSourceId?: any | null;
     /**
      * 
      * @type {string}
@@ -58,7 +34,31 @@ export interface Event {
      * @type {string}
      * @memberof Event
      */
+    dataSourceId?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof Event
+     */
     eventType: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof Event
+     */
+    eventConfig?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof Event
+     */
+    event: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Event
+     */
+    processed?: any;
     /**
      * 
      * @type {string}
@@ -70,17 +70,5 @@ export interface Event {
      * @type {string}
      * @memberof Event
      */
-    modifiedAt?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
     createdBy?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    modifiedBy?: any;
 }

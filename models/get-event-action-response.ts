@@ -14,25 +14,19 @@
 /**
  * 
  * @export
- * @interface BatchContainerUpdateRequestInner
+ * @interface GetEventActionResponse
  */
-export interface BatchContainerUpdateRequestInner {
+export interface GetEventActionResponse {
     /**
      * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @type {EventAction}
+     * @memberof GetEventActionResponse
      */
-    name?: any;
+    value?: any;
     /**
      * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @type {boolean}
+     * @memberof GetEventActionResponse
      */
-    description?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
-     */
-    id?: any;
+    isError?: any;
 }

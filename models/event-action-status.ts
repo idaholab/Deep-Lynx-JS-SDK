@@ -14,25 +14,55 @@
 /**
  * 
  * @export
- * @interface BatchContainerUpdateRequestInner
+ * @interface EventActionStatus
  */
-export interface BatchContainerUpdateRequestInner {
+export interface EventActionStatus {
     /**
      * 
      * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
-     */
-    name?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
-     */
-    description?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof BatchContainerUpdateRequestInner
+     * @memberof EventActionStatus
      */
     id?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    eventId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    eventActionId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    status?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    statusMessage?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    createdAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    modifiedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventActionStatus
+     */
+    modifiedBy?: any;
 }

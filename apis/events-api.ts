@@ -16,12 +16,20 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
+import { CreateEventActionRequest } from '../models';
+import { CreateEventActionResponse } from '../models';
+import { CreateEventRequest } from '../models';
 import { CreateEventResponse } from '../models';
-import { CreateRegisteredEventRequest } from '../models';
 import { Generic200Response } from '../models';
+import { GetEventActionResponse } from '../models';
+import { GetEventActionStatusResponse } from '../models';
 import { GetEventResponse } from '../models';
+import { ListEventActionResponse } from '../models';
+import { ListEventActionStatusResponse } from '../models';
 import { ListEventsResponse } from '../models';
-import { UpdateRegisteredEventRequest } from '../models';
+import { UpdateEventActionResponse } from '../models';
+import { UpdateEventActionStatusRequest } from '../models';
+import { UpdateEventActionStatusResponse } from '../models';
 /**
  * EventsApi - axios parameter creator
  * @export
@@ -29,16 +37,16 @@ import { UpdateRegisteredEventRequest } from '../models';
 export const EventsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-         * @summary Create Registered Event
-         * @param {CreateRegisteredEventRequest} body 
+         * Create new event
+         * @summary Create Event
+         * @param {CreateEventRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRegisteredEvent: async (body: CreateRegisteredEventRequest, options: any = {}): Promise<RequestArgs> => {
+        createEvent: async (body: CreateEventRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling createRegisteredEvent.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling createEvent.');
             }
             const localVarPath = `/events`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -74,19 +82,60 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Delete a registered event.
-         * @summary Delete Registered Event
-         * @param {string} eventId 
+         * Create an event action
+         * @summary Create Event Action
+         * @param {CreateEventActionRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRegisteredEvent: async (eventId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'eventId' is not null or undefined
-            if (eventId === null || eventId === undefined) {
-                throw new RequiredError('eventId','Required parameter eventId was null or undefined when calling deleteRegisteredEvent.');
+        createEventAction: async (body?: CreateEventActionRequest, options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/event_actions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
             }
-            const localVarPath = `/events/{event_id}`
-                .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete an event action
+         * @summary Delete Event Action
+         * @param {string} actionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEventAction: async (actionId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'actionId' is not null or undefined
+            if (actionId === null || actionId === undefined) {
+                throw new RequiredError('actionId','Required parameter actionId was null or undefined when calling deleteEventAction.');
+            }
+            const localVarPath = `/event_actions/{action_id}`
+                .replace(`{${"action_id"}}`, encodeURIComponent(String(actionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -116,12 +165,84 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Lists all registered events
-         * @summary List Registered Events
+         * List all event action statuses
+         * @summary List Event Action Statuses
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listRegisteredEvents: async (options: any = {}): Promise<RequestArgs> => {
+        listEventActionStatuses: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/event_action_status`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lists all event actions
+         * @summary List Event Actions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEventActions: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/event_actions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lists all events
+         * @summary List Events
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEvents: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/events`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -152,16 +273,16 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Retrieve a registered event
-         * @summary Retrieve Registered Event
+         * Retrieve an event
+         * @summary Retrieve Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRegisteredEvent: async (eventId: string, options: any = {}): Promise<RequestArgs> => {
+        retrieveEvent: async (eventId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'eventId' is not null or undefined
             if (eventId === null || eventId === undefined) {
-                throw new RequiredError('eventId','Required parameter eventId was null or undefined when calling retrieveRegisteredEvent.');
+                throw new RequiredError('eventId','Required parameter eventId was null or undefined when calling retrieveEvent.');
             }
             const localVarPath = `/events/{event_id}`
                 .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
@@ -194,21 +315,105 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-         * @summary Update Registered Event
-         * @param {string} eventId 
-         * @param {UpdateRegisteredEventRequest} [body] 
-         * @param {boolean} [active] 
+         * Retrieve an event action
+         * @summary Retrieve Event Action
+         * @param {string} actionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRegisteredEvent: async (eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'eventId' is not null or undefined
-            if (eventId === null || eventId === undefined) {
-                throw new RequiredError('eventId','Required parameter eventId was null or undefined when calling updateRegisteredEvent.');
+        retrieveEventAction: async (actionId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'actionId' is not null or undefined
+            if (actionId === null || actionId === undefined) {
+                throw new RequiredError('actionId','Required parameter actionId was null or undefined when calling retrieveEventAction.');
             }
-            const localVarPath = `/events/{event_id}`
-                .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
+            const localVarPath = `/event_actions/{action_id}`
+                .replace(`{${"action_id"}}`, encodeURIComponent(String(actionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve an event action status
+         * @summary Retrieve Event Action Status
+         * @param {string} statusId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveEventActionStatus: async (statusId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'statusId' is not null or undefined
+            if (statusId === null || statusId === undefined) {
+                throw new RequiredError('statusId','Required parameter statusId was null or undefined when calling retrieveEventActionStatus.');
+            }
+            const localVarPath = `/event_action_status/{status_id}`
+                .replace(`{${"status_id"}}`, encodeURIComponent(String(statusId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update an event action
+         * @summary Update Event Action
+         * @param {string} actionId 
+         * @param {CreateEventActionRequest} [body] 
+         * @param {boolean} [active] Sets the event action active or inactive
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEventAction: async (actionId: string, body?: CreateEventActionRequest, active?: boolean, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'actionId' is not null or undefined
+            if (actionId === null || actionId === undefined) {
+                throw new RequiredError('actionId','Required parameter actionId was null or undefined when calling updateEventAction.');
+            }
+            const localVarPath = `/event_actions/{action_id}`
+                .replace(`{${"action_id"}}`, encodeURIComponent(String(actionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -245,6 +450,53 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Update an event action status
+         * @summary Update Event Action Status
+         * @param {string} statusId 
+         * @param {UpdateEventActionStatusRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEventActionStatus: async (statusId: string, body?: UpdateEventActionStatusRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'statusId' is not null or undefined
+            if (statusId === null || statusId === undefined) {
+                throw new RequiredError('statusId','Required parameter statusId was null or undefined when calling updateEventActionStatus.');
+            }
+            const localVarPath = `/event_action_status/{status_id}`
+                .replace(`{${"status_id"}}`, encodeURIComponent(String(statusId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -255,71 +507,154 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
 export const EventsApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-         * @summary Create Registered Event
-         * @param {CreateRegisteredEventRequest} body 
+         * Create new event
+         * @summary Create Event
+         * @param {CreateEventRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEventResponse>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).createRegisteredEvent(body, options);
+        async createEvent(body: CreateEventRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEventResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).createEvent(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Delete a registered event.
-         * @summary Delete Registered Event
+         * Create an event action
+         * @summary Create Event Action
+         * @param {CreateEventActionRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createEventAction(body?: CreateEventActionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEventActionResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).createEventAction(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Delete an event action
+         * @summary Delete Event Action
+         * @param {string} actionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteEventAction(actionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).deleteEventAction(actionId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * List all event action statuses
+         * @summary List Event Action Statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listEventActionStatuses(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventActionStatusResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEventActionStatuses(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Lists all event actions
+         * @summary List Event Actions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listEventActions(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventActionResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEventActions(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Lists all events
+         * @summary List Events
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listEvents(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventsResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEvents(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Retrieve an event
+         * @summary Retrieve Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRegisteredEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).deleteRegisteredEvent(eventId, options);
+        async retrieveEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).retrieveEvent(eventId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Lists all registered events
-         * @summary List Registered Events
+         * Retrieve an event action
+         * @summary Retrieve Event Action
+         * @param {string} actionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listRegisteredEvents(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventsResponse>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listRegisteredEvents(options);
+        async retrieveEventAction(actionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventActionResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).retrieveEventAction(actionId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Retrieve a registered event
-         * @summary Retrieve Registered Event
-         * @param {string} eventId 
+         * Retrieve an event action status
+         * @summary Retrieve Event Action Status
+         * @param {string} statusId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveRegisteredEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventResponse>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).retrieveRegisteredEvent(eventId, options);
+        async retrieveEventActionStatus(statusId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventActionStatusResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).retrieveEventActionStatus(statusId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
             };
         },
         /**
-         * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-         * @summary Update Registered Event
-         * @param {string} eventId 
-         * @param {UpdateRegisteredEventRequest} [body] 
-         * @param {boolean} [active] 
+         * Update an event action
+         * @summary Update Event Action
+         * @param {string} actionId 
+         * @param {CreateEventActionRequest} [body] 
+         * @param {boolean} [active] Sets the event action active or inactive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).updateRegisteredEvent(eventId, body, active, options);
+        async updateEventAction(actionId: string, body?: CreateEventActionRequest, active?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateEventActionResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).updateEventAction(actionId, body, active, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Update an event action status
+         * @summary Update Event Action Status
+         * @param {string} statusId 
+         * @param {UpdateEventActionStatusRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateEventActionStatus(statusId: string, body?: UpdateEventActionStatusRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateEventActionStatusResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).updateEventActionStatus(statusId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -335,55 +670,114 @@ export const EventsApiFp = function(configuration?: Configuration) {
 export const EventsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-         * @summary Create Registered Event
-         * @param {CreateRegisteredEventRequest} body 
+         * Create new event
+         * @summary Create Event
+         * @param {CreateEventRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any): AxiosPromise<CreateEventResponse> {
-            return EventsApiFp(configuration).createRegisteredEvent(body, options).then((request) => request(axios, basePath));
+        createEvent(body: CreateEventRequest, options?: any): AxiosPromise<CreateEventResponse> {
+            return EventsApiFp(configuration).createEvent(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Delete a registered event.
-         * @summary Delete Registered Event
+         * Create an event action
+         * @summary Create Event Action
+         * @param {CreateEventActionRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createEventAction(body?: CreateEventActionRequest, options?: any): AxiosPromise<CreateEventActionResponse> {
+            return EventsApiFp(configuration).createEventAction(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete an event action
+         * @summary Delete Event Action
+         * @param {string} actionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEventAction(actionId: string, options?: any): AxiosPromise<Generic200Response> {
+            return EventsApiFp(configuration).deleteEventAction(actionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * List all event action statuses
+         * @summary List Event Action Statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEventActionStatuses(options?: any): AxiosPromise<ListEventActionStatusResponse> {
+            return EventsApiFp(configuration).listEventActionStatuses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Lists all event actions
+         * @summary List Event Actions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEventActions(options?: any): AxiosPromise<ListEventActionResponse> {
+            return EventsApiFp(configuration).listEventActions(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Lists all events
+         * @summary List Events
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listEvents(options?: any): AxiosPromise<ListEventsResponse> {
+            return EventsApiFp(configuration).listEvents(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve an event
+         * @summary Retrieve Event
          * @param {string} eventId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRegisteredEvent(eventId: string, options?: any): AxiosPromise<Generic200Response> {
-            return EventsApiFp(configuration).deleteRegisteredEvent(eventId, options).then((request) => request(axios, basePath));
+        retrieveEvent(eventId: string, options?: any): AxiosPromise<GetEventResponse> {
+            return EventsApiFp(configuration).retrieveEvent(eventId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Lists all registered events
-         * @summary List Registered Events
+         * Retrieve an event action
+         * @summary Retrieve Event Action
+         * @param {string} actionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listRegisteredEvents(options?: any): AxiosPromise<ListEventsResponse> {
-            return EventsApiFp(configuration).listRegisteredEvents(options).then((request) => request(axios, basePath));
+        retrieveEventAction(actionId: string, options?: any): AxiosPromise<GetEventActionResponse> {
+            return EventsApiFp(configuration).retrieveEventAction(actionId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve a registered event
-         * @summary Retrieve Registered Event
-         * @param {string} eventId 
+         * Retrieve an event action status
+         * @summary Retrieve Event Action Status
+         * @param {string} statusId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveRegisteredEvent(eventId: string, options?: any): AxiosPromise<GetEventResponse> {
-            return EventsApiFp(configuration).retrieveRegisteredEvent(eventId, options).then((request) => request(axios, basePath));
+        retrieveEventActionStatus(statusId: string, options?: any): AxiosPromise<GetEventActionStatusResponse> {
+            return EventsApiFp(configuration).retrieveEventActionStatus(statusId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-         * @summary Update Registered Event
-         * @param {string} eventId 
-         * @param {UpdateRegisteredEventRequest} [body] 
-         * @param {boolean} [active] 
+         * Update an event action
+         * @summary Update Event Action
+         * @param {string} actionId 
+         * @param {CreateEventActionRequest} [body] 
+         * @param {boolean} [active] Sets the event action active or inactive
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any): AxiosPromise<Generic200Response> {
-            return EventsApiFp(configuration).updateRegisteredEvent(eventId, body, active, options).then((request) => request(axios, basePath));
+        updateEventAction(actionId: string, body?: CreateEventActionRequest, active?: boolean, options?: any): AxiosPromise<UpdateEventActionResponse> {
+            return EventsApiFp(configuration).updateEventAction(actionId, body, active, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update an event action status
+         * @summary Update Event Action Status
+         * @param {string} statusId 
+         * @param {UpdateEventActionStatusRequest} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEventActionStatus(statusId: string, body?: UpdateEventActionStatusRequest, options?: any): AxiosPromise<UpdateEventActionStatusResponse> {
+            return EventsApiFp(configuration).updateEventActionStatus(statusId, body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -396,59 +790,124 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
  */
 export class EventsApi extends BaseAPI {
     /**
-     * Create new registered event. An `app_name`, `app_url`, and `event_type` must be provided. Either a `container_id` or `data_source_id` must also be provided.
-     * @summary Create Registered Event
-     * @param {CreateRegisteredEventRequest} body 
+     * Create new event
+     * @summary Create Event
+     * @param {CreateEventRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public createRegisteredEvent(body: CreateRegisteredEventRequest, options?: any) {
-        return EventsApiFp(this.configuration).createRegisteredEvent(body, options).then((request) => request(this.axios, this.basePath));
+    public createEvent(body: CreateEventRequest, options?: any) {
+        return EventsApiFp(this.configuration).createEvent(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Delete a registered event.
-     * @summary Delete Registered Event
+     * Create an event action
+     * @summary Create Event Action
+     * @param {CreateEventActionRequest} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public createEventAction(body?: CreateEventActionRequest, options?: any) {
+        return EventsApiFp(this.configuration).createEventAction(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Delete an event action
+     * @summary Delete Event Action
+     * @param {string} actionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public deleteEventAction(actionId: string, options?: any) {
+        return EventsApiFp(this.configuration).deleteEventAction(actionId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * List all event action statuses
+     * @summary List Event Action Statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public listEventActionStatuses(options?: any) {
+        return EventsApiFp(this.configuration).listEventActionStatuses(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Lists all event actions
+     * @summary List Event Actions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public listEventActions(options?: any) {
+        return EventsApiFp(this.configuration).listEventActions(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Lists all events
+     * @summary List Events
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public listEvents(options?: any) {
+        return EventsApiFp(this.configuration).listEvents(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Retrieve an event
+     * @summary Retrieve Event
      * @param {string} eventId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public deleteRegisteredEvent(eventId: string, options?: any) {
-        return EventsApiFp(this.configuration).deleteRegisteredEvent(eventId, options).then((request) => request(this.axios, this.basePath));
+    public retrieveEvent(eventId: string, options?: any) {
+        return EventsApiFp(this.configuration).retrieveEvent(eventId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Lists all registered events
-     * @summary List Registered Events
+     * Retrieve an event action
+     * @summary Retrieve Event Action
+     * @param {string} actionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public listRegisteredEvents(options?: any) {
-        return EventsApiFp(this.configuration).listRegisteredEvents(options).then((request) => request(this.axios, this.basePath));
+    public retrieveEventAction(actionId: string, options?: any) {
+        return EventsApiFp(this.configuration).retrieveEventAction(actionId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Retrieve a registered event
-     * @summary Retrieve Registered Event
-     * @param {string} eventId 
+     * Retrieve an event action status
+     * @summary Retrieve Event Action Status
+     * @param {string} statusId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public retrieveRegisteredEvent(eventId: string, options?: any) {
-        return EventsApiFp(this.configuration).retrieveRegisteredEvent(eventId, options).then((request) => request(this.axios, this.basePath));
+    public retrieveEventActionStatus(statusId: string, options?: any) {
+        return EventsApiFp(this.configuration).retrieveEventActionStatus(statusId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Update a registered event. If the `active` query paramter is provided with a value of true or false, the event will be activated/deactivated.
-     * @summary Update Registered Event
-     * @param {string} eventId 
-     * @param {UpdateRegisteredEventRequest} [body] 
-     * @param {boolean} [active] 
+     * Update an event action
+     * @summary Update Event Action
+     * @param {string} actionId 
+     * @param {CreateEventActionRequest} [body] 
+     * @param {boolean} [active] Sets the event action active or inactive
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public updateRegisteredEvent(eventId: string, body?: UpdateRegisteredEventRequest, active?: boolean, options?: any) {
-        return EventsApiFp(this.configuration).updateRegisteredEvent(eventId, body, active, options).then((request) => request(this.axios, this.basePath));
+    public updateEventAction(actionId: string, body?: CreateEventActionRequest, active?: boolean, options?: any) {
+        return EventsApiFp(this.configuration).updateEventAction(actionId, body, active, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Update an event action status
+     * @summary Update Event Action Status
+     * @param {string} statusId 
+     * @param {UpdateEventActionStatusRequest} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventsApi
+     */
+    public updateEventActionStatus(statusId: string, body?: UpdateEventActionStatusRequest, options?: any) {
+        return EventsApiFp(this.configuration).updateEventActionStatus(statusId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
