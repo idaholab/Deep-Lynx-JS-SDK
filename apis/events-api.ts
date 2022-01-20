@@ -84,11 +84,15 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Create an event action
          * @summary Create Event Action
-         * @param {CreateEventActionRequest} [body] 
+         * @param {CreateEventActionRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createEventAction: async (body?: CreateEventActionRequest, options: any = {}): Promise<RequestArgs> => {
+        createEventAction: async (body: CreateEventActionRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling createEventAction.');
+            }
             const localVarPath = `/event_actions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -523,11 +527,11 @@ export const EventsApiFp = function(configuration?: Configuration) {
         /**
          * Create an event action
          * @summary Create Event Action
-         * @param {CreateEventActionRequest} [body] 
+         * @param {CreateEventActionRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createEventAction(body?: CreateEventActionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEventActionResponse>> {
+        async createEventAction(body: CreateEventActionRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateEventActionResponse>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).createEventAction(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -682,11 +686,11 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         /**
          * Create an event action
          * @summary Create Event Action
-         * @param {CreateEventActionRequest} [body] 
+         * @param {CreateEventActionRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createEventAction(body?: CreateEventActionRequest, options?: any): AxiosPromise<CreateEventActionResponse> {
+        createEventAction(body: CreateEventActionRequest, options?: any): AxiosPromise<CreateEventActionResponse> {
             return EventsApiFp(configuration).createEventAction(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -803,12 +807,12 @@ export class EventsApi extends BaseAPI {
     /**
      * Create an event action
      * @summary Create Event Action
-     * @param {CreateEventActionRequest} [body] 
+     * @param {CreateEventActionRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public createEventAction(body?: CreateEventActionRequest, options?: any) {
+    public createEventAction(body: CreateEventActionRequest, options?: any) {
         return EventsApiFp(this.configuration).createEventAction(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
