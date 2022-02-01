@@ -500,12 +500,10 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [destinationID] 
          * @param {string} [relationshipPairID] 
          * @param {string} [relationshipPairName] 
-         * @param {string} [dataSourceID] 
-         * @param {string} [loadRelationshipPairs] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listEdges: async (containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, dataSourceID?: string, loadRelationshipPairs?: string, options: any = {}): Promise<RequestArgs> => {
+        listEdges: async (containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listEdges.');
@@ -546,14 +544,6 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
 
             if (relationshipPairName !== undefined) {
                 localVarQueryParameter['relationshipPairName'] = relationshipPairName;
-            }
-
-            if (dataSourceID !== undefined) {
-                localVarQueryParameter['dataSourceID'] = dataSourceID;
-            }
-
-            if (loadRelationshipPairs !== undefined) {
-                localVarQueryParameter['loadRelationshipPairs'] = loadRelationshipPairs;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -628,11 +618,10 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [offset] 
          * @param {string} [transformationID] Return only nodes for the selected type transformation
          * @param {string} [metatypeID] Return only nodes for the selected metatype
-         * @param {string} [dataSourceID] Return only nodes for the selected datasource
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodes: async (containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, dataSourceID?: string, options: any = {}): Promise<RequestArgs> => {
+        listNodes: async (containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listNodes.');
@@ -665,10 +654,6 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
 
             if (metatypeID !== undefined) {
                 localVarQueryParameter['metatypeID'] = metatypeID;
-            }
-
-            if (dataSourceID !== undefined) {
-                localVarQueryParameter['dataSourceID'] = dataSourceID;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -999,13 +984,11 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {string} [destinationID] 
          * @param {string} [relationshipPairID] 
          * @param {string} [relationshipPairName] 
-         * @param {string} [dataSourceID] 
-         * @param {string} [loadRelationshipPairs] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, dataSourceID?: string, loadRelationshipPairs?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEdgesResponse>> {
-            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, dataSourceID, loadRelationshipPairs, options);
+        async listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEdgesResponse>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1034,12 +1017,11 @@ export const GraphApiFp = function(configuration?: Configuration) {
          * @param {number} [offset] 
          * @param {string} [transformationID] Return only nodes for the selected type transformation
          * @param {string} [metatypeID] Return only nodes for the selected metatype
-         * @param {string} [dataSourceID] Return only nodes for the selected datasource
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, dataSourceID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesResponse>> {
-            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, dataSourceID, options);
+        async listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListNodesResponse>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1214,13 +1196,11 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {string} [destinationID] 
          * @param {string} [relationshipPairID] 
          * @param {string} [relationshipPairName] 
-         * @param {string} [dataSourceID] 
-         * @param {string} [loadRelationshipPairs] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, dataSourceID?: string, loadRelationshipPairs?: string, options?: any): AxiosPromise<ListEdgesResponse> {
-            return GraphApiFp(configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, dataSourceID, loadRelationshipPairs, options).then((request) => request(axios, basePath));
+        listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any): AxiosPromise<ListEdgesResponse> {
+            return GraphApiFp(configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, options).then((request) => request(axios, basePath));
         },
         /**
          * Lists all attached files for node.
@@ -1241,12 +1221,11 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          * @param {number} [offset] 
          * @param {string} [transformationID] Return only nodes for the selected type transformation
          * @param {string} [metatypeID] Return only nodes for the selected metatype
-         * @param {string} [dataSourceID] Return only nodes for the selected datasource
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, dataSourceID?: string, options?: any): AxiosPromise<ListNodesResponse> {
-            return GraphApiFp(configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, dataSourceID, options).then((request) => request(axios, basePath));
+        listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any): AxiosPromise<ListNodesResponse> {
+            return GraphApiFp(configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, options).then((request) => request(axios, basePath));
         },
         /**
          * List Nodes, filter by MetatypeID
@@ -1415,14 +1394,12 @@ export class GraphApi extends BaseAPI {
      * @param {string} [destinationID] 
      * @param {string} [relationshipPairID] 
      * @param {string} [relationshipPairName] 
-     * @param {string} [dataSourceID] 
-     * @param {string} [loadRelationshipPairs] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GraphApi
      */
-    public listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, dataSourceID?: string, loadRelationshipPairs?: string, options?: any) {
-        return GraphApiFp(this.configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, dataSourceID, loadRelationshipPairs, options).then((request) => request(this.axios, this.basePath));
+    public listEdges(containerId: string, limit?: number, offset?: number, originID?: string, destinationID?: string, relationshipPairID?: string, relationshipPairName?: string, options?: any) {
+        return GraphApiFp(this.configuration).listEdges(containerId, limit, offset, originID, destinationID, relationshipPairID, relationshipPairName, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Lists all attached files for node.
@@ -1444,13 +1421,12 @@ export class GraphApi extends BaseAPI {
      * @param {number} [offset] 
      * @param {string} [transformationID] Return only nodes for the selected type transformation
      * @param {string} [metatypeID] Return only nodes for the selected metatype
-     * @param {string} [dataSourceID] Return only nodes for the selected datasource
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GraphApi
      */
-    public listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, dataSourceID?: string, options?: any) {
-        return GraphApiFp(this.configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, dataSourceID, options).then((request) => request(this.axios, this.basePath));
+    public listNodes(containerId: string, limit?: number, offset?: number, transformationID?: string, metatypeID?: string, options?: any) {
+        return GraphApiFp(this.configuration).listNodes(containerId, limit, offset, transformationID, metatypeID, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * List Nodes, filter by MetatypeID

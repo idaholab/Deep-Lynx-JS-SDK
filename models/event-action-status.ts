@@ -28,12 +28,6 @@ export interface EventActionStatus {
      * @type {string}
      * @memberof EventActionStatus
      */
-    eventId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof EventActionStatus
-     */
     eventActionId: any;
     /**
      * 
@@ -46,7 +40,7 @@ export interface EventActionStatus {
      * @type {string}
      * @memberof EventActionStatus
      */
-    statusMessage?: any;
+    statusMessage?: any | null;
     /**
      * 
      * @type {string}
@@ -58,11 +52,17 @@ export interface EventActionStatus {
      * @type {string}
      * @memberof EventActionStatus
      */
-    modifiedAt?: any;
+    modifiedAt?: any | null;
     /**
      * 
      * @type {string}
      * @memberof EventActionStatus
      */
-    modifiedBy?: any;
+    modifiedBy?: any | null;
+    /**
+     * 
+     * @type {Event}
+     * @memberof EventActionStatus
+     */
+    event?: any;
 }

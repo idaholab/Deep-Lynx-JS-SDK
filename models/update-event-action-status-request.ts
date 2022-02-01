@@ -22,18 +22,6 @@ export interface UpdateEventActionStatusRequest {
      * @type {string}
      * @memberof UpdateEventActionStatusRequest
      */
-    eventId?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateEventActionStatusRequest
-     */
-    eventActionId?: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateEventActionStatusRequest
-     */
     status?: any;
     /**
      * 

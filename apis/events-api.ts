@@ -23,10 +23,8 @@ import { CreateEventResponse } from '../models';
 import { Generic200Response } from '../models';
 import { GetEventActionResponse } from '../models';
 import { GetEventActionStatusResponse } from '../models';
-import { GetEventResponse } from '../models';
 import { ListEventActionResponse } from '../models';
 import { ListEventActionStatusResponse } from '../models';
-import { ListEventsResponse } from '../models';
 import { UpdateEventActionResponse } from '../models';
 import { UpdateEventActionStatusRequest } from '../models';
 import { UpdateEventActionStatusResponse } from '../models';
@@ -171,10 +169,11 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * List all event action statuses
          * @summary List Event Action Statuses
+         * @param {string} [eventID] Filter returned statuses by the event ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listEventActionStatuses: async (options: any = {}): Promise<RequestArgs> => {
+        listEventActionStatuses: async (eventID?: string, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/event_action_status`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -187,6 +186,10 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
 
             // authentication BearerAuth required
+
+            if (eventID !== undefined) {
+                localVarQueryParameter['eventID'] = eventID;
+            }
 
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -212,84 +215,6 @@ export const EventsApiAxiosParamCreator = function (configuration?: Configuratio
          */
         listEventActions: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/event_actions`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Lists all events
-         * @summary List Events
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listEvents: async (options: any = {}): Promise<RequestArgs> => {
-            const localVarPath = `/events`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve an event
-         * @summary Retrieve Event
-         * @param {string} eventId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveEvent: async (eventId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'eventId' is not null or undefined
-            if (eventId === null || eventId === undefined) {
-                throw new RequiredError('eventId','Required parameter eventId was null or undefined when calling retrieveEvent.');
-            }
-            const localVarPath = `/events/{event_id}`
-                .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -555,11 +480,12 @@ export const EventsApiFp = function(configuration?: Configuration) {
         /**
          * List all event action statuses
          * @summary List Event Action Statuses
+         * @param {string} [eventID] Filter returned statuses by the event ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listEventActionStatuses(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventActionStatusResponse>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEventActionStatuses(options);
+        async listEventActionStatuses(eventID?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventActionStatusResponse>> {
+            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEventActionStatuses(eventID, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -573,33 +499,6 @@ export const EventsApiFp = function(configuration?: Configuration) {
          */
         async listEventActions(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventActionResponse>> {
             const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEventActions(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Lists all events
-         * @summary List Events
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listEvents(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListEventsResponse>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).listEvents(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Retrieve an event
-         * @summary Retrieve Event
-         * @param {string} eventId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async retrieveEvent(eventId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetEventResponse>> {
-            const localVarAxiosArgs = await EventsApiAxiosParamCreator(configuration).retrieveEvent(eventId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -706,11 +605,12 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
         /**
          * List all event action statuses
          * @summary List Event Action Statuses
+         * @param {string} [eventID] Filter returned statuses by the event ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listEventActionStatuses(options?: any): AxiosPromise<ListEventActionStatusResponse> {
-            return EventsApiFp(configuration).listEventActionStatuses(options).then((request) => request(axios, basePath));
+        listEventActionStatuses(eventID?: string, options?: any): AxiosPromise<ListEventActionStatusResponse> {
+            return EventsApiFp(configuration).listEventActionStatuses(eventID, options).then((request) => request(axios, basePath));
         },
         /**
          * Lists all event actions
@@ -720,25 +620,6 @@ export const EventsApiFactory = function (configuration?: Configuration, basePat
          */
         listEventActions(options?: any): AxiosPromise<ListEventActionResponse> {
             return EventsApiFp(configuration).listEventActions(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Lists all events
-         * @summary List Events
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listEvents(options?: any): AxiosPromise<ListEventsResponse> {
-            return EventsApiFp(configuration).listEvents(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve an event
-         * @summary Retrieve Event
-         * @param {string} eventId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveEvent(eventId: string, options?: any): AxiosPromise<GetEventResponse> {
-            return EventsApiFp(configuration).retrieveEvent(eventId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve an event action
@@ -829,12 +710,13 @@ export class EventsApi extends BaseAPI {
     /**
      * List all event action statuses
      * @summary List Event Action Statuses
+     * @param {string} [eventID] Filter returned statuses by the event ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventsApi
      */
-    public listEventActionStatuses(options?: any) {
-        return EventsApiFp(this.configuration).listEventActionStatuses(options).then((request) => request(this.axios, this.basePath));
+    public listEventActionStatuses(eventID?: string, options?: any) {
+        return EventsApiFp(this.configuration).listEventActionStatuses(eventID, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Lists all event actions
@@ -845,27 +727,6 @@ export class EventsApi extends BaseAPI {
      */
     public listEventActions(options?: any) {
         return EventsApiFp(this.configuration).listEventActions(options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Lists all events
-     * @summary List Events
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public listEvents(options?: any) {
-        return EventsApiFp(this.configuration).listEvents(options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Retrieve an event
-     * @summary Retrieve Event
-     * @param {string} eventId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof EventsApi
-     */
-    public retrieveEvent(eventId: string, options?: any) {
-        return EventsApiFp(this.configuration).retrieveEvent(eventId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve an event action
