@@ -18,7 +18,6 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { BatchContainerUpdateRequestInner } from '../models';
 import { BatchUpdateContainerResponse } from '../models';
-import { ChangelistsChangelistIdBody } from '../models';
 import { ContainerImportResponse } from '../models';
 import { ContainerImportUpdateResponse } from '../models';
 import { CreateContainerRequest } from '../models';
@@ -28,12 +27,7 @@ import { Generic200Response } from '../models';
 import { GetContainerResponse } from '../models';
 import { InlineResponse2001 } from '../models';
 import { InlineResponse2002 } from '../models';
-import { InlineResponse2003 } from '../models';
-import { InlineResponse2004 } from '../models';
-import { ListChangelistResponse } from '../models';
 import { ListContainerResponse } from '../models';
-import { OntologyChangelistsBody } from '../models';
-import { RetrieveChangelistResponse } from '../models';
 import { UpdateContainerRequest } from '../models';
 import { UpdateContainerResponse } from '../models';
 /**
@@ -91,80 +85,32 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Applies changelist to the ontology, creates a new ontology version.
-         * @summary Apply Changelist
+         * Approves an ontology version
+         * @summary Approve Ontology Version
          * @param {string} containerId 
-         * @param {string} changelistID 
+         * @param {string} ontologyVersionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        applyChangelist: async (containerId: string, changelistID: string, options: any = {}): Promise<RequestArgs> => {
+        approveOntologyVersion: async (containerId: string, ontologyVersionId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling applyChangelist.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling approveOntologyVersion.');
             }
-            // verify required parameter 'changelistID' is not null or undefined
-            if (changelistID === null || changelistID === undefined) {
-                throw new RequiredError('changelistID','Required parameter changelistID was null or undefined when calling applyChangelist.');
+            // verify required parameter 'ontologyVersionId' is not null or undefined
+            if (ontologyVersionId === null || ontologyVersionId === undefined) {
+                throw new RequiredError('ontologyVersionId','Required parameter ontologyVersionId was null or undefined when calling approveOntologyVersion.');
             }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelistID}/apply`
+            const localVarPath = `/containers/{container_id}/ontology/versions/{ontology_version_id}/approve`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelistID"}}`, encodeURIComponent(String(changelistID)));
+                .replace(`{${"ontology_version_id"}}`, encodeURIComponent(String(ontologyVersionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Approves a changelist
-         * @summary Approve Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        approveChangelist: async (containerId: string, changelistId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling approveChangelist.');
-            }
-            // verify required parameter 'changelistId' is not null or undefined
-            if (changelistId === null || changelistId === undefined) {
-                throw new RequiredError('changelistId','Required parameter changelistId was null or undefined when calling approveChangelist.');
-            }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelist_id}/approve`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelist_id"}}`, encodeURIComponent(String(changelistId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -324,101 +270,6 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Create a new changelist.
-         * @summary Create New Changelist
-         * @param {string} containerId 
-         * @param {OntologyChangelistsBody} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createNewChangelist: async (containerId: string, body?: OntologyChangelistsBody, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling createNewChangelist.');
-            }
-            const localVarPath = `/containers/{container_id}/ontology/changelists`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Deletes a changelist
-         * @summary Delete Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteChangelist: async (containerId: string, changelistId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling deleteChangelist.');
-            }
-            // verify required parameter 'changelistId' is not null or undefined
-            if (changelistId === null || changelistId === undefined) {
-                throw new RequiredError('changelistId','Required parameter changelistId was null or undefined when calling deleteChangelist.');
-            }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelist_id}`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelist_id"}}`, encodeURIComponent(String(changelistId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
          * @summary Import Container
          * @param {string} name 
@@ -502,96 +353,6 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Approves a changelist for application. Note: you must still apply changelist after approval, this does not apply changelist.
-         * @summary List Approvals for Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listChangelistApprovals: async (containerId: string, changelistId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listChangelistApprovals.');
-            }
-            // verify required parameter 'changelistId' is not null or undefined
-            if (changelistId === null || changelistId === undefined) {
-                throw new RequiredError('changelistId','Required parameter changelistId was null or undefined when calling listChangelistApprovals.');
-            }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelist_id}/approve`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelist_id"}}`, encodeURIComponent(String(changelistId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * List all changelists for a container. Will eventually support filters.
-         * @summary List Changelists
-         * @param {string} containerId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listChangelists: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listChangelists.');
-            }
-            const localVarPath = `/containers/{container_id}/ontology/changelists`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -719,19 +480,25 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Repairs a container's permission set
-         * @summary Repair Container Permissions
+         * Publishes an ontology version
+         * @summary Publish Ontology Version
          * @param {string} containerId 
+         * @param {string} ontologyVersionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        repairContainerPermissions: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
+        publishOntologyVersion: async (containerId: string, ontologyVersionId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling repairContainerPermissions.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling publishOntologyVersion.');
             }
-            const localVarPath = `/containers/{container_id}/permissions`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
+            // verify required parameter 'ontologyVersionId' is not null or undefined
+            if (ontologyVersionId === null || ontologyVersionId === undefined) {
+                throw new RequiredError('ontologyVersionId','Required parameter ontologyVersionId was null or undefined when calling publishOntologyVersion.');
+            }
+            const localVarPath = `/containers/{container_id}/ontology/versions/{ontology_version_id}/publish`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"ontology_version_id"}}`, encodeURIComponent(String(ontologyVersionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -761,32 +528,74 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Retrieve a changelist by id.
-         * @summary Retrieve Changelist
+         * Rejects an ontology version (either in a pending status or after it has been approved).
+         * @summary Reject Ontology Version Approval
          * @param {string} containerId 
-         * @param {string} changelistId 
+         * @param {string} ontologyVersionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveChangelist: async (containerId: string, changelistId: string, options: any = {}): Promise<RequestArgs> => {
+        rejectOntologyVersionApproval: async (containerId: string, ontologyVersionId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling retrieveChangelist.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling rejectOntologyVersionApproval.');
             }
-            // verify required parameter 'changelistId' is not null or undefined
-            if (changelistId === null || changelistId === undefined) {
-                throw new RequiredError('changelistId','Required parameter changelistId was null or undefined when calling retrieveChangelist.');
+            // verify required parameter 'ontologyVersionId' is not null or undefined
+            if (ontologyVersionId === null || ontologyVersionId === undefined) {
+                throw new RequiredError('ontologyVersionId','Required parameter ontologyVersionId was null or undefined when calling rejectOntologyVersionApproval.');
             }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelist_id}`
+            const localVarPath = `/containers/{container_id}/ontology/versions/{ontology_version_id}/approve`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelist_id"}}`, encodeURIComponent(String(changelistId)));
+                .replace(`{${"ontology_version_id"}}`, encodeURIComponent(String(ontologyVersionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Repairs a container's permission set
+         * @summary Repair Container Permissions
+         * @param {string} containerId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        repairContainerPermissions: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling repairContainerPermissions.');
+            }
+            const localVarPath = `/containers/{container_id}/permissions`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -899,32 +708,32 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Removes all approvals for changelist.
-         * @summary Revoke Changelist Approval
+         * Rolls back the ontology to the selected version.
+         * @summary Rollback Ontology Version
          * @param {string} containerId 
-         * @param {string} changelistId 
+         * @param {string} versionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        revokeChangelistApproval: async (containerId: string, changelistId: string, options: any = {}): Promise<RequestArgs> => {
+        rollbackOntologyVersion: async (containerId: string, versionId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling revokeChangelistApproval.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling rollbackOntologyVersion.');
             }
-            // verify required parameter 'changelistId' is not null or undefined
-            if (changelistId === null || changelistId === undefined) {
-                throw new RequiredError('changelistId','Required parameter changelistId was null or undefined when calling revokeChangelistApproval.');
+            // verify required parameter 'versionId' is not null or undefined
+            if (versionId === null || versionId === undefined) {
+                throw new RequiredError('versionId','Required parameter versionId was null or undefined when calling rollbackOntologyVersion.');
             }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelist_id}/approve`
+            const localVarPath = `/containers/{container_id}/ontology/versions/{version_id}/rollback`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelist_id"}}`, encodeURIComponent(String(changelistId)));
+                .replace(`{${"version_id"}}`, encodeURIComponent(String(versionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -947,25 +756,25 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Rolls back the ontology to the selected version.
-         * @summary Rollback Ontology Version
+         * Sends an ontology version to be approved by a container admin
+         * @summary Send Ontology Version for Approval
          * @param {string} containerId 
-         * @param {string} versionId 
+         * @param {string} ontologyVersionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rollbackOntologyVersion: async (containerId: string, versionId: string, options: any = {}): Promise<RequestArgs> => {
+        sendOntologyVersionForApproval: async (containerId: string, ontologyVersionId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling rollbackOntologyVersion.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling sendOntologyVersionForApproval.');
             }
-            // verify required parameter 'versionId' is not null or undefined
-            if (versionId === null || versionId === undefined) {
-                throw new RequiredError('versionId','Required parameter versionId was null or undefined when calling rollbackOntologyVersion.');
+            // verify required parameter 'ontologyVersionId' is not null or undefined
+            if (ontologyVersionId === null || ontologyVersionId === undefined) {
+                throw new RequiredError('ontologyVersionId','Required parameter ontologyVersionId was null or undefined when calling sendOntologyVersionForApproval.');
             }
-            const localVarPath = `/containers/{container_id}/ontology/versions/{version_id}/rollback`
+            const localVarPath = `/containers/{container_id}/ontology/versions/{ontology_version_id}/approve`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"version_id"}}`, encodeURIComponent(String(versionId)));
+                .replace(`{${"ontology_version_id"}}`, encodeURIComponent(String(ontologyVersionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -1030,59 +839,6 @@ export const ContainersApiAxiosParamCreator = function (configuration?: Configur
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update a changelist.
-         * @summary Update Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {ChangelistsChangelistIdBody} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateChangelist: async (containerId: string, changelistId: string, body?: ChangelistsChangelistIdBody, options: any = {}): Promise<RequestArgs> => {
-            // verify required parameter 'containerId' is not null or undefined
-            if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling updateChangelist.');
-            }
-            // verify required parameter 'changelistId' is not null or undefined
-            if (changelistId === null || changelistId === undefined) {
-                throw new RequiredError('changelistId','Required parameter changelistId was null or undefined when calling updateChangelist.');
-            }
-            const localVarPath = `/containers/{container_id}/ontology/changelists/{changelist_id}`
-                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
-                .replace(`{${"changelist_id"}}`, encodeURIComponent(String(changelistId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication BearerAuth required
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
@@ -1256,30 +1012,15 @@ export const ContainersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Applies changelist to the ontology, creates a new ontology version.
-         * @summary Apply Changelist
+         * Approves an ontology version
+         * @summary Approve Ontology Version
          * @param {string} containerId 
-         * @param {string} changelistID 
+         * @param {string} ontologyVersionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async applyChangelist(containerId: string, changelistID: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).applyChangelist(containerId, changelistID, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Approves a changelist
-         * @summary Approve Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async approveChangelist(containerId: string, changelistId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).approveChangelist(containerId, changelistId, options);
+        async approveOntologyVersion(containerId: string, ontologyVersionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).approveOntologyVersion(containerId, ontologyVersionId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1329,36 +1070,6 @@ export const ContainersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Create a new changelist.
-         * @summary Create New Changelist
-         * @param {string} containerId 
-         * @param {OntologyChangelistsBody} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createNewChangelist(containerId: string, body?: OntologyChangelistsBody, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).createNewChangelist(containerId, body, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Deletes a changelist
-         * @summary Delete Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deleteChangelist(containerId: string, changelistId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).deleteChangelist(containerId, changelistId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
          * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
          * @summary Import Container
          * @param {string} name 
@@ -1372,35 +1083,6 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          */
         async importContainer(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContainerImportResponse>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Approves a changelist for application. Note: you must still apply changelist after approval, this does not apply changelist.
-         * @summary List Approvals for Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listChangelistApprovals(containerId: string, changelistId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).listChangelistApprovals(containerId, changelistId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * List all changelists for a container. Will eventually support filters.
-         * @summary List Changelists
-         * @param {string} containerId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async listChangelists(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListChangelistResponse>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).listChangelists(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1440,8 +1122,38 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listOntologyVersions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async listOntologyVersions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).listOntologyVersions(containerId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Publishes an ontology version
+         * @summary Publish Ontology Version
+         * @param {string} containerId 
+         * @param {string} ontologyVersionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async publishOntologyVersion(containerId: string, ontologyVersionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).publishOntologyVersion(containerId, ontologyVersionId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Rejects an ontology version (either in a pending status or after it has been approved).
+         * @summary Reject Ontology Version Approval
+         * @param {string} containerId 
+         * @param {string} ontologyVersionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rejectOntologyVersionApproval(containerId: string, ontologyVersionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).rejectOntologyVersionApproval(containerId, ontologyVersionId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1456,21 +1168,6 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          */
         async repairContainerPermissions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).repairContainerPermissions(containerId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Retrieve a changelist by id.
-         * @summary Retrieve Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async retrieveChangelist(containerId: string, changelistId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RetrieveChangelistResponse>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).retrieveChangelist(containerId, changelistId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1498,23 +1195,8 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveOntologyVersion(containerId: string, versionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async retrieveOntologyVersion(containerId: string, versionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).retrieveOntologyVersion(containerId, versionId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Removes all approvals for changelist.
-         * @summary Revoke Changelist Approval
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async revokeChangelistApproval(containerId: string, changelistId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).revokeChangelistApproval(containerId, changelistId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1536,6 +1218,21 @@ export const ContainersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Sends an ontology version to be approved by a container admin
+         * @summary Send Ontology Version for Approval
+         * @param {string} containerId 
+         * @param {string} ontologyVersionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async sendOntologyVersionForApproval(containerId: string, ontologyVersionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).sendOntologyVersionForApproval(containerId, ontologyVersionId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Unarchives a Container. This is the only way to update this value of a container via API.
          * @summary Set Container Active
          * @param {string} containerId 
@@ -1544,22 +1241,6 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          */
         async setContainerActive(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).setContainerActive(containerId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * Update a changelist.
-         * @summary Update Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {ChangelistsChangelistIdBody} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async updateChangelist(containerId: string, changelistId: string, body?: ChangelistsChangelistIdBody, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).updateChangelist(containerId, changelistId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1620,26 +1301,15 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
             return ContainersApiFp(configuration).acknowledgeContainerAlert(containerId, alertId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Applies changelist to the ontology, creates a new ontology version.
-         * @summary Apply Changelist
+         * Approves an ontology version
+         * @summary Approve Ontology Version
          * @param {string} containerId 
-         * @param {string} changelistID 
+         * @param {string} ontologyVersionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        applyChangelist(containerId: string, changelistID: string, options?: any): AxiosPromise<void> {
-            return ContainersApiFp(configuration).applyChangelist(containerId, changelistID, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Approves a changelist
-         * @summary Approve Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        approveChangelist(containerId: string, changelistId: string, options?: any): AxiosPromise<void> {
-            return ContainersApiFp(configuration).approveChangelist(containerId, changelistId, options).then((request) => request(axios, basePath));
+        approveOntologyVersion(containerId: string, ontologyVersionId: string, options?: any): AxiosPromise<void> {
+            return ContainersApiFp(configuration).approveOntologyVersion(containerId, ontologyVersionId, options).then((request) => request(axios, basePath));
         },
         /**
          * Archives a Container. This is preferred over deletion as deletion has a cascading effect on the deleted type's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the type.
@@ -1673,28 +1343,6 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
             return ContainersApiFp(configuration).createContainer(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Create a new changelist.
-         * @summary Create New Changelist
-         * @param {string} containerId 
-         * @param {OntologyChangelistsBody} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createNewChangelist(containerId: string, body?: OntologyChangelistsBody, options?: any): AxiosPromise<InlineResponse2001> {
-            return ContainersApiFp(configuration).createNewChangelist(containerId, body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Deletes a changelist
-         * @summary Delete Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteChangelist(containerId: string, changelistId: string, options?: any): AxiosPromise<void> {
-            return ContainersApiFp(configuration).deleteChangelist(containerId, changelistId, options).then((request) => request(axios, basePath));
-        },
-        /**
          * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
          * @summary Import Container
          * @param {string} name 
@@ -1708,27 +1356,6 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          */
         importContainer(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options?: any): AxiosPromise<ContainerImportResponse> {
             return ContainersApiFp(configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Approves a changelist for application. Note: you must still apply changelist after approval, this does not apply changelist.
-         * @summary List Approvals for Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listChangelistApprovals(containerId: string, changelistId: string, options?: any): AxiosPromise<InlineResponse2002> {
-            return ContainersApiFp(configuration).listChangelistApprovals(containerId, changelistId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * List all changelists for a container. Will eventually support filters.
-         * @summary List Changelists
-         * @param {string} containerId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        listChangelists(containerId: string, options?: any): AxiosPromise<ListChangelistResponse> {
-            return ContainersApiFp(configuration).listChangelists(containerId, options).then((request) => request(axios, basePath));
         },
         /**
          * List all active alerts for a container by ID.
@@ -1756,8 +1383,30 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listOntologyVersions(containerId: string, options?: any): AxiosPromise<InlineResponse2003> {
+        listOntologyVersions(containerId: string, options?: any): AxiosPromise<InlineResponse2001> {
             return ContainersApiFp(configuration).listOntologyVersions(containerId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Publishes an ontology version
+         * @summary Publish Ontology Version
+         * @param {string} containerId 
+         * @param {string} ontologyVersionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        publishOntologyVersion(containerId: string, ontologyVersionId: string, options?: any): AxiosPromise<void> {
+            return ContainersApiFp(configuration).publishOntologyVersion(containerId, ontologyVersionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Rejects an ontology version (either in a pending status or after it has been approved).
+         * @summary Reject Ontology Version Approval
+         * @param {string} containerId 
+         * @param {string} ontologyVersionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rejectOntologyVersionApproval(containerId: string, ontologyVersionId: string, options?: any): AxiosPromise<void> {
+            return ContainersApiFp(configuration).rejectOntologyVersionApproval(containerId, ontologyVersionId, options).then((request) => request(axios, basePath));
         },
         /**
          * Repairs a container's permission set
@@ -1768,17 +1417,6 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          */
         repairContainerPermissions(containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return ContainersApiFp(configuration).repairContainerPermissions(containerId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve a changelist by id.
-         * @summary Retrieve Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        retrieveChangelist(containerId: string, changelistId: string, options?: any): AxiosPromise<RetrieveChangelistResponse> {
-            return ContainersApiFp(configuration).retrieveChangelist(containerId, changelistId, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve container by ID.
@@ -1798,19 +1436,8 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveOntologyVersion(containerId: string, versionId: string, options?: any): AxiosPromise<InlineResponse2004> {
+        retrieveOntologyVersion(containerId: string, versionId: string, options?: any): AxiosPromise<InlineResponse2002> {
             return ContainersApiFp(configuration).retrieveOntologyVersion(containerId, versionId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Removes all approvals for changelist.
-         * @summary Revoke Changelist Approval
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        revokeChangelistApproval(containerId: string, changelistId: string, options?: any): AxiosPromise<void> {
-            return ContainersApiFp(configuration).revokeChangelistApproval(containerId, changelistId, options).then((request) => request(axios, basePath));
         },
         /**
          * Rolls back the ontology to the selected version.
@@ -1824,6 +1451,17 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
             return ContainersApiFp(configuration).rollbackOntologyVersion(containerId, versionId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Sends an ontology version to be approved by a container admin
+         * @summary Send Ontology Version for Approval
+         * @param {string} containerId 
+         * @param {string} ontologyVersionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendOntologyVersionForApproval(containerId: string, ontologyVersionId: string, options?: any): AxiosPromise<void> {
+            return ContainersApiFp(configuration).sendOntologyVersionForApproval(containerId, ontologyVersionId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Unarchives a Container. This is the only way to update this value of a container via API.
          * @summary Set Container Active
          * @param {string} containerId 
@@ -1832,18 +1470,6 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          */
         setContainerActive(containerId: string, options?: any): AxiosPromise<Generic200Response> {
             return ContainersApiFp(configuration).setContainerActive(containerId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Update a changelist.
-         * @summary Update Changelist
-         * @param {string} containerId 
-         * @param {string} changelistId 
-         * @param {ChangelistsChangelistIdBody} [body] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateChangelist(containerId: string, changelistId: string, body?: ChangelistsChangelistIdBody, options?: any): AxiosPromise<InlineResponse2001> {
-            return ContainersApiFp(configuration).updateChangelist(containerId, changelistId, body, options).then((request) => request(axios, basePath));
         },
         /**
          * Updates the container. This will fail if a container already exists with the proposed updated name.
@@ -1894,28 +1520,16 @@ export class ContainersApi extends BaseAPI {
         return ContainersApiFp(this.configuration).acknowledgeContainerAlert(containerId, alertId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Applies changelist to the ontology, creates a new ontology version.
-     * @summary Apply Changelist
+     * Approves an ontology version
+     * @summary Approve Ontology Version
      * @param {string} containerId 
-     * @param {string} changelistID 
+     * @param {string} ontologyVersionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContainersApi
      */
-    public applyChangelist(containerId: string, changelistID: string, options?: any) {
-        return ContainersApiFp(this.configuration).applyChangelist(containerId, changelistID, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Approves a changelist
-     * @summary Approve Changelist
-     * @param {string} containerId 
-     * @param {string} changelistId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public approveChangelist(containerId: string, changelistId: string, options?: any) {
-        return ContainersApiFp(this.configuration).approveChangelist(containerId, changelistId, options).then((request) => request(this.axios, this.basePath));
+    public approveOntologyVersion(containerId: string, ontologyVersionId: string, options?: any) {
+        return ContainersApiFp(this.configuration).approveOntologyVersion(containerId, ontologyVersionId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Archives a Container. This is preferred over deletion as deletion has a cascading effect on the deleted type's keys, relationships, and relationship keys. When in doubt, archive over delete. We'd rather have tombstones than cremating the type.
@@ -1952,30 +1566,6 @@ export class ContainersApi extends BaseAPI {
         return ContainersApiFp(this.configuration).createContainer(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Create a new changelist.
-     * @summary Create New Changelist
-     * @param {string} containerId 
-     * @param {OntologyChangelistsBody} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public createNewChangelist(containerId: string, body?: OntologyChangelistsBody, options?: any) {
-        return ContainersApiFp(this.configuration).createNewChangelist(containerId, body, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Deletes a changelist
-     * @summary Delete Changelist
-     * @param {string} containerId 
-     * @param {string} changelistId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public deleteChangelist(containerId: string, changelistId: string, options?: any) {
-        return ContainersApiFp(this.configuration).deleteChangelist(containerId, changelistId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
      * An optional query param `dryrun` may be included with a value of `true` in order to return a HTML formatted string explaining the name and description of the container along with the number of metatypes, metatype relationships, and metatype keys to be created. This request uses a form-data body. If the ontology to be imported is being referenced via url, provide the url via a `path` field. Otherwise a local file may be provided. A file takes precedence over a `path` value if both are provided.
      * @summary Import Container
      * @param {string} name 
@@ -1990,29 +1580,6 @@ export class ContainersApi extends BaseAPI {
      */
     public importContainer(name: string, description: string, dataVersioningEnabled: boolean, path: string, file: string, dryrun?: boolean, options?: any) {
         return ContainersApiFp(this.configuration).importContainer(name, description, dataVersioningEnabled, path, file, dryrun, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Approves a changelist for application. Note: you must still apply changelist after approval, this does not apply changelist.
-     * @summary List Approvals for Changelist
-     * @param {string} containerId 
-     * @param {string} changelistId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public listChangelistApprovals(containerId: string, changelistId: string, options?: any) {
-        return ContainersApiFp(this.configuration).listChangelistApprovals(containerId, changelistId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * List all changelists for a container. Will eventually support filters.
-     * @summary List Changelists
-     * @param {string} containerId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public listChangelists(containerId: string, options?: any) {
-        return ContainersApiFp(this.configuration).listChangelists(containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * List all active alerts for a container by ID.
@@ -2047,6 +1614,30 @@ export class ContainersApi extends BaseAPI {
         return ContainersApiFp(this.configuration).listOntologyVersions(containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Publishes an ontology version
+     * @summary Publish Ontology Version
+     * @param {string} containerId 
+     * @param {string} ontologyVersionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContainersApi
+     */
+    public publishOntologyVersion(containerId: string, ontologyVersionId: string, options?: any) {
+        return ContainersApiFp(this.configuration).publishOntologyVersion(containerId, ontologyVersionId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Rejects an ontology version (either in a pending status or after it has been approved).
+     * @summary Reject Ontology Version Approval
+     * @param {string} containerId 
+     * @param {string} ontologyVersionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContainersApi
+     */
+    public rejectOntologyVersionApproval(containerId: string, ontologyVersionId: string, options?: any) {
+        return ContainersApiFp(this.configuration).rejectOntologyVersionApproval(containerId, ontologyVersionId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * Repairs a container's permission set
      * @summary Repair Container Permissions
      * @param {string} containerId 
@@ -2056,18 +1647,6 @@ export class ContainersApi extends BaseAPI {
      */
     public repairContainerPermissions(containerId: string, options?: any) {
         return ContainersApiFp(this.configuration).repairContainerPermissions(containerId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Retrieve a changelist by id.
-     * @summary Retrieve Changelist
-     * @param {string} containerId 
-     * @param {string} changelistId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public retrieveChangelist(containerId: string, changelistId: string, options?: any) {
-        return ContainersApiFp(this.configuration).retrieveChangelist(containerId, changelistId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Retrieve container by ID.
@@ -2093,18 +1672,6 @@ export class ContainersApi extends BaseAPI {
         return ContainersApiFp(this.configuration).retrieveOntologyVersion(containerId, versionId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Removes all approvals for changelist.
-     * @summary Revoke Changelist Approval
-     * @param {string} containerId 
-     * @param {string} changelistId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public revokeChangelistApproval(containerId: string, changelistId: string, options?: any) {
-        return ContainersApiFp(this.configuration).revokeChangelistApproval(containerId, changelistId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
      * Rolls back the ontology to the selected version.
      * @summary Rollback Ontology Version
      * @param {string} containerId 
@@ -2117,6 +1684,18 @@ export class ContainersApi extends BaseAPI {
         return ContainersApiFp(this.configuration).rollbackOntologyVersion(containerId, versionId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Sends an ontology version to be approved by a container admin
+     * @summary Send Ontology Version for Approval
+     * @param {string} containerId 
+     * @param {string} ontologyVersionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContainersApi
+     */
+    public sendOntologyVersionForApproval(containerId: string, ontologyVersionId: string, options?: any) {
+        return ContainersApiFp(this.configuration).sendOntologyVersionForApproval(containerId, ontologyVersionId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * Unarchives a Container. This is the only way to update this value of a container via API.
      * @summary Set Container Active
      * @param {string} containerId 
@@ -2126,19 +1705,6 @@ export class ContainersApi extends BaseAPI {
      */
     public setContainerActive(containerId: string, options?: any) {
         return ContainersApiFp(this.configuration).setContainerActive(containerId, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     * Update a changelist.
-     * @summary Update Changelist
-     * @param {string} containerId 
-     * @param {string} changelistId 
-     * @param {ChangelistsChangelistIdBody} [body] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ContainersApi
-     */
-    public updateChangelist(containerId: string, changelistId: string, body?: ChangelistsChangelistIdBody, options?: any) {
-        return ContainersApiFp(this.configuration).updateChangelist(containerId, changelistId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates the container. This will fail if a container already exists with the proposed updated name.

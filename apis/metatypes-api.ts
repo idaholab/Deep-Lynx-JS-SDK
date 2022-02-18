@@ -24,6 +24,7 @@ import { GetMetatypeResponse } from '../models';
 import { ListMetatypesResponse } from '../models';
 import { UpdateMetatypeRequest } from '../models';
 import { UpdateMetatypeResponse } from '../models';
+import { ValidateMetatypePropertiesRequest } from '../models';
 import { ValidateMetatypePropertiesResponse } from '../models';
 /**
  * MetatypesApi - axios parameter creator
@@ -322,11 +323,11 @@ export const MetatypesApiAxiosParamCreator = function (configuration?: Configura
          * @summary Validate Metatype Properties
          * @param {string} containerId 
          * @param {string} metatypeId 
-         * @param {any} [body] 
+         * @param {ValidateMetatypePropertiesRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateMetatypeProperties: async (containerId: string, metatypeId: string, body?: any, options: any = {}): Promise<RequestArgs> => {
+        validateMetatypeProperties: async (containerId: string, metatypeId: string, body?: ValidateMetatypePropertiesRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
                 throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling validateMetatypeProperties.');
@@ -467,11 +468,11 @@ export const MetatypesApiFp = function(configuration?: Configuration) {
          * @summary Validate Metatype Properties
          * @param {string} containerId 
          * @param {string} metatypeId 
-         * @param {any} [body] 
+         * @param {ValidateMetatypePropertiesRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateMetatypeProperties(containerId: string, metatypeId: string, body?: any, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateMetatypePropertiesResponse>> {
+        async validateMetatypeProperties(containerId: string, metatypeId: string, body?: ValidateMetatypePropertiesRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateMetatypePropertiesResponse>> {
             const localVarAxiosArgs = await MetatypesApiAxiosParamCreator(configuration).validateMetatypeProperties(containerId, metatypeId, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -555,11 +556,11 @@ export const MetatypesApiFactory = function (configuration?: Configuration, base
          * @summary Validate Metatype Properties
          * @param {string} containerId 
          * @param {string} metatypeId 
-         * @param {any} [body] 
+         * @param {ValidateMetatypePropertiesRequest} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateMetatypeProperties(containerId: string, metatypeId: string, body?: any, options?: any): AxiosPromise<ValidateMetatypePropertiesResponse> {
+        validateMetatypeProperties(containerId: string, metatypeId: string, body?: ValidateMetatypePropertiesRequest, options?: any): AxiosPromise<ValidateMetatypePropertiesResponse> {
             return MetatypesApiFp(configuration).validateMetatypeProperties(containerId, metatypeId, body, options).then((request) => request(axios, basePath));
         },
     };
@@ -645,12 +646,12 @@ export class MetatypesApi extends BaseAPI {
      * @summary Validate Metatype Properties
      * @param {string} containerId 
      * @param {string} metatypeId 
-     * @param {any} [body] 
+     * @param {ValidateMetatypePropertiesRequest} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MetatypesApi
      */
-    public validateMetatypeProperties(containerId: string, metatypeId: string, body?: any, options?: any) {
+    public validateMetatypeProperties(containerId: string, metatypeId: string, body?: ValidateMetatypePropertiesRequest, options?: any) {
         return MetatypesApiFp(this.configuration).validateMetatypeProperties(containerId, metatypeId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }

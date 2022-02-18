@@ -14,43 +14,13 @@
 /**
  * 
  * @export
- * @interface InlineResponse2002Value
+ * @interface ValidateMetatypePropertiesRequest
  */
-export interface InlineResponse2002Value {
+export interface ValidateMetatypePropertiesRequest {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof ValidateMetatypePropertiesRequest
      */
-    id: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2002Value
-     */
-    containerId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2002Value
-     */
-    name: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2002Value
-     */
-    changelistId: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2002Value
-     */
-    createdBy: any;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineResponse2002Value
-     */
-    createdAt: any;
+    propertyNameHere?: any;
 }

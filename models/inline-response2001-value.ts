@@ -14,43 +14,43 @@
 /**
  * 
  * @export
- * @interface InlineResponse2002Value
+ * @interface InlineResponse2001Value
  */
-export interface InlineResponse2002Value {
+export interface InlineResponse2001Value {
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof InlineResponse2001Value
      */
     id: any;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof InlineResponse2001Value
      */
     containerId: any;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof InlineResponse2001Value
      */
     name: any;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof InlineResponse2001Value
      */
     changelistId: any;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof InlineResponse2001Value
      */
     createdBy: any;
     /**
      * 
      * @type {string}
-     * @memberof InlineResponse2002Value
+     * @memberof InlineResponse2001Value
      */
     createdAt: any;
 }
