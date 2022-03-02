@@ -22,5 +22,11 @@ export interface InlineResponse2001 {
      * @type {Array&lt;InlineResponse2001Value&gt;}
      * @memberof InlineResponse2001
      */
-    value: any;
+    value?: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof InlineResponse2001
+     */
+    isError?: any;
 }

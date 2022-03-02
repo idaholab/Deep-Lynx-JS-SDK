@@ -19,38 +19,284 @@
 export interface InlineResponse2001Value {
     /**
      * 
-     * @type {string}
+     * @type {InlineResponse2001OriginProperties}
      * @memberof InlineResponse2001Value
      */
-    id: any;
+    originProperties?: any;
+    /**
+     * 
+     * @type {any}
+     * @memberof InlineResponse2001Value
+     */
+    edgeProperties?: any;
+    /**
+     * 
+     * @type {InlineResponse2001OriginProperties}
+     * @memberof InlineResponse2001Value
+     */
+    destinationProperties?: any;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2001Value
      */
-    containerId: any;
+    originId: any;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2001Value
      */
-    name: any;
+    originContainerId: any;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2001Value
      */
-    changelistId: any;
+    originDataSourceId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    originImportDataId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    originDataStagingId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    originTypeMappingTransformationId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    originOriginalDataId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    originMetadata?: any;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2001Value
      */
-    createdBy: any;
+    originCreatedAt?: any;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2001Value
      */
-    createdAt: any;
+    originModifiedAt?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    originDeletedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    originCreatedBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    originModifiedBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    originMetatypeName?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeContainerId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeRelationshipPairId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeDataSourceId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    edgeImportDataId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    edgeDataStagingId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    edgeTypeMappingTransformationId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    edgeMetadata?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeCreatedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeModifiedAt?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    edgeDeletedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeModifiedBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    edgeCreatedBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationContainerId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationDataSourceId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    destinationImportDataId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    destinationDataStagingId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    destinationTypeMappingTransformationId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    destinationOriginalDataId?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    destinationMetadata?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationCreatedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationModifiedAt?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001Value
+     */
+    destinationDeletedAt?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationCreatedBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationModifiedBy?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationMetatypeName?: any;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse2001Value
+     */
+    lvl: any;
+    /**
+     * 
+     * @type {InlineResponse2001MetatypeId}
+     * @memberof InlineResponse2001Value
+     */
+    metatypeId?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001Value
+     */
+    destinationMetatypeId?: any;
 }

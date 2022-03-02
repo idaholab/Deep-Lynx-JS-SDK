@@ -21,6 +21,7 @@ import { CreateOrUpdateNodesRequest } from '../models';
 import { Generic200Response } from '../models';
 import { GetEdgeResponse } from '../models';
 import { GetNodeResponse } from '../models';
+import { InlineResponse2001 } from '../models';
 import { ListEdgeFiles } from '../models';
 import { ListEdgesResponse } from '../models';
 import { ListNodeFiles } from '../models';
@@ -826,6 +827,59 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Retrieve n layers of node-edge relationships given a depth n and an origin node id.
+         * @summary Nth Node Query
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} [depth] Number of layers deep to query. Defaults to 10.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveNthNodes: async (containerId: string, nodeId: string, depth?: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling retrieveNthNodes.');
+            }
+            // verify required parameter 'nodeId' is not null or undefined
+            if (nodeId === null || nodeId === undefined) {
+                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling retrieveNthNodes.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/nodes/{node_id}/graph`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"node_id"}}`, encodeURIComponent(String(nodeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            if (depth !== undefined) {
+                localVarQueryParameter['depth'] = depth;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1074,6 +1128,22 @@ export const GraphApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * Retrieve n layers of node-edge relationships given a depth n and an origin node id.
+         * @summary Nth Node Query
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} [depth] Number of layers deep to query. Defaults to 10.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async retrieveNthNodes(containerId: string, nodeId: string, depth?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).retrieveNthNodes(containerId, nodeId, depth, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -1261,6 +1331,18 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          */
         retrieveNode(containerId: string, nodeId: string, options?: any): AxiosPromise<GetNodeResponse> {
             return GraphApiFp(configuration).retrieveNode(containerId, nodeId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve n layers of node-edge relationships given a depth n and an origin node id.
+         * @summary Nth Node Query
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {string} [depth] Number of layers deep to query. Defaults to 10.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        retrieveNthNodes(containerId: string, nodeId: string, depth?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return GraphApiFp(configuration).retrieveNthNodes(containerId, nodeId, depth, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1465,5 +1547,18 @@ export class GraphApi extends BaseAPI {
      */
     public retrieveNode(containerId: string, nodeId: string, options?: any) {
         return GraphApiFp(this.configuration).retrieveNode(containerId, nodeId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Retrieve n layers of node-edge relationships given a depth n and an origin node id.
+     * @summary Nth Node Query
+     * @param {string} containerId 
+     * @param {string} nodeId 
+     * @param {string} [depth] Number of layers deep to query. Defaults to 10.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public retrieveNthNodes(containerId: string, nodeId: string, depth?: string, options?: any) {
+        return GraphApiFp(this.configuration).retrieveNthNodes(containerId, nodeId, depth, options).then((request) => request(this.axios, this.basePath));
     }
 }

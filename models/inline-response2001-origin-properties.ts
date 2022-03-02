@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface InlineResponse2003
+ * @interface InlineResponse2001OriginProperties
  */
-export interface InlineResponse2003 {
+export interface InlineResponse2001OriginProperties {
     /**
      * 
-     * @type {InlineResponse2003Value}
-     * @memberof InlineResponse2003
+     * @type {ModelObject}
+     * @memberof InlineResponse2001OriginProperties
      */
-    value: any;
+    id?: any;
+    /**
+     * 
+     * @type {ModelObject}
+     * @memberof InlineResponse2001OriginProperties
+     */
+    name?: any;
 }

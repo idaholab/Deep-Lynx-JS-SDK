@@ -23,4 +23,10 @@ export interface DataSourceIdFilesBody {
      * @memberof DataSourceIdFilesBody
      */
     file?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof DataSourceIdFilesBody
+     */
+    metadata?: any;
 }

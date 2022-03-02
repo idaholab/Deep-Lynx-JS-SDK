@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface InlineResponse2003
+ * @interface InlineResponse2001MetatypeId
  */
-export interface InlineResponse2003 {
+export interface InlineResponse2001MetatypeId {
     /**
      * 
-     * @type {InlineResponse2003Value}
-     * @memberof InlineResponse2003
+     * @type {string}
+     * @memberof InlineResponse2001MetatypeId
      */
-    value: any;
+    name?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineResponse2001MetatypeId
+     */
+    description?: any;
 }
