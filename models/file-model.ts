@@ -46,7 +46,7 @@ export interface FileModel {
      * @type {string}
      * @memberof FileModel
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
@@ -58,7 +58,7 @@ export interface FileModel {
      * @type {string}
      * @memberof FileModel
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {string}

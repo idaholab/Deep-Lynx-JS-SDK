@@ -40,7 +40,7 @@ export interface FileInfo {
      * @type {number}
      * @memberof FileInfo
      */
-    fileSize: any;
+    fileSize?: any;
     /**
      * 
      * @type {string}
@@ -52,7 +52,7 @@ export interface FileInfo {
      * @type {string}
      * @memberof FileInfo
      */
-    adapter: any;
+    adapter?: any;
     /**
      * 
      * @type {string}
@@ -70,7 +70,7 @@ export interface FileInfo {
      * @type {string}
      * @memberof FileInfo
      */
-    modifiedAt: any;
+    modifiedAt?: any;
     /**
      * 
      * @type {string}
@@ -82,7 +82,7 @@ export interface FileInfo {
      * @type {string}
      * @memberof FileInfo
      */
-    modifiedBy: any;
+    modifiedBy?: any;
     /**
      * 
      * @type {string}
@@ -94,5 +94,5 @@ export interface FileInfo {
      * @type {string}
      * @memberof FileInfo
      */
-    md5hash: any;
+    md5hash?: any | null;
 }
