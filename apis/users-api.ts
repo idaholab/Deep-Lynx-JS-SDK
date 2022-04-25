@@ -18,15 +18,19 @@ import { Configuration } from '../configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { AssignRoleRequest } from '../models';
 import { ContainerInvite } from '../models';
+import { CreateServiceUser } from '../models';
 import { Generic200Response } from '../models';
 import { GetUserResponse } from '../models';
+import { InlineResponse2002 } from '../models';
 import { ListContainerInvitesResponse } from '../models';
+import { ListServiceUserResponse } from '../models';
 import { ListUserInvitesResponse } from '../models';
 import { ListUserPermissionsResponse } from '../models';
 import { ListUserRoles } from '../models';
 import { ListUsersForContainerResponse } from '../models';
 import { ListUsersResponse } from '../models';
 import { NotFound404 } from '../models';
+import { ServiceUserIdPermissionsBody } from '../models';
 import { User } from '../models';
 /**
  * UsersApi - axios parameter creator
@@ -131,6 +135,203 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Creates a new service user for container
+         * @summary Create Service User
+         * @param {string} containerId 
+         * @param {CreateServiceUser} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createServiceUser: async (containerId: string, body?: CreateServiceUser, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling createServiceUser.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a new api/secret keypair. This will return the secret as well - this is the only time that you will be able to see the secret.
+         * @summary Create Service User KeyPair
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createServiceUserKeyPair: async (containerId: string, serviceUserId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling createServiceUserKeyPair.');
+            }
+            // verify required parameter 'serviceUserId' is not null or undefined
+            if (serviceUserId === null || serviceUserId === undefined) {
+                throw new RequiredError('serviceUserId','Required parameter serviceUserId was null or undefined when calling createServiceUserKeyPair.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users/{service_user_id}/keys`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"service_user_id"}}`, encodeURIComponent(String(serviceUserId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a service user.
+         * @summary Delete Service User
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteServiceUser: async (containerId: string, serviceUserId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling deleteServiceUser.');
+            }
+            // verify required parameter 'serviceUserId' is not null or undefined
+            if (serviceUserId === null || serviceUserId === undefined) {
+                throw new RequiredError('serviceUserId','Required parameter serviceUserId was null or undefined when calling deleteServiceUser.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users/{service_user_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"service_user_id"}}`, encodeURIComponent(String(serviceUserId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete a service user keypair.
+         * @summary Delete Service User KeyPair
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {string} keyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteServiceUserKeyPair: async (containerId: string, serviceUserId: string, keyId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling deleteServiceUserKeyPair.');
+            }
+            // verify required parameter 'serviceUserId' is not null or undefined
+            if (serviceUserId === null || serviceUserId === undefined) {
+                throw new RequiredError('serviceUserId','Required parameter serviceUserId was null or undefined when calling deleteServiceUserKeyPair.');
+            }
+            // verify required parameter 'keyId' is not null or undefined
+            if (keyId === null || keyId === undefined) {
+                throw new RequiredError('keyId','Required parameter keyId was null or undefined when calling deleteServiceUserKeyPair.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users/{service_user_id}/keys/{key_id}`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"service_user_id"}}`, encodeURIComponent(String(serviceUserId)))
+                .replace(`{${"key_id"}}`, encodeURIComponent(String(keyId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Deletes the specified user.
          * @summary Delete User
          * @param {string} userId 
@@ -151,6 +352,54 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get service user permissions.
+         * @summary Get Service User Permissions
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServiceUserPermissions: async (containerId: string, serviceUserId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling getServiceUserPermissions.');
+            }
+            // verify required parameter 'serviceUserId' is not null or undefined
+            if (serviceUserId === null || serviceUserId === undefined) {
+                throw new RequiredError('serviceUserId','Required parameter serviceUserId was null or undefined when calling getServiceUserPermissions.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users/{service_user_id}/permissions`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"service_user_id"}}`, encodeURIComponent(String(serviceUserId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -269,6 +518,96 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
          */
         listOutstandingInvites: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/users/invites`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Lists a service user's api/secret keypairs. This lists only the key, not the secret.
+         * @summary List Service User KeyPairs
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listServiceUserKeyPairs: async (containerId: string, serviceUserId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listServiceUserKeyPairs.');
+            }
+            // verify required parameter 'serviceUserId' is not null or undefined
+            if (serviceUserId === null || serviceUserId === undefined) {
+                throw new RequiredError('serviceUserId','Required parameter serviceUserId was null or undefined when calling listServiceUserKeyPairs.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users/{service_user_id}/keys`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"service_user_id"}}`, encodeURIComponent(String(serviceUserId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of all service users for container
+         * @summary List Service Users
+         * @param {string} containerId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listServiceUsers: async (containerId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling listServiceUsers.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -548,6 +887,59 @@ export const UsersApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Set service user permissions.
+         * @summary Set Service User Permissions
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {ServiceUserIdPermissionsBody} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        setServiceUserPermissions: async (containerId: string, serviceUserId: string, body?: ServiceUserIdPermissionsBody, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling setServiceUserPermissions.');
+            }
+            // verify required parameter 'serviceUserId' is not null or undefined
+            if (serviceUserId === null || serviceUserId === undefined) {
+                throw new RequiredError('serviceUserId','Required parameter serviceUserId was null or undefined when calling setServiceUserPermissions.');
+            }
+            const localVarPath = `/containers/{container_id}/service-users/{service_user_id}/permissions`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"service_user_id"}}`, encodeURIComponent(String(serviceUserId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates the specified user.
          * @summary Update User
          * @param {string} userId 
@@ -633,6 +1025,67 @@ export const UsersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Creates a new service user for container
+         * @summary Create Service User
+         * @param {string} containerId 
+         * @param {CreateServiceUser} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createServiceUser(containerId: string, body?: CreateServiceUser, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).createServiceUser(containerId, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Creates a new api/secret keypair. This will return the secret as well - this is the only time that you will be able to see the secret.
+         * @summary Create Service User KeyPair
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createServiceUserKeyPair(containerId: string, serviceUserId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).createServiceUserKeyPair(containerId, serviceUserId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Deletes a service user.
+         * @summary Delete Service User
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteServiceUser(containerId: string, serviceUserId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).deleteServiceUser(containerId, serviceUserId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Delete a service user keypair.
+         * @summary Delete Service User KeyPair
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {string} keyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteServiceUserKeyPair(containerId: string, serviceUserId: string, keyId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).deleteServiceUserKeyPair(containerId, serviceUserId, keyId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Deletes the specified user.
          * @summary Delete User
          * @param {string} userId 
@@ -641,6 +1094,21 @@ export const UsersApiFp = function(configuration?: Configuration) {
          */
         async deleteUser(userId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Generic200Response>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).deleteUser(userId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Get service user permissions.
+         * @summary Get Service User Permissions
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getServiceUserPermissions(containerId: string, serviceUserId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InlineResponse2002>>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).getServiceUserPermissions(containerId, serviceUserId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -683,6 +1151,35 @@ export const UsersApiFp = function(configuration?: Configuration) {
          */
         async listOutstandingInvites(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListUserInvitesResponse>> {
             const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listOutstandingInvites(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Lists a service user's api/secret keypairs. This lists only the key, not the secret.
+         * @summary List Service User KeyPairs
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listServiceUserKeyPairs(containerId: string, serviceUserId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listServiceUserKeyPairs(containerId, serviceUserId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Retrieve a list of all service users for container
+         * @summary List Service Users
+         * @param {string} containerId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listServiceUsers(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ListServiceUserResponse>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).listServiceUsers(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -767,6 +1264,22 @@ export const UsersApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Set service user permissions.
+         * @summary Set Service User Permissions
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {ServiceUserIdPermissionsBody} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async setServiceUserPermissions(containerId: string, serviceUserId: string, body?: ServiceUserIdPermissionsBody, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await UsersApiAxiosParamCreator(configuration).setServiceUserPermissions(containerId, serviceUserId, body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
          * Updates the specified user.
          * @summary Update User
          * @param {string} userId 
@@ -812,6 +1325,51 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
             return UsersApiFp(configuration).assignUserRole(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Creates a new service user for container
+         * @summary Create Service User
+         * @param {string} containerId 
+         * @param {CreateServiceUser} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createServiceUser(containerId: string, body?: CreateServiceUser, options?: any): AxiosPromise<void> {
+            return UsersApiFp(configuration).createServiceUser(containerId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Creates a new api/secret keypair. This will return the secret as well - this is the only time that you will be able to see the secret.
+         * @summary Create Service User KeyPair
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createServiceUserKeyPair(containerId: string, serviceUserId: string, options?: any): AxiosPromise<void> {
+            return UsersApiFp(configuration).createServiceUserKeyPair(containerId, serviceUserId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Deletes a service user.
+         * @summary Delete Service User
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteServiceUser(containerId: string, serviceUserId: string, options?: any): AxiosPromise<void> {
+            return UsersApiFp(configuration).deleteServiceUser(containerId, serviceUserId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete a service user keypair.
+         * @summary Delete Service User KeyPair
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {string} keyId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteServiceUserKeyPair(containerId: string, serviceUserId: string, keyId: string, options?: any): AxiosPromise<void> {
+            return UsersApiFp(configuration).deleteServiceUserKeyPair(containerId, serviceUserId, keyId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Deletes the specified user.
          * @summary Delete User
          * @param {string} userId 
@@ -820,6 +1378,17 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         deleteUser(userId: string, options?: any): AxiosPromise<Generic200Response> {
             return UsersApiFp(configuration).deleteUser(userId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get service user permissions.
+         * @summary Get Service User Permissions
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getServiceUserPermissions(containerId: string, serviceUserId: string, options?: any): AxiosPromise<Array<InlineResponse2002>> {
+            return UsersApiFp(configuration).getServiceUserPermissions(containerId, serviceUserId, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new user using the username_password identity type.
@@ -850,6 +1419,27 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
          */
         listOutstandingInvites(options?: any): AxiosPromise<ListUserInvitesResponse> {
             return UsersApiFp(configuration).listOutstandingInvites(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Lists a service user's api/secret keypairs. This lists only the key, not the secret.
+         * @summary List Service User KeyPairs
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listServiceUserKeyPairs(containerId: string, serviceUserId: string, options?: any): AxiosPromise<void> {
+            return UsersApiFp(configuration).listServiceUserKeyPairs(containerId, serviceUserId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a list of all service users for container
+         * @summary List Service Users
+         * @param {string} containerId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listServiceUsers(containerId: string, options?: any): AxiosPromise<ListServiceUserResponse> {
+            return UsersApiFp(configuration).listServiceUsers(containerId, options).then((request) => request(axios, basePath));
         },
         /**
          * List permissions for the user.
@@ -910,6 +1500,18 @@ export const UsersApiFactory = function (configuration?: Configuration, basePath
             return UsersApiFp(configuration).retrieveUser(containerId, userId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Set service user permissions.
+         * @summary Set Service User Permissions
+         * @param {string} containerId 
+         * @param {string} serviceUserId 
+         * @param {ServiceUserIdPermissionsBody} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        setServiceUserPermissions(containerId: string, serviceUserId: string, body?: ServiceUserIdPermissionsBody, options?: any): AxiosPromise<void> {
+            return UsersApiFp(configuration).setServiceUserPermissions(containerId, serviceUserId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Updates the specified user.
          * @summary Update User
          * @param {string} userId 
@@ -954,6 +1556,55 @@ export class UsersApi extends BaseAPI {
         return UsersApiFp(this.configuration).assignUserRole(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
+     * Creates a new service user for container
+     * @summary Create Service User
+     * @param {string} containerId 
+     * @param {CreateServiceUser} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public createServiceUser(containerId: string, body?: CreateServiceUser, options?: any) {
+        return UsersApiFp(this.configuration).createServiceUser(containerId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Creates a new api/secret keypair. This will return the secret as well - this is the only time that you will be able to see the secret.
+     * @summary Create Service User KeyPair
+     * @param {string} containerId 
+     * @param {string} serviceUserId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public createServiceUserKeyPair(containerId: string, serviceUserId: string, options?: any) {
+        return UsersApiFp(this.configuration).createServiceUserKeyPair(containerId, serviceUserId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Deletes a service user.
+     * @summary Delete Service User
+     * @param {string} containerId 
+     * @param {string} serviceUserId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public deleteServiceUser(containerId: string, serviceUserId: string, options?: any) {
+        return UsersApiFp(this.configuration).deleteServiceUser(containerId, serviceUserId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Delete a service user keypair.
+     * @summary Delete Service User KeyPair
+     * @param {string} containerId 
+     * @param {string} serviceUserId 
+     * @param {string} keyId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public deleteServiceUserKeyPair(containerId: string, serviceUserId: string, keyId: string, options?: any) {
+        return UsersApiFp(this.configuration).deleteServiceUserKeyPair(containerId, serviceUserId, keyId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
      * Deletes the specified user.
      * @summary Delete User
      * @param {string} userId 
@@ -963,6 +1614,18 @@ export class UsersApi extends BaseAPI {
      */
     public deleteUser(userId: string, options?: any) {
         return UsersApiFp(this.configuration).deleteUser(userId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Get service user permissions.
+     * @summary Get Service User Permissions
+     * @param {string} containerId 
+     * @param {string} serviceUserId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getServiceUserPermissions(containerId: string, serviceUserId: string, options?: any) {
+        return UsersApiFp(this.configuration).getServiceUserPermissions(containerId, serviceUserId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Create a new user using the username_password identity type.
@@ -996,6 +1659,29 @@ export class UsersApi extends BaseAPI {
      */
     public listOutstandingInvites(options?: any) {
         return UsersApiFp(this.configuration).listOutstandingInvites(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Lists a service user's api/secret keypairs. This lists only the key, not the secret.
+     * @summary List Service User KeyPairs
+     * @param {string} containerId 
+     * @param {string} serviceUserId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public listServiceUserKeyPairs(containerId: string, serviceUserId: string, options?: any) {
+        return UsersApiFp(this.configuration).listServiceUserKeyPairs(containerId, serviceUserId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Retrieve a list of all service users for container
+     * @summary List Service Users
+     * @param {string} containerId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public listServiceUsers(containerId: string, options?: any) {
+        return UsersApiFp(this.configuration).listServiceUsers(containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * List permissions for the user.
@@ -1059,6 +1745,19 @@ export class UsersApi extends BaseAPI {
      */
     public retrieveUser(containerId: string, userId: string, options?: any) {
         return UsersApiFp(this.configuration).retrieveUser(containerId, userId, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Set service user permissions.
+     * @summary Set Service User Permissions
+     * @param {string} containerId 
+     * @param {string} serviceUserId 
+     * @param {ServiceUserIdPermissionsBody} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public setServiceUserPermissions(containerId: string, serviceUserId: string, body?: ServiceUserIdPermissionsBody, options?: any) {
+        return UsersApiFp(this.configuration).setServiceUserPermissions(containerId, serviceUserId, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Updates the specified user.

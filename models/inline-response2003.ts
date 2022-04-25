@@ -19,7 +19,7 @@
 export interface InlineResponse2003 {
     /**
      * 
-     * @type {InlineResponse2003Value}
+     * @type {Array&lt;InlineResponse2003Value&gt;}
      * @memberof InlineResponse2003
      */
     value: any;

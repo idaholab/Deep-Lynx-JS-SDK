@@ -25,8 +25,8 @@ import { CreateContainerResponse } from '../models';
 import { ErrorResponse } from '../models';
 import { Generic200Response } from '../models';
 import { GetContainerResponse } from '../models';
-import { InlineResponse2002 } from '../models';
 import { InlineResponse2003 } from '../models';
+import { InlineResponse2004 } from '../models';
 import { ListContainerResponse } from '../models';
 import { UpdateContainerRequest } from '../models';
 import { UpdateContainerResponse } from '../models';
@@ -1122,7 +1122,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listOntologyVersions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async listOntologyVersions(containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).listOntologyVersions(containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1195,7 +1195,7 @@ export const ContainersApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async retrieveOntologyVersion(containerId: string, versionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async retrieveOntologyVersion(containerId: string, versionId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await ContainersApiAxiosParamCreator(configuration).retrieveOntologyVersion(containerId, versionId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1383,7 +1383,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listOntologyVersions(containerId: string, options?: any): AxiosPromise<InlineResponse2002> {
+        listOntologyVersions(containerId: string, options?: any): AxiosPromise<InlineResponse2003> {
             return ContainersApiFp(configuration).listOntologyVersions(containerId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1436,7 +1436,7 @@ export const ContainersApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retrieveOntologyVersion(containerId: string, versionId: string, options?: any): AxiosPromise<InlineResponse2003> {
+        retrieveOntologyVersion(containerId: string, versionId: string, options?: any): AxiosPromise<InlineResponse2004> {
             return ContainersApiFp(configuration).retrieveOntologyVersion(containerId, versionId, options).then((request) => request(axios, basePath));
         },
         /**

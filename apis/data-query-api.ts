@@ -31,14 +31,14 @@ export const DataQueryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queryData: async (body: any, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        dataQuery: async (body: any, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling queryData.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling dataQuery.');
             }
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling queryData.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling dataQuery.');
             }
             const localVarPath = `/containers/{container_id}/data`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
@@ -82,14 +82,14 @@ export const DataQueryApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queryData: async (body: any, containerId: string, options: any = {}): Promise<RequestArgs> => {
+        dataQuery: async (body: any, containerId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling queryData.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling dataQuery.');
             }
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling queryData.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling dataQuery.');
             }
             const localVarPath = `/containers/{container_id}/data`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)));
@@ -244,8 +244,8 @@ export const DataQueryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async queryData(body: any, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await DataQueryApiAxiosParamCreator(configuration).queryData(body, containerId, options);
+        async dataQuery(body: any, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await DataQueryApiAxiosParamCreator(configuration).dataQuery(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -259,8 +259,8 @@ export const DataQueryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async queryData(body: any, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await DataQueryApiAxiosParamCreator(configuration).queryData(body, containerId, options);
+        async dataQuery(body: any, containerId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await DataQueryApiAxiosParamCreator(configuration).dataQuery(body, containerId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -313,8 +313,8 @@ export const DataQueryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queryData(body: any, containerId: string, options?: any): AxiosPromise<InlineResponse200> {
-            return DataQueryApiFp(configuration).queryData(body, containerId, options).then((request) => request(axios, basePath));
+        dataQuery(body: any, containerId: string, options?: any): AxiosPromise<InlineResponse200> {
+            return DataQueryApiFp(configuration).dataQuery(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
          * Query data from your container using GraphQL. You can learn more here - https://gitlab.software.inl.gov/b650/Deep-Lynx/-/wikis/Querying-Data-With-GraphQL
@@ -324,8 +324,8 @@ export const DataQueryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queryData(body: any, containerId: string, options?: any): AxiosPromise<InlineResponse200> {
-            return DataQueryApiFp(configuration).queryData(body, containerId, options).then((request) => request(axios, basePath));
+        dataQuery(body: any, containerId: string, options?: any): AxiosPromise<InlineResponse200> {
+            return DataQueryApiFp(configuration).dataQuery(body, containerId, options).then((request) => request(axios, basePath));
         },
         /**
          * Query the graph of the specified container using GraphQL. GraphQL queries may be formatted as json or plain text.  This has been deprecated in favor of the `/containers/{container_id}/data` endpoint.
@@ -368,8 +368,8 @@ export class DataQueryApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DataQueryApi
      */
-    public queryData(body: any, containerId: string, options?: any) {
-        return DataQueryApiFp(this.configuration).queryData(body, containerId, options).then((request) => request(this.axios, this.basePath));
+    public dataQuery(body: any, containerId: string, options?: any) {
+        return DataQueryApiFp(this.configuration).dataQuery(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -381,8 +381,8 @@ export class DataQueryApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DataQueryApi
      */
-    public queryData(body: any, containerId: string, options?: any) {
-        return DataQueryApiFp(this.configuration).queryData(body, containerId, options).then((request) => request(this.axios, this.basePath));
+    public dataQuery(body: any, containerId: string, options?: any) {
+        return DataQueryApiFp(this.configuration).dataQuery(body, containerId, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Query the graph of the specified container using GraphQL. GraphQL queries may be formatted as json or plain text.  This has been deprecated in favor of the `/containers/{container_id}/data` endpoint.

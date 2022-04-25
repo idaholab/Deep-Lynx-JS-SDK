@@ -14,13 +14,109 @@
 /**
  * 
  * @export
- * @interface InlineResponse2002
+ * @interface ServiceUser
  */
-export interface InlineResponse2002 {
+export interface ServiceUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    identityProvider: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    displayName: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    email: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ServiceUser
+     */
+    admin: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ServiceUser
+     */
+    active: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ServiceUser
+     */
+    resetRequired: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ServiceUser
+     */
+    emailValid: any;
     /**
      * 
      * @type {Array&lt;ModelObject&gt;}
-     * @memberof InlineResponse2002
+     * @memberof ServiceUser
      */
-    _0: any;
+    permissions?: any;
+    /**
+     * 
+     * @type {Array&lt;ModelObject&gt;}
+     * @memberof ServiceUser
+     */
+    roles?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    id: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    identityProviderId: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    createdAt: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    modifiedAt: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    createdBy: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    modifiedBy: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof ServiceUser
+     */
+    resetTokenIssued: any;
+    /**
+     * 
+     * @type {Array&lt;ServiceUserKeys&gt;}
+     * @memberof ServiceUser
+     */
+    keys?: any;
 }
