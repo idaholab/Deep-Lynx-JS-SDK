@@ -23,23 +23,23 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary Nth Node Query
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+         * @summary Timeseries Node Query
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId: async (containerId: string, nodeId: string, options: any = {}): Promise<RequestArgs> => {
+        timeseriesNodeQuery: async (containerId: string, nodeId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'containerId' is not null or undefined
             if (containerId === null || containerId === undefined) {
-                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId.');
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling timeseriesNodeQuery.');
             }
             // verify required parameter 'nodeId' is not null or undefined
             if (nodeId === null || nodeId === undefined) {
-                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId.');
+                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling timeseriesNodeQuery.');
             }
-            const localVarPath = `/Core.swagger_collection.yaml/paths//containers/{container_id}/graphs/nodes/{node_id}`
+            const localVarPath = `/containers/{container_id}/graphs/nodes/{node_id}/timeseries`
                 .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
                 .replace(`{${"node_id"}}`, encodeURIComponent(String(nodeId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -48,7 +48,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -80,15 +80,15 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * 
-         * @summary Nth Node Query
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+         * @summary Timeseries Node Query
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId(containerId, nodeId, options);
+        async timeseriesNodeQuery(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await DefaultApiAxiosParamCreator(configuration).timeseriesNodeQuery(containerId, nodeId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -104,15 +104,15 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * 
-         * @summary Nth Node Query
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+         * @summary Timeseries Node Query
          * @param {string} containerId 
          * @param {string} nodeId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId(containerId: string, nodeId: string, options?: any): AxiosPromise<void> {
-            return DefaultApiFp(configuration).getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId(containerId, nodeId, options).then((request) => request(axios, basePath));
+        timeseriesNodeQuery(containerId: string, nodeId: string, options?: any): AxiosPromise<void> {
+            return DefaultApiFp(configuration).timeseriesNodeQuery(containerId, nodeId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -125,15 +125,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  */
 export class DefaultApi extends BaseAPI {
     /**
-     * 
-     * @summary Nth Node Query
+     * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+     * @summary Timeseries Node Query
      * @param {string} containerId 
      * @param {string} nodeId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId(containerId: string, nodeId: string, options?: any) {
-        return DefaultApiFp(this.configuration).getCoreSwaggerCollectionYamlPaths1containers1ContainerId1graphs1nodes1NodeId(containerId, nodeId, options).then((request) => request(this.axios, this.basePath));
+    public timeseriesNodeQuery(containerId: string, nodeId: string, options?: any) {
+        return DefaultApiFp(this.configuration).timeseriesNodeQuery(containerId, nodeId, options).then((request) => request(this.axios, this.basePath));
     }
 }
