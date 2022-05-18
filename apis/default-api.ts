@@ -23,7 +23,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
          * @summary Timeseries Node Query
          * @param {string} containerId 
          * @param {string} nodeId 
@@ -80,7 +80,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 export const DefaultApiFp = function(configuration?: Configuration) {
     return {
         /**
-         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
          * @summary Timeseries Node Query
          * @param {string} containerId 
          * @param {string} nodeId 
@@ -104,7 +104,7 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
-         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
          * @summary Timeseries Node Query
          * @param {string} containerId 
          * @param {string} nodeId 
@@ -125,7 +125,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
  */
 export class DefaultApi extends BaseAPI {
     /**
-     * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time sereis data on nodes.
+     * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
      * @summary Timeseries Node Query
      * @param {string} containerId 
      * @param {string} nodeId 
