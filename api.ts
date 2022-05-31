@@ -16,7 +16,6 @@ export * from './apis/data-export-api';
 export * from './apis/data-query-api';
 export * from './apis/data-sources-api';
 export * from './apis/data-type-mappings-api';
-export * from './apis/default-api';
 export * from './apis/events-api';
 export * from './apis/graph-api';
 export * from './apis/imports-api';

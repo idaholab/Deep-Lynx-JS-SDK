@@ -885,6 +885,54 @@ export const GraphApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
+         * @summary Timeseries Node Query
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        timeseriesNodeQuery: async (containerId: string, nodeId: string, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'containerId' is not null or undefined
+            if (containerId === null || containerId === undefined) {
+                throw new RequiredError('containerId','Required parameter containerId was null or undefined when calling timeseriesNodeQuery.');
+            }
+            // verify required parameter 'nodeId' is not null or undefined
+            if (nodeId === null || nodeId === undefined) {
+                throw new RequiredError('nodeId','Required parameter nodeId was null or undefined when calling timeseriesNodeQuery.');
+            }
+            const localVarPath = `/containers/{container_id}/graphs/nodes/{node_id}/timeseries`
+                .replace(`{${"container_id"}}`, encodeURIComponent(String(containerId)))
+                .replace(`{${"node_id"}}`, encodeURIComponent(String(nodeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication BearerAuth required
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1150,6 +1198,21 @@ export const GraphApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
+         * @summary Timeseries Node Query
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async timeseriesNodeQuery(containerId: string, nodeId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await GraphApiAxiosParamCreator(configuration).timeseriesNodeQuery(containerId, nodeId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -1350,6 +1413,17 @@ export const GraphApiFactory = function (configuration?: Configuration, basePath
          */
         retrieveNthNodes(containerId: string, nodeId: string, depth?: string, options?: any): AxiosPromise<InlineResponse2001> {
             return GraphApiFp(configuration).retrieveNthNodes(containerId, nodeId, depth, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
+         * @summary Timeseries Node Query
+         * @param {string} containerId 
+         * @param {string} nodeId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        timeseriesNodeQuery(containerId: string, nodeId: string, options?: any): AxiosPromise<void> {
+            return GraphApiFp(configuration).timeseriesNodeQuery(containerId, nodeId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1568,5 +1642,17 @@ export class GraphApi extends BaseAPI {
      */
     public retrieveNthNodes(containerId: string, nodeId: string, depth?: string, options?: any) {
         return GraphApiFp(this.configuration).retrieveNthNodes(containerId, nodeId, depth, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * This is an endpoint that accepts a GraphQL query and returns the results of that query. Primarily used for working with time series data on nodes.
+     * @summary Timeseries Node Query
+     * @param {string} containerId 
+     * @param {string} nodeId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GraphApi
+     */
+    public timeseriesNodeQuery(containerId: string, nodeId: string, options?: any) {
+        return GraphApiFp(this.configuration).timeseriesNodeQuery(containerId, nodeId, options).then((request) => request(this.axios, this.basePath));
     }
 }
