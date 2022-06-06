@@ -31,7 +31,7 @@ export interface ImportModel {
     dataSourceConfig?: any;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof ImportModel
      */
     id?: any;
