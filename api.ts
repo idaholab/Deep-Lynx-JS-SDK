@@ -15,6 +15,7 @@ export * from './apis/containers-api';
 export * from './apis/data-export-api';
 export * from './apis/data-query-api';
 export * from './apis/data-sources-api';
+export * from './apis/data-targets-api';
 export * from './apis/data-type-mappings-api';
 export * from './apis/events-api';
 export * from './apis/graph-api';
@@ -26,5 +27,6 @@ export * from './apis/metatype-relationships-api';
 export * from './apis/metatypes-api';
 export * from './apis/misc-api';
 export * from './apis/tasks-api';
+export * from './apis/time-series-api';
 export * from './apis/users-api';
 
