@@ -1,9 +1,9 @@
-# Deep Lynx JS SDK
-Deep Lynx JS SDK
+# DeepLynx JS SDK
+DeepLynx JS SDK
 
-This is an SDK for the [Deep Lynx](https://github.com/idaholab/Deep-Lynx) data warehouse that supports both JavaScript (JS) and TypeScript (TS) projects. It is used for creating API requests and sending and receiving data from Deep Lynx. 
+This is an SDK for the [DeepLynx](https://github.com/idaholab/Deep-Lynx) data warehouse that supports both JavaScript (JS) and TypeScript (TS) projects. It is used for creating API requests and sending and receiving data from DeepLynx. 
 
-This code is generated from the Deep Lynx OpenAPI specification using [Swagger Codegen](https://github.com/swagger-api/swagger-codegen). Please see the Deep Lynx [OpenAPI spec](https://github.com/idaholab/Deep-Lynx/tree/master/API%20Documentation) for more details and documentation on the API routes themselves.  
+This code is generated from the DeepLynx OpenAPI specification using [Swagger Codegen](https://github.com/swagger-api/swagger-codegen). Please see the DeepLynx [OpenAPI spec](https://github.com/idaholab/Deep-Lynx/tree/master/API%20Documentation) for more details and documentation on the API routes themselves.  
 
 ___
 
